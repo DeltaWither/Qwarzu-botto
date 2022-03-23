@@ -1,0 +1,19 @@
+{
+  "name": "qwarzu-botto",
+  "version": "1.0.0",
+  "description": "Bot for actually good custom commands for Qwarzu Outposto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeltaWither/Qwarzu-botto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeltaWither/Qwarzu-botto/issues"
+  },
+  "homepage": "https://github.com/DeltaWither/Qwarzu-botto#readme"
+}
