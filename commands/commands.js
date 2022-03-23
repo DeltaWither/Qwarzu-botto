@@ -13,7 +13,11 @@ const mio = require("./command_mio.js")
 const qwarz = require("./command_qwarz.js")
 const rat = require("./command_rat.js")
 
-module.exports = {
+commandList = {
+    "commands": {
+        "description": "List all commands",
+        "function": commands
+    },
     "ping": ping,
     "michiru": michiru,
     "test": test,
@@ -29,3 +33,13 @@ module.exports = {
     "qwarz": qwarz,
     "rat": rat
 }
+
+function commands(message, args) {
+    commandsString = ""
+    for (command in commandList) {
+        commandsString = commandsString + command + ", ";
+    }
+    message.channel.send(commandsString.slice(0, -2));
+}
+
+module.exports = commandList;
