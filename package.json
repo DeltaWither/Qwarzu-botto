@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DeltaWither/Qwarzu-botto/issues"
   },
-  "homepage": "https://github.com/DeltaWither/Qwarzu-botto#readme"
+  "homepage": "https://github.com/DeltaWither/Qwarzu-botto#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
 }
