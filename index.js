@@ -29,7 +29,7 @@ function handleCommand(message) {
     let args = commandAndArgs.slice(1);
     
     if(commands[commandName]) {
-        commands[commandName].function(message);
+        commands[commandName].function(message, args);
     }
 }
 

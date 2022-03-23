@@ -1,8 +1,8 @@
- module.exports = {
+module.exports = {
      "description": "The ping command",
      "function": ping
 }
 
-function ping(message) {
+function ping(message, args) {
     message.reply('Pong!');
 }
