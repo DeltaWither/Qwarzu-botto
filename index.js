@@ -12,9 +12,6 @@ client.on('ready', () => {
 
 client.on("messageCreate", message => {
     console.log(`${message.author.tag}: ${message.content}`)
-    if (message.content === 'ping') {
-        message.reply('Pong!');
-    }
     
     handleCommand(message);
 });
@@ -25,18 +22,25 @@ function handleCommand(message) {
         return;
     }
     
-    console.log(`Command: ${command}`)
-    
     let commandAndArgs = command.slice(1).toLowerCase().split(" ")
-    
-    console.log(`Command and arguments: ${commandAndArgs}`)
     
     let commandName = commandAndArgs[0];
     let args = commandAndArgs.slice(1);
     
-    console.log(`Command name: ${commandName}`)
-    console.log(`Arguments: ${args}`)
-    message.reply(`Command name: ${commandName} \nArguments: ${args}`)
+    if(commands[commandName]) {
+        commands[commandName].function(message);
+    }
+}
+
+let commands = {
+    "ping": {
+        "description": "The ping command",
+        "function": ping
+    }
+}
+
+function ping(message) {
+    message.reply('Pong!');
 }
 
 client.login(token);
