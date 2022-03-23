@@ -1,5 +1,6 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require("./config.json");
+const commands = require("./commands/commands.js");
 
 const client = new Client({ 
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
@@ -32,16 +33,6 @@ function handleCommand(message) {
     }
 }
 
-let commands = {
-    "ping": {
-        "description": "The ping command",
-        "function": ping
-    }
-}
-
-function ping(message) {
-    message.reply('Pong!');
-}
 
 client.login(token);
 
