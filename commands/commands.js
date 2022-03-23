@@ -12,6 +12,7 @@ const konata = require("./command_konata.js")
 const mio = require("./command_mio.js")
 const qwarz = require("./command_qwarz.js")
 const rat = require("./command_rat.js")
+const dm = require("./command_dm.js")
 
 commandList = {
     "commands": {
@@ -31,7 +32,8 @@ commandList = {
     "konata": konata,
     "mio": mio,
     "qwarz": qwarz,
-    "rat": rat
+    "rat": rat,
+    "dm": dm
 }
 
 function commands(message, args) {

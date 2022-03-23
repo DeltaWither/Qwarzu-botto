@@ -1,21 +1,13 @@
 module.exports = {
-    "description": "Send a dm to pinged user",
+    "description": "send a dm. use : ex. ?dm <@user or id> content",
     "function": dm
 }
 
-function dm (message, args) {
-        let dUser =
-         message.guild.member(message.mentions.users.first()) ||
-         message.guild.members.get(args[0]);
-        if (!dUser) return message.channel.send("Can't find user!");
-        if (!message.member.hasPermission('ADMINISTRATOR'))
-         return message.reply("You can't run that command!");
-        let dMessage = args.join(' ').slice(22);
-        if (dMessage.length < 1) return message.reply('You must supply a message!');
-       
-        dUser.send(`${dMessage}`);
-       
-        message.author.send(
-         `${message.author} You have sent your message to ${dUser}`
-        );
+function dm(message, args) {
+    var mentions = msg.mentions.users.first();
+    if (message.members.role.cache.has("708716555785076798","708715594840801300","947201308035776633"))
+        if (message.mentions.members.size > 0) {
+            var dmMessage = msg.content.slice(20).trim();
+            mentions.send(dmMessage)
+        }
 }
