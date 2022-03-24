@@ -13,6 +13,11 @@ const mio = require("./command_mio.js")
 const qwarz = require("./command_qwarz.js")
 const rat = require("./command_rat.js")
 const nazuna = require("./command_nazuna.js")
+<<<<<<< HEAD
+const dm = require("./command_dm.js")
+=======
+const nazuna = require("./command_nazuna.js")
+>>>>>>> dd1e49ff99562790ce744be2779c2733f1cbbd1f
 
 commandList = {
     "commands": {
@@ -32,8 +37,13 @@ commandList = {
     "konata": konata,
     "mio": mio,
     "qwarz": qwarz,
+<<<<<<< HEAD
+    "rat": rat,
+    "dm": dm
+=======
     "rat": rat,
     "nazuna": nazuna
+>>>>>>> dd1e49ff99562790ce744be2779c2733f1cbbd1f
 }
 
 function commands(message, args) {
