@@ -15,7 +15,7 @@ To add your own command, add a file "command_commandName.js" in the commands fol
 
 ```javascript
 module.exports = {
-     "description": "Random number between 0 and 100",
+     "description": "Description",
      "function": commandName
 }
 
