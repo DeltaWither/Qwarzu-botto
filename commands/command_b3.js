@@ -20,7 +20,7 @@ function b3(message, args) {
         "https://cdn.discordapp.com/attachments/738946290930548816/742256052611055686/tdyyIEm.png",
         "https://cdn.discordapp.com/attachments/738946290930548816/758562561754529802/1519955898653.png",
         "https://cdn.discordapp.com/attachments/738946290930548816/768759609321979924/horny-bastard.png",
-        "https://cdn.discordapp.com/attachments/738946290930548816/773048019091849226/asd.png}"
+        "https://cdn.discordapp.com/attachments/738946290930548816/773048019091849226/asd.png"
     ]
     
     let index = Math.floor(Math.random() * b3Array.length)
