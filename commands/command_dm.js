@@ -9,7 +9,7 @@ function dm(message, args) {
     var mentions = message.mentions.users.first();
     var dmMessage = message.content.slice(26).trim();
     
-    if (message.member.roles.cache.has('948632972427423784', '956590586922684447')) {
+    if (message.member.roles.cache.has('708716555785076798')) {
         mentions.send(dmMessage)
     } else {
         message.channel.send("no perms")
