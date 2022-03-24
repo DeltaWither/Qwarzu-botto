@@ -1,0 +1,18 @@
+It would be cool to improve this bot so here's stuff I need to do
+
+- Convert to typescript for security and possibly use webpack or whatever magical tools to be able to use all modern features of js and have a minimized build.
+- Make the readme useful for an introduction.
+- Documentation.
+- Improve the folder structure and organization of the bot.
+
+Also some features I have in mind
+- Make a folder containing useful functions like checking if a string is an id or a ping, checking roles and permissions in a convenient way...
+- Talking about permissions, maybe a json file somewhere could have the permissions of each command so that it's enabled/disabled for certain roles. Also option for advanced permission checking for some weird commands?
+- Organize the commands in categories by putting them in different folders. It will make it easier to set permissions for groups of commands.
+- Another option is regardless of folders, creating groups of commands for different perm stuff. For example, ?dm in groups staff and allChannels, one indicating who can use it, the other where. This is kinda like linux groups? Sounds cool but way too much for now.
+- Continuous background stuff. For now it's just a command running and it's done in a moment. It would be interesting to have a specific feature that is doing stuff constantly, like checking for certain words in messages, sending messages at certain times, etc. Also consider what happens when a command goes into an infinite loop.
+- Special staff loop commands to be able to repeat a command several times. Examples:
+	?for i in 1..10 say i						Result: bot sends 10 messages from 1 to 10
+	?for member in role(insert role id) dm member asdf		Result: dms every member in that role "asdf"
+Of course, this is way overkill for now and there's more important stuff, but it would be damn cool.
+
