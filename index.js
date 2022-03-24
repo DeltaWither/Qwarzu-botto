@@ -29,7 +29,15 @@ function handleCommand(message) {
     let args = commandAndArgs.slice(1);
     
     if(commands[commandName]) {
-        commands[commandName].function(message, args);
+        try{
+            commands[commandName].function(message, args);
+        }
+        catch(err) {
+            console.log(`=======\n=======\n=======\n=======\n`);
+            console.log("Something bad just happened");
+            console.log(err);
+            console.log(`=======\n=======\n=======\n=======\n`);
+        }
     }
 }
 
