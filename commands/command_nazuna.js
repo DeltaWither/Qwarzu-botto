@@ -24,7 +24,11 @@ function nazuna(message, args) {
         "https://cdn.discordapp.com/attachments/709176649278816328/956695742800613426/sample_93f3329ff9221c48839cb67e7b9a9277.png",
         "https://cdn.discordapp.com/attachments/709176649278816328/956695743073226802/sample_d6aa337c8ac87abd1210e2758ff6993b.png",
         "https://cdn.discordapp.com/attachments/709176649278816328/956695743324880926/sample_71b28df04509fe868a2cf15e74153a99.png",
-        "https://cdn.discordapp.com/attachments/709176649278816328/956695743563984896/b4e3e4bc51af2c09a4aca587c0cb7df4.png"
+        "https://cdn.discordapp.com/attachments/709176649278816328/956695743563984896/b4e3e4bc51af2c09a4aca587c0cb7df4.png",
+        "https://cdn.discordapp.com/attachments/709176649278816328/957723939264659526/15.png",
+        "https://cdn.discordapp.com/attachments/709176649278816328/957723939583430706/16.png",
+        "https://cdn.discordapp.com/attachments/709176649278816328/957723939956731974/17.png",
+        "https://cdn.discordapp.com/attachments/709176649278816328/957728311239385198/18.png"
     ]
     
     let index = Math.floor(Math.random() * nazunaArray.length)
