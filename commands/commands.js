@@ -14,6 +14,7 @@ const qwarz = require("./command_qwarz.js")
 const rat = require("./command_rat.js")
 const dm = require("./command_dm.js")
 const nazuna = require("./command_nazuna.js")
+const dog = require('./command_dog.js')
 
 commandList = {
     "commands": {
@@ -35,7 +36,8 @@ commandList = {
     "qwarz": qwarz,
     "rat": rat,
     "dm": dm,
-    "nazuna": nazuna
+    "nazuna": nazuna,
+    "dog": dog
 }
 
 function commands(message, args) {
