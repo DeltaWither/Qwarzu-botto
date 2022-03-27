@@ -9,7 +9,7 @@ function dm(message, args) {
     var mentions = message.mentions.users.first();
     var dmMessage = message.content.slice(26).trim();
     
-    if (member.mentions.size > 0) {
+    if (message.mentions.size > 0) {
         if (message.member.roles.cache.hasAny('708716555785076798', '708722040286478356', '945585653024964721')) {
             mentions.send(dmMessage)
         } else {
