@@ -1,6 +1,6 @@
-# Qwarzu bottu
+# Qwarzu botto
 
-Qwarzu bottu is a Discord bot written in Javascript used to control commands in Qwarzu Outpostu 
+Qwarzu botto is a Discord bot written in Javascript used to control commands in Qwarzu Outposto
 
 ## Installation
 
