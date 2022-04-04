@@ -1,5 +1,11 @@
 # Qwarzu botto
 
+
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-pull-requests.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)](https://forthebadge.com)
+
+
 Qwarzu botto is a Discord bot written in Javascript used to control commands in Qwarzu Outposto
 
 ## Installation
