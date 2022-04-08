@@ -11,13 +11,13 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("messageCreate", message => {
+client.on("messageCreate", async message => {
     console.log(`${message.author.tag}: ${message.content}`)
     
-    handleCommand(message);
+    await handleCommand(message);
 });
 
-function handleCommand(message) {
+async function handleCommand(message) {
     let command = message.content;
     if(command[0] !== "?") {
         return;
@@ -30,7 +30,7 @@ function handleCommand(message) {
     
     if(commands[commandName]) {
         try{
-            commands[commandName].function(message, args);
+            await commands[commandName].function(message, args);
         }
         catch(err) {
             console.log(`=======\n=======\n=======\n=======\n`);
