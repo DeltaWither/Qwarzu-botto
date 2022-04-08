@@ -21,14 +21,17 @@ Then run `npm install` and `npm start` (make sure you are using the latest versi
 
 ``` javascript
 
-module.exports = {
-     "description": "Description",
-     "function": commandName
+const {Command} = require("./Command.js")
+
+const exec = (message, args) => {
+	//code here
 }
 
-function commandName(message, args) {
-  //code here
-}
+const description = "description here"
+
+const command = new Command("commandName", description, exec)
+
+module.exports = command
 
 ```
 
