@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random number between 0 and 100",
-     "function": dogga
-}
+const {Command} = require("./Command.js")
 
-function dogga(message, args) {
+const exec = (message, args) => {
     let number = (Math.random() * 50)
     
     if(number <= 49) {
@@ -13,3 +10,9 @@ function dogga(message, args) {
     }
     
 }
+
+const description = ""
+
+const dogga = new Command("dogga", description, exec)
+
+module.exports = dogga

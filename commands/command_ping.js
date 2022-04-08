@@ -1,8 +1,11 @@
-module.exports = {
-     "description": "The ping command",
-     "function": ping
-}
+const {Command} = require("./Command.js")
 
-function ping(message, args) {
+const exec = (message, args) => {
     message.reply('Pong!');
 }
+
+const description = "The ping command"
+
+const ping = new Command("ping", description, exec)
+
+module.exports = ping

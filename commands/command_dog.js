@@ -1,9 +1,6 @@
-module.exports = {
-    "description": "Cool dog photos",
-    "function": dog
-}
+const {Command} = require("./Command.js")
 
-function dog(message, args) {
+const exec = (message, args) => {
     const dogArray = [
         "https://media.discordapp.net/attachments/801762830478344203/957290702063165550/samoyed_puppy_dog_pictures.png",
         "https://media.discordapp.net/attachments/801762830478344203/957290728994770964/322868_1100-800x825.png",
@@ -15,3 +12,9 @@ function dog(message, args) {
 let index = Math.floor(Math.random() * dogArray.length)
 message.channel.send(dogArray[index]);
 }
+
+const description = ""
+
+const dog = new Command("dog", description, exec)
+
+module.exports = dog

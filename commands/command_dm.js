@@ -1,13 +1,7 @@
+const {Command} = require("./Command.js")
 const id = require("../helper/id.js")
 
-module.exports = {
-    "description": "send a dm. use : ex. ?dm <@user or id> content",
-    "function": dm
-}
-
-
-
-async function dm(message, args) {
+const exec = async (message, args) => {
     let userId
     
     if( await id.isMemberId(args[0], message.guild) ) {
@@ -21,7 +15,6 @@ async function dm(message, args) {
     
     let dmMessage = args.slice(1).join(" ")
     let user = await message.guild.members.fetch(userId)
-    console.log(user)
     
     if (message.member.roles.cache.hasAny('708716555785076798', '708722040286478356', '945585653024964721')) {
         user.send(dmMessage)
@@ -29,3 +22,9 @@ async function dm(message, args) {
         message.channel.send("no perms")
     }
 }
+
+const description = ""
+
+const dm = new Command("dm", description, exec)
+
+module.exports = dm

@@ -30,7 +30,7 @@ async function handleCommand(message) {
     
     if(commands[commandName]) {
         try{
-            await commands[commandName].function(message, args);
+            await commands[commandName].exec(message, args);
         }
         catch(err) {
             console.log(`=======\n=======\n=======\n=======\n`);

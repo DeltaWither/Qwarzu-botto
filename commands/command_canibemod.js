@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random number between 0 and 100",
-     "function": canibemod
-}
+const {Command} = require("./Command.js")
 
-function canibemod(message, args) {
+const exec = (message, args) => {
     let number = (Math.random() * 700)
     
     if(number > 699) {
@@ -16,3 +13,9 @@ function canibemod(message, args) {
         message.channel.send("no");
     }
 }
+
+const description = ""
+
+const canibemod = new Command("canibemod", description, exec)
+
+module.exports = canibemod

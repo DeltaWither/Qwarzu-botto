@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": b3
-}
+const {Command} = require("./Command.js")
 
-function b3(message, args) {
+const exec = (message, args) => {
     const b3Array = [
         "https/cdn.discordapp.com/avatars/273927241384329216/0aa355067048e94f23bad0998b2a9ed4.png",
         "https://media.discordapp.net/attachments/738946290930548816/738946709731672104/4c1be7b66e33fe397875b247c5e64d21.png",
@@ -27,3 +24,9 @@ function b3(message, args) {
     
     message.channel.send(b3Array[index]);
 }
+
+const description = ""
+
+const b3 = new Command("b3", description, exec)
+
+module.exports = b3

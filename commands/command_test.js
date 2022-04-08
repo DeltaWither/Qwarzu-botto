@@ -1,10 +1,13 @@
-module.exports = {
-     "description": "Random number between 0 and 100",
-     "function": test
-}
+const {Command} = require("./Command.js")
 
-function test(message, args) {
+const exec = (message, args) => {
     let number = Math.floor(Math.random() * 100)
     
     message.channel.send(number.toString());
 }
+
+const description = ""
+
+const test = new Command("test", description, exec)
+
+module.exports = test

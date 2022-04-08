@@ -1,3 +1,5 @@
+const {Command} = require("./Command.js")
+
 const ping = require("./command_ping.js")
 const michiru = require("./command_michiru.js")
 const test = require("./command_test.js")
@@ -17,11 +19,20 @@ const nazuna = require("./command_nazuna.js")
 const dog = require('./command_dog.js')
 const ball8 = require("./command_8ball.js")
 
+const commandsExec = (message, args) => {
+    commandsString = ""
+    for (command in commandList) {
+        commandsString = commandsString + command + ", ";
+    }
+    message.channel.send(commandsString.slice(0, -2));
+}
+
+const commandsDescription = "List all commands"
+
+const commands = new Command("commands", commandsDescription, commandsExec)
+
 commandList = {
-    "commands": {
-        "description": "List all commands",
-        "function": commands
-    },
+    "commands": commands,
     "ping": ping,
     "michiru": michiru,
     "test": test,
@@ -40,14 +51,6 @@ commandList = {
     "nazuna": nazuna,
     "dog": dog,
     "8ball": ball8
-}
-
-function commands(message, args) {
-    commandsString = ""
-    for (command in commandList) {
-        commandsString = commandsString + command + ", ";
-    }
-    message.channel.send(commandsString.slice(0, -2));
 }
 
 module.exports = commandList;

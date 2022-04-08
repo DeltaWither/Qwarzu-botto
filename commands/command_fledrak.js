@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": fledrak
-}
+const {Command} = require("./Command.js")
 
-function fledrak(message, args) {
+const exec = (message, args) => {
     const fledrakArray = [
         "https://cdn.discordapp.com/attachments/713960572982657077/777306596724047912/monke1.jpg",
         "https://cdn.discordapp.com/attachments/713960572982657077/777306597733957712/monke2.jpg",
@@ -24,3 +21,9 @@ function fledrak(message, args) {
     
     message.channel.send(fledrakArray[index]);
 }
+
+const description = ""
+
+const fledrak = new Command("fledrak", description, exec)
+
+module.exports = fledrak

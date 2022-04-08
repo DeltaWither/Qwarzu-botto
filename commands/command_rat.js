@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": rat
-}
+const {Command} = require("./Command.js")
 
-function rat(message, args) {
+const exec = (message, args) => {
     const ratArray = [
         "https://media.discordapp.net/attachments/819012888328011796/819013024953532426/funny_virus-1.png",
         "https://media.discordapp.net/attachments/819012888328011796/819013025196408842/nazrin_dancing.gif",
@@ -42,3 +39,9 @@ function rat(message, args) {
     
     message.channel.send(ratArray[index]);
 }
+
+const description = ""
+
+const rat = new Command("rat", description, exec)
+
+module.exports = rat
