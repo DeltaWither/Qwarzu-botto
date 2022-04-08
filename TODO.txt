@@ -7,10 +7,13 @@ Set of features to be implemented:
 - Clean way for commands to have checks for roles of the caller. It should be a check external to the actual command's file. Having an if statement for every command that needs perms is disgusting.
 
 - Helper methods to help parse some arguments. isId, isUserId, isRoleId?, isChannelId?, isMention, isRoleMention?, isChannelMention?. Maybe, and this is a big maybe, isEmojiId and isEmoji.
+--DONE--
 
 - Make commands asynchronous. I'm pretty sure they aren't yet
+--DONE-- (they already were)
 
 - Make commands a class. This will also allow for (for now) two other classes. Listeners and schedules. Listeners will be executed on a certain event, similar to how dyno mutes someone who says a banned word or replies to toyota corolla. I guess those will be related to the client.on() from discord.js. Schedules will be executed at certain times.
+--Made commands a class
 
 - Separate commands in the commands folder into different subfolders. One of them will be the folder with all the essential commands to manage the bot like ?commands, ?help (to be implemented), ?ping, ?enable/disable (if I can actually manage to make listeners and schedules) and maybe some more.
 

@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": mio
-}
+const {Command} = require("./Command.js")
 
-function mio(message, args) {
+const exec = (message, args) => {
     const mioArray = [
         "https://cdn.discordapp.com/attachments/716896207695249469/776980998695944223/Mio_Honda_Grill.jpg",
         "https://cdn.discordapp.com/attachments/716896207695249469/776981012705181736/Mio_Honda_Think.jpg",
@@ -19,3 +16,9 @@ function mio(message, args) {
     
     message.channel.send(mioArray[index]);
 }
+
+const description = ""
+
+const mio = new Command("mio", description, exec)
+
+module.exports = mio

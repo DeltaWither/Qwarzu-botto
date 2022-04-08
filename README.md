@@ -13,9 +13,7 @@ Qwarzu botto is a Discord bot written in Javascript used to control commands in 
 To run the bot yourself clone the repository, then at the root create a config.json file with these contents:
 ```json
 {
-	"token": "BOT TOKEN",
-	"clientId": "BOT ID",
-	"guildId": "SERVER ID"
+	"token": "BOT TOKEN"
 }
 ```
 Then run `npm install` and `npm start` (make sure you are using the latest version). To add your own command, add a file `command_commandName.js` in the commands folder. It must have this format:
@@ -23,14 +21,17 @@ Then run `npm install` and `npm start` (make sure you are using the latest versi
 
 ``` javascript
 
-module.exports = {
-     "description": "Description",
-     "function": commandName
+const {Command} = require("./Command.js")
+
+const exec = (message, args) => {
+	//code here
 }
 
-function commandName(message, args) {
-  //code here
-}
+const description = "description here"
+
+const command = new Command("commandName", description, exec)
+
+module.exports = command
 
 ```
 

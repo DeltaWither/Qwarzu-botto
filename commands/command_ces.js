@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": ces
-}
+const {Command} = require("./Command.js")
 
-function ces(message, args) {
+const exec = (message, args) => {
     const cesArray = [
         "https://cdn.discordapp.com/attachments/753473964277235815/776905396124123136/FB_IMG_1603016308502.jpg",
         "https://cdn.discordapp.com/attachments/753473964277235815/776905395855556669/FB_IMG_1603151037360.jpg",
@@ -20,3 +17,9 @@ function ces(message, args) {
     
     message.channel.send(cesArray[index]);
 }
+
+const description = ""
+
+const ces = new Command("ces", description, exec)
+
+module.exports = ces

@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": nazuna
-}
+const {Command} = require("./Command.js")
 
-function nazuna(message, args) {
+const exec = (message, args) => {
     const nazunaArray = [
         "https://cdn.discordapp.com/attachments/709176649278816328/956300316180095016/6.png",
         "https://cdn.discordapp.com/attachments/709176649278816328/956300316435968050/7.png",
@@ -35,3 +32,9 @@ function nazuna(message, args) {
     
     message.channel.send(nazunaArray[index]);
 }
+
+const description = ""
+
+const nazuna = new Command("nazuna", description, exec)
+
+module.exports = nazuna

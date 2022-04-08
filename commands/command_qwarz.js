@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": qwarz
-}
+const {Command} = require("./Command.js")
 
-function qwarz(message, args) {
+const exec = (message, args) => {
     const qwarzArray = [
         "https://cdn.discordapp.com/attachments/708715309107904526/718268372562870272/qwarziscute_303.png",
         "https://cdn.discordapp.com/attachments/708715309107904526/718268322831007804/qwarziscute_92.png",
@@ -38,3 +35,9 @@ function qwarz(message, args) {
     
     message.channel.send(qwarzArray[index]);
 }
+
+const description = ""
+
+const qwarz = new Command("qwarz", description, exec)
+
+module.exports = qwarz

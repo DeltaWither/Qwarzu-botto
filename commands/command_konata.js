@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": konata
-}
+const {Command} = require("./Command.js")
 
-function konata(message, args) {
+const exec = (message, args) => {
     const konataArray = [
         "https://images.discordapp.net/avatars/366632492590956544/e33fb154663f5a63138d934224b47c7d.png",
         "https://i.kym-cdn.com/photos/images/newsfeed/000/504/434/717.gif",
@@ -17,3 +14,9 @@ function konata(message, args) {
     
     message.channel.send(konataArray[index]);
 }
+
+const description = ""
+
+const konata = new Command("konata", description, exec)
+
+module.exports = konata

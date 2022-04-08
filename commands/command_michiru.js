@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": michiru
-}
+const {Command} = require("./Command.js")
 
-function michiru(message, args) {
+const exec = (message, args) => {
     const michiruArray = [
         "https://imgur.com/RDi7VaO",
         "https://imgur.com/LzgneTd",
@@ -47,3 +44,9 @@ function michiru(message, args) {
     
     message.channel.send(michiruArray[index]);
 }
+
+const description = ""
+
+const michiru = new Command("michiru", description, exec)
+
+module.exports = michiru

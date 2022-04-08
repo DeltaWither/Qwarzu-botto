@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": meme
-}
+const {Command} = require("./Command.js")
 
-function meme(message, args) {
+const exec = (message, args) => {
     const memeArray = [
         "https://cdn.discordapp.com/attachments/708715309107904526/813067267663331348/emo_boy-1.mp4",
         "https://cdn.discordapp.com/attachments/708715309107904526/813629038354497586/honeypie-1.mp4",
@@ -57,3 +54,9 @@ function meme(message, args) {
     
     message.channel.send(memeArray[index]);
 }
+
+const description = ""
+
+const meme = new Command("meme", description, exec)
+
+module.exports = meme

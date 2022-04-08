@@ -1,9 +1,6 @@
-module.exports = {
-     "description": "Random picture of michiru",
-     "function": gura
-}
+const {Command} = require("./Command.js")
 
-function gura(message, args) {
+const exec = (message, args) => {
     const guraArray = [
         "https://cdn.discordapp.com/attachments/708715309107904526/857469505697218570/86011259_p0_master1200.webp",
         "https://cdn.discordapp.com/attachments/708715309107904526/911360746305232897/unknown.png",
@@ -28,3 +25,9 @@ function gura(message, args) {
     
     message.channel.send(guraArray[index]);
 }
+
+const description = "Random picture of gura"
+
+const gura = new Command("gura", description, exec)
+
+module.exports = gura
