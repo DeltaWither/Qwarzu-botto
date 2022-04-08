@@ -7,6 +7,7 @@ Set of features to be implemented:
 - Clean way for commands to have checks for roles of the caller. It should be a check external to the actual command's file. Having an if statement for every command that needs perms is disgusting.
 
 - Helper methods to help parse some arguments. isId, isUserId, isRoleId?, isChannelId?, isMention, isRoleMention?, isChannelMention?. Maybe, and this is a big maybe, isEmojiId and isEmoji.
+--DONE--
 
 - Make commands asynchronous. I'm pretty sure they aren't yet
 --DONE-- (they already were)
