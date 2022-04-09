@@ -1,19 +1,10 @@
 const {Command} = require("./Command.js")
 const fs = require("fs")
 
-const commandsExec = (message, args) => {
-    commandsString = ""
-    for (command in commandList) {
-        commandsString = commandsString + command + ", ";
-    }
-    message.channel.send(commandsString.slice(0, -2));
-}
-const commandsDescription = "List all commands"
-const commands = new Command("commands", commandsDescription, commandsExec)
+commandList = {}
 
-commandList = {
-    "commands": commands
-}
+//export here to be able to import without circular dependencies
+module.exports = commandList;
 
 // Not sure why it has to go to ./commands when . is already the commands folder
 const files = fs.readdirSync("./commands");
@@ -26,5 +17,3 @@ files.forEach(
         }
     }
 )
-
-module.exports = commandList;

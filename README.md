@@ -13,7 +13,8 @@ Qwarzu botto is a Discord bot written in Javascript used to control commands in 
 To run the bot yourself clone the repository, then at the root create a config.json file with these contents:
 ```json
 {
-	"token": "BOT TOKEN"
+	"token": "BOT TOKEN",
+	"clientId": "CLIENT ID"
 }
 ```
 Then run `npm install` and `npm start` (make sure you are using the latest version). To add your own command, add a file `command_commandName.js` in the commands folder. It must have this format:
@@ -32,20 +33,26 @@ const description = "description here"
 const command = new Command("commandName", description, exec)
 
 module.exports = command
-
 ```
 
-Once you're finished, go to the `commands.js` file in the same folder, add the 
-```javascript
-commandName = require(command_commandName.js)
+To add a listener (function that executes after a certain event) add a file `listener_listenerName.js` in the listeners folder. It must have this format:
+
+``` javascript
+
+const {Listener} = require("./Listener.js")
+
+const exec = (object) => {
+	//code here
+}
+
+const description = "description here"
+
+const listener = new Listener("listenerName", description, exec, "eventType")
+
+module.exports = listener
 ```
-and the 
+The list of event types is in listeners/listeners.js. There's almost all of the available event types from discord.js, but if you want to add another one or read info on each one go [here.](https://discord.js.org/#/docs/discord.js/stable/class/Client)
 
-
-```javascript
-"commandName": commandName
-``` 
-following the others.
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
