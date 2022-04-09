@@ -13,13 +13,21 @@ for (const fileIndex in files) {
 }
 
 
-// Separate all listeners into objects each with a type of listener
-const listenerListSeparatedByTypes = {
-    "messageCreate": {},
-    "messageDelete": {},
-    "messageUpdate": {},
+const eventTypeList = [
+    "messageCreate",
+    "messageDelete",
+    "messageUpdate"
     //more to be added
+]
+
+// Separate all listeners into objects each with a type of listener
+const listenerListSeparatedByTypes = {}
+
+for (const eventTypeIndex in eventTypeList) {
+    const eventType = eventTypeList[eventTypeIndex]
+    listenerListSeparatedByTypes[eventType] = {}
 }
+
 for (const listenerName in listenerList) {
     const listener = listenerList[listenerName]
     const listenerType = listener.eventType
@@ -39,4 +47,8 @@ for (const eventType in listenerListSeparatedByTypes) {
     }
 }
 
-module.exports = masterFunctions;
+module.exports = {
+    "listeners": masterFunctions,
+    "eventTypeList": eventTypeList
+    
+};
