@@ -82,8 +82,15 @@ id.isGuildEmojiId = async (string, guild) => {
 }
 
 id.isMemberMention = async (string, guild) => {
+    //Sometimes it starts with <@!, sometimes with <@
     if(string.slice(0, 3) === "<@!" &&
         await id.isMemberId(string.slice(3, -1), guild) &&
+        string.slice(-1) === ">") {
+        return true
+    }
+    
+    if(string.slice(0, 2) === "<@" &&
+        await id.isMemberId(string.slice(2, -1), guild) &&
         string.slice(-1) === ">") {
         return true
     }
