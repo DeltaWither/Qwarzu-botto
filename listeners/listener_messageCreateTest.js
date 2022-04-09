@@ -1,7 +1,8 @@
 const {Listener} = require("./Listener.js")
+const { clientId } = require("../config.json");
 
 const exec = (message) => {
-    if(message.author.id === "959416544423718982") return
+    if(message.author.id === clientId) return
     message.channel.send("a message was sent")
 }
 
