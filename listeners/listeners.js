@@ -12,25 +12,29 @@ for (const fileIndex in files) {
     }
 }
 
-const masterFunctions = {
-    "messageCreate": (object) => object,
-    "messageDelete": (object) => object,
-    "messageUpdate": (object) => object
-    // More to be added
-}
 
 // Separate all listeners into objects each with a type of listener
+const listenerListSeparatedByTypes = {
+    "messageCreate": {},
+    "messageDelete": {},
+    "messageUpdate": {},
+    //more to be added
+}
+for (const listenerName in listenerList) {
+    const listener = listenerList[listenerName]
+    const listenerType = listener.eventType
+    
+    listenerListSeparatedByTypes[listenerType][listener.name] = listener
+}
 
-for (const eventType in masterFunctions) {
+
+//Make master functions that execute all listener functions of their type
+const masterFunctions = {}
+
+for (const eventType in listenerListSeparatedByTypes) {
     masterFunctions[eventType] = (object) => {
-        
-            console.log("asdsafsafsafdsafsad")
-            console.log(listenerList)
-        for (const listener in listenerList) {
-            console.log(listener)
-            if(listenerList[listener].eventType === eventType && listenerList[listener].enabled) {
-                listenerList[listener].exec(object)
-            }
+        for (const listenerName in listenerListSeparatedByTypes[eventType]) {
+            listenerList[listenerName].exec(object)
         }
     }
 }
