@@ -1,6 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require("./config.json");
 const commands = require("./commands/commands.js");
+const listeners = require("./listeners/listeners.js");
 
 const client = new Client({ 
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
@@ -12,7 +13,7 @@ client.on('ready', () => {
 });
 
 client.on("messageCreate", async message => {
-    console.log(`${message.author.tag}: ${message.content}`)
+    listeners["messageCreate"](message)
     
     await handleCommand(message);
 });
