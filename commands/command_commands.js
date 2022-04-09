@@ -8,8 +8,8 @@ const exec = (message, args) => {
     }
     message.channel.send(commandsString.slice(0, -2));
 }
-const commandsDescription = "List all commands"
+const description = "List all commands"
 
-const commands = new Command("commands", commandsDescription, exec)
+const commands = new Command("commands", description, exec)
 
 module.exports = commands
