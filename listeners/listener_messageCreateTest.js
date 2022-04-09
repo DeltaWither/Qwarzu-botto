@@ -7,6 +7,6 @@ const exec = (message) => {
 
 const description = ""
 
-const messageCreateTest = new Listener("messageCreateTest", description, exec, "messageCreate")
+const messageCreateTest = new Listener("messagecreatetest", description, exec, "messageCreate")
 
 module.exports = messageCreateTest

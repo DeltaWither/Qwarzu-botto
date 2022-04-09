@@ -27,7 +27,7 @@ const exec = async (message) => {
 
 const description = ""
 
-const handleCommand = new Listener("handleCommand", description, exec, "messageCreate")
+const handleCommand = new Listener("handlecommand", description, exec, "messageCreate")
 handleCommand.enabled = true //This one needs to be enabled by default
 
 module.exports = handleCommand

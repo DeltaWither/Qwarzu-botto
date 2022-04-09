@@ -2,6 +2,9 @@ const fs = require("fs")
 
 const listenerList = {}
 
+//export the list before anything is imported into it to avoid circular dependencies
+module.exports = {"individualListeners": listenerList}
+
 // Not sure why it has to go to ./listeners when . is already the commands folder
 const files = fs.readdirSync("./listeners");
 
@@ -11,7 +14,6 @@ for (const fileIndex in files) {
         listenerList[listener.name] = listener
     }
 }
-
 
 const eventTypeList = [
     "messageCreate",
@@ -42,7 +44,7 @@ const masterFunctions = {}
 for (const eventType in listenerListSeparatedByTypes) {
     masterFunctions[eventType] = (object) => {
         for (const listenerName in listenerListSeparatedByTypes[eventType]) {
-            listenerList[listenerName].exec(object)
+            listenerList[listenerName].fullyWrappedExec(object)
         }
     }
 }
@@ -50,5 +52,4 @@ for (const eventType in listenerListSeparatedByTypes) {
 module.exports = {
     "listeners": masterFunctions,
     "eventTypeList": eventTypeList
-    
 };
