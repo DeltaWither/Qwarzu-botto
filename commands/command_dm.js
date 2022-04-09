@@ -7,7 +7,10 @@ const exec = async (message, args) => {
     if( await id.isMemberId(args[0], message.guild) ) {
         userId = args[0]
     } else if( await id.isMemberMention(args[0], message.guild) ) {
-        userId = args[0].slice(3, -1)
+        userId = args[0].slice(2, -1)
+        if(userId[0] === "!") {
+            userId = userId.slice(1)
+        }
     } else {
         message.channel.send("no mention")
         return
