@@ -14,6 +14,7 @@ const exec = (message, args) => {
     }
     
     individualListeners[listenerName].enabled = true
+    message.channel.send(`Listener ${listenerName} has been enabled`)
 }
 
 const description = ""

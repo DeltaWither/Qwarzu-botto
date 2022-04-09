@@ -14,6 +14,7 @@ const exec = (message, args) => {
     }
     
     individualListeners[listenerName].enabled = false
+    message.channel.send(`Listener ${listenerName} has been disabled`)
 }
 
 const description = ""
