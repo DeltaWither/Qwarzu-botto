@@ -1,6 +1,5 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require("./config.json");
-const commands = require("./commands/commands.js");
 const listeners = require("./listeners/listeners.js");
 
 const client = new Client({ 
@@ -13,39 +12,8 @@ client.on('ready', () => {
 });
 
 client.on("messageCreate", async message => {
-    listeners["messageCreate"](message)
-    
-    await handleCommand(message);
+    await listeners["messageCreate"](message)
 });
-
-async function handleCommand(message) {
-    let command = message.content;
-    if(command[0] !== "?") {
-        return;
-    }
-    
-    let commandAndArgs = command.slice(1).toLowerCase().split(" ")
-    
-    let commandName = commandAndArgs[0];
-    let args = commandAndArgs.slice(1);
-    
-    if(commands[commandName]) {
-        try{
-            await commands[commandName].exec(message, args);
-        }
-        catch(err) {
-            console.log(`=======\n=======\n=======\n=======\n`);
-            console.log("Something bad just happened");
-            console.log(err);
-            console.log(`=======\n=======\n=======\n=======\n`);
-        }
-    }
-}
 
 
 client.login(token);
-
-
-
-
-
