@@ -13,15 +13,7 @@ const exec = async (message) => {
     let args = commandAndArgs.slice(1);
     
     if(commands[commandName]) {
-        try{
-            await commands[commandName].exec(message, args);
-        }
-        catch(err) {
-            console.log(`=======\n=======\n=======\n=======\n`);
-            console.log("Something bad just happened");
-            console.log(err);
-            console.log(`=======\n=======\n=======\n=======\n`);
-        }
+        await commands[commandName].exec(message, args);
     }
 }
 

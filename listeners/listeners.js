@@ -99,14 +99,7 @@ const masterFunctions = {}
 for (const eventType in listenerListSeparatedByTypes) {
     masterFunctions[eventType] = (object1, object2, object3) => {
         for (const listenerName in listenerListSeparatedByTypes[eventType]) {
-            try {
-                listenerList[listenerName].fullyWrappedExec(object1, object2, object3)
-            } catch(err) {
-                console.log(`=======\n=======\n=======\n=======\n`);
-                console.log("Something bad just happened");
-                console.log(err);
-                console.log(`=======\n=======\n=======\n=======\n`);
-            }
+            listenerList[listenerName].fullyWrappedExec(object1, object2, object3)
         }
     }
 }

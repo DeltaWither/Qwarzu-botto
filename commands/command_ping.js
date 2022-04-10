@@ -1,6 +1,6 @@
 const {Command} = require("./Command.js")
 
-const exec = (message, args) => {
+const exec = async (message, args) => {
     message.reply('Pong!');
 }
 
