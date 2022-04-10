@@ -16,7 +16,9 @@ for (const eventIndex in eventTypeList) {
     const eventType = eventTypeList[eventIndex]
     
     client.on(eventType, async (object1, object2, object3) => {
-        await listeners[eventType](object1, object2, object3)
+        try{
+            await listeners[eventType](object1, object2, object3)
+        } catch(err) {}
     });
 }
 
