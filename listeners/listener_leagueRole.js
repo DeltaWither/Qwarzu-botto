@@ -4,7 +4,6 @@ const exec = async (oldPresence, newPresence) => {
     const guild = newPresence.guild
     const member= await guild.members.fetch(newPresence.userId)
     const user = member.user
-    const lobby = await guild.channels.fetch("708715309107904526")
     const leagueRole = await guild.roles.fetch("948632679245574245")
     
     const activities = newPresence.activities
