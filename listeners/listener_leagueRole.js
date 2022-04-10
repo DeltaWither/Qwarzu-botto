@@ -12,7 +12,6 @@ const exec = async (oldPresence, newPresence) => {
     for(activityIndex in activities) {
         const activity = activities[activityIndex]
         if(activity.type === "PLAYING" && activity.name.toLowerCase().includes("league of legends")) {
-            lobby.send(`${user.username}#${user.discriminator} is now playing ${activities[activityIndex].name}`)
             member.roles.add(leagueRole)
         }
     }
