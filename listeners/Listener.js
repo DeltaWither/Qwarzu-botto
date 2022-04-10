@@ -8,14 +8,14 @@ class Listener {
 
     enabled = false
     
-    enabledWrapper(object) {
+    enabledWrapper(object1, object2, object3) {
         if(this.enabled) {
-            this.exec(object)
+            this.exec(object1, object2, object3)
         }
     }
     
-    fullyWrappedExec(object) {
-        this.enabledWrapper(object)
+    fullyWrappedExec(object1, object2, object3) {
+        this.enabledWrapper(object1, object2, object3)
     }
 }
 
