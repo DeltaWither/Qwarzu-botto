@@ -7,9 +7,9 @@ const exec = async (message) => {
         return;
     }
     
-    let commandAndArgs = command.slice(1).toLowerCase().split(" ")
+    let commandAndArgs = command.slice(1).split(" ")
     
-    let commandName = commandAndArgs[0];
+    let commandName = commandAndArgs[0].toLowerCase();
     let args = commandAndArgs.slice(1);
     
     if(commands[commandName]) {
