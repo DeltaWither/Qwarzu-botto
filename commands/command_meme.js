@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const memeArray = [
@@ -58,5 +59,6 @@ const exec = (message, args) => {
 const description = ""
 
 const meme = new Command("meme", description, exec)
+meme.executeGroup = groups.everyone
 
 module.exports = meme

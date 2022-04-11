@@ -29,5 +29,6 @@ const exec = async (message, args) => {
 const description = ""
 
 const groupCheck = new Command("groupcheck", description, exec)
+groupCheck.executeGroup = groups.staffAndDevs
 
 module.exports = groupCheck

@@ -13,5 +13,6 @@ const exec = (message, args) => {
 const description = ""
 
 const groupsCommand = new Command("groups", description, exec)
+groupsCommand.executeGroup = groups.everyone
 
 module.exports = groupsCommand

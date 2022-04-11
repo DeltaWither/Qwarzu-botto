@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const konataArray = [
@@ -18,5 +19,6 @@ const exec = (message, args) => {
 const description = ""
 
 const konata = new Command("konata", description, exec)
+konata.executeGroup = groups.everyone
 
 module.exports = konata

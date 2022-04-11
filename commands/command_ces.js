@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const cesArray = [
@@ -21,5 +22,6 @@ const exec = (message, args) => {
 const description = ""
 
 const ces = new Command("ces", description, exec)
+ces.executeGroup = groups.everyone
 
 module.exports = ces

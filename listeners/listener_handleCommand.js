@@ -13,7 +13,7 @@ const exec = async (message) => {
     let args = commandAndArgs.slice(1);
     
     if(commands[commandName]) {
-        await commands[commandName].exec(message, args);
+        await commands[commandName].fullyWrappedExec(message, args);
     }
 }
 

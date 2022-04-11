@@ -1,5 +1,6 @@
 const {Command} = require("./Command.js")
 const database = require("../helper/database.js")
+const groups = require("../groups/membergroups.js")
 
 const sortSex = (sexCounter) => {
     let sortedArray = []
@@ -36,5 +37,6 @@ const exec = async (message, args) => {
 const description = ""
 
 const sexLeaderboard = new Command("sexleaderboard", description, exec)
+sexLeaderboard.executeGroup = groups.everyone
 
 module.exports = sexLeaderboard

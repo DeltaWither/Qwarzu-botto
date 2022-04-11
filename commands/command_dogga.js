@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     let number = (Math.random() * 50)
@@ -14,5 +15,6 @@ const exec = (message, args) => {
 const description = ""
 
 const dogga = new Command("dogga", description, exec)
+dogga.executeGroup = groups.everyone
 
 module.exports = dogga

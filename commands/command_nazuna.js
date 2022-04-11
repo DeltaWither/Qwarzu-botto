@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const nazunaArray = [
@@ -36,5 +37,6 @@ const exec = (message, args) => {
 const description = ""
 
 const nazuna = new Command("nazuna", description, exec)
+nazuna.executeGroup = groups.everyone
 
 module.exports = nazuna

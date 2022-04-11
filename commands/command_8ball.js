@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     if (!args[0]) {
@@ -50,5 +51,6 @@ const exec = (message, args) => {
 const description = "8ball command :pog:"
 
 const _8ball = new Command("8ball", description, exec)
+_8ball.executeGroup = groups.everyone
 
 module.exports = _8ball
