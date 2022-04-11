@@ -11,7 +11,7 @@ const exec = (message) => {
         database.create("sexCounter", {})
     }
     
-    if(message.content.includes("sex")) {
+    if(message.content.toLowerCase().includes("sex")) {
         const object = database.read("sexCounter")
         if(!object.hasOwnProperty(message.author.id)) {
             object[message.author.id] = 1

@@ -3,7 +3,8 @@ const database = require("../helper/database.js")
 
 const sortSex = (sexCounter) => {
     let sortedArray = []
-    for (let i = 0; i < Object.keys(sexCounter).length; i++) {
+    const length = Object.keys(sexCounter).length
+    for (let i = 0; i < length; i++) {
         sortedArray[i] = {"id": "1", "count": -1}
         for (userId in sexCounter) {
             const count = sexCounter[userId]
@@ -26,7 +27,7 @@ const exec = async (message, args) => {
     for (let i = 0; i < Math.min(10, sexLeaderboard.length); i++) {
         const user = await message.guild.members.fetch(sexLeaderboard[i].id)
         
-        reply = reply + user.user.username + ":    " + sexLeaderboard[i].count + "\n"
+        reply = reply + user.user.username + ":\t\t" + sexLeaderboard[i].count + "\n"
     }
     
     await message.channel.send(reply)
