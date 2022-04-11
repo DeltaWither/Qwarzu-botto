@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const dogArray = [
@@ -16,5 +17,6 @@ message.channel.send(dogArray[index]);
 const description = ""
 
 const dog = new Command("dog", description, exec)
+dog.executeGroup = groups.everyone
 
 module.exports = dog

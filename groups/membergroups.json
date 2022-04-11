@@ -1,0 +1,61 @@
+[
+    {
+        "name": "everyone",
+        "description": "",
+        "everyone": true
+    },
+    {
+        "name": "staff",
+        "description": "",
+        "allowedRoles": [
+            "708715594840801300",
+            "708722040286478356",
+            "945585653024964721",
+            "708716555785076798",
+            "709284464563453963"
+        ]
+    },
+    {
+        "name": "staffWithoutTrial",
+        "description": "",
+        "allowedRoles": [
+            "708715594840801300",
+            "708722040286478356",
+            "945585653024964721",
+            "708716555785076798"
+        ]
+    },
+    {
+        "name": "admins",
+        "description": "",
+        "allowedPerms": [
+            "ADMINISTRATOR"
+        ]
+    },
+    {
+        "name": "devs",
+        "description": "",
+        "allowedRoles": [
+            "947201308035776633"
+        ]
+    },
+    {
+        "name": "staffAndDevs",
+        "description": "",
+        "allowedRoles": [
+            "708715594840801300",
+            "708722040286478356",
+            "945585653024964721",
+            "708716555785076798",
+            "709284464563453963",
+            "947201308035776633"
+        ]
+    },
+    {
+        "name": "notNewMembers",
+        "description": "",
+        "allowedRoles": [
+            "708717895546306620"
+        ]
+    }
+]

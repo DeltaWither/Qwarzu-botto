@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const b3Array = [
@@ -28,5 +29,6 @@ const exec = (message, args) => {
 const description = ""
 
 const b3 = new Command("b3", description, exec)
+b3.executeGroup = groups.everyone
 
 module.exports = b3

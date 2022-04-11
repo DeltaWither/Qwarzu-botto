@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const michiruArray = [
@@ -48,5 +49,6 @@ const exec = (message, args) => {
 const description = ""
 
 const michiru = new Command("michiru", description, exec)
+michiru.executeGroup = groups.everyone
 
 module.exports = michiru

@@ -1,5 +1,6 @@
 const {Command} = require("./Command.js")
 const id = require("../helper/id.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = async (message, args) => {
     let userId
@@ -29,5 +30,6 @@ const exec = async (message, args) => {
 const description = ""
 
 const dm = new Command("dm", description, exec)
+dm.executeGroup = groups.staffAndDevs
 
 module.exports = dm

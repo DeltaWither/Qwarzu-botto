@@ -15,8 +15,15 @@ client.on('ready', () => {
 for (const eventIndex in eventTypeList) {
     const eventType = eventTypeList[eventIndex]
     
-    client.on(eventType, async object => {
-        await listeners[eventType](object)
+    client.on(eventType, async (object1, object2, object3) => {
+        try{
+            await listeners[eventType](object1, object2, object3)
+        } catch(err) {
+            console.log(`=======\n=======\n=======\n=======\n`);
+            console.log("Something bad just happened");
+            console.log(err);
+            console.log(`=======\n=======\n=======\n=======\n`);
+        }
     });
 }
 

@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     let number = (Math.random() * 700)
@@ -17,5 +18,6 @@ const exec = (message, args) => {
 const description = ""
 
 const canibemod = new Command("canibemod", description, exec)
+canibemod.executeGroup = groups.everyone
 
 module.exports = canibemod

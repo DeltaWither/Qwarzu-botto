@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const guraArray = [
@@ -29,5 +30,6 @@ const exec = (message, args) => {
 const description = "Random picture of gura"
 
 const gura = new Command("gura", description, exec)
+gura.executeGroup = groups.everyone
 
 module.exports = gura

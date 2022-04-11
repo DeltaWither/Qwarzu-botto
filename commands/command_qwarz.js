@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     const qwarzArray = [
@@ -39,5 +40,6 @@ const exec = (message, args) => {
 const description = ""
 
 const qwarz = new Command("qwarz", description, exec)
+qwarz.executeGroup = groups.everyone
 
 module.exports = qwarz

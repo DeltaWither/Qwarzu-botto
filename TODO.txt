@@ -3,8 +3,10 @@
 Set of features to be implemented:
 
 - Simple way for commands to have state. Right now all commands have no side effects. For now updating some JSON file with all the state could be enough, but eventually there could be some database stuff.
+--DONE--
 
 - Clean way for commands to have checks for roles of the caller. It should be a check external to the actual command's file. Having an if statement for every command that needs perms is disgusting.
+--DONE--
 
 - Helper methods to help parse some arguments. isId, isUserId, isRoleId?, isChannelId?, isMention, isRoleMention?, isChannelMention?. Maybe, and this is a big maybe, isEmojiId and isEmoji.
 --DONE--

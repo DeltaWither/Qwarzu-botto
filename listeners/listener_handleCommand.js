@@ -7,21 +7,13 @@ const exec = async (message) => {
         return;
     }
     
-    let commandAndArgs = command.slice(1).toLowerCase().split(" ")
+    let commandAndArgs = command.slice(1).split(" ")
     
-    let commandName = commandAndArgs[0];
+    let commandName = commandAndArgs[0].toLowerCase();
     let args = commandAndArgs.slice(1);
     
     if(commands[commandName]) {
-        try{
-            await commands[commandName].exec(message, args);
-        }
-        catch(err) {
-            console.log(`=======\n=======\n=======\n=======\n`);
-            console.log("Something bad just happened");
-            console.log(err);
-            console.log(`=======\n=======\n=======\n=======\n`);
-        }
+        await commands[commandName].fullyWrappedExec(message, args);
     }
 }
 

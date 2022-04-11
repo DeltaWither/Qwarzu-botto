@@ -97,9 +97,9 @@ for (const listenerName in listenerList) {
 const masterFunctions = {}
 
 for (const eventType in listenerListSeparatedByTypes) {
-    masterFunctions[eventType] = (object) => {
+    masterFunctions[eventType] = (object1, object2, object3) => {
         for (const listenerName in listenerListSeparatedByTypes[eventType]) {
-            listenerList[listenerName].fullyWrappedExec(object)
+            listenerList[listenerName].fullyWrappedExec(object1, object2, object3)
         }
     }
 }

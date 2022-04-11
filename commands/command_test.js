@@ -1,4 +1,5 @@
 const {Command} = require("./Command.js")
+const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     let number = Math.floor(Math.random() * 100)
@@ -9,5 +10,6 @@ const exec = (message, args) => {
 const description = ""
 
 const test = new Command("test", description, exec)
+test.executeGroup = groups.everyone
 
 module.exports = test

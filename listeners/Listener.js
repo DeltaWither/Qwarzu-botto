@@ -8,14 +8,21 @@ class Listener {
 
     enabled = false
     
-    enabledWrapper(object) {
+    async enabledWrapper(object1, object2, object3) {
         if(this.enabled) {
-            this.exec(object)
+            await this.exec(object1, object2, object3)
         }
     }
     
-    fullyWrappedExec(object) {
-        this.enabledWrapper(object)
+    async fullyWrappedExec(object1, object2, object3) {
+        try {
+            await this.enabledWrapper(object1, object2, object3)
+        } catch(err) {
+            console.log(`=======\n=======\n=======\n=======\n`);
+            console.log("Something bad just happened");
+            console.log(err);
+            console.log(`=======\n=======\n=======\n=======\n`);
+        }
     }
 }
 
