@@ -22,7 +22,7 @@ database.create = (file, object) => {
     } catch(err) {
         try{
             
-        fs.writeFileSync(fileName, JSON.stringify(object))
+        fs.writeFileSync(fileName, JSON.stringify(object, null, "\t"))
         } catch(err) {console.log(err)}
     }
 }
@@ -43,7 +43,7 @@ database.update = (file, object) => {
     const fileName = databasePath + "/data_" + file
     
     try {
-        fs.writeFileSync(fileName, JSON.stringify(object))
+        fs.writeFileSync(fileName, JSON.stringify(object, null, "\t"))
     } catch(err) {
         return false
     }
