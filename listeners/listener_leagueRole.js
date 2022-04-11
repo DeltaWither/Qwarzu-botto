@@ -11,7 +11,7 @@ const exec = async (oldPresence, newPresence) => {
     for(activityIndex in activities) {
         const activity = activities[activityIndex]
         if(activity.type === "PLAYING" && activity.name.toLowerCase().includes("league of legends")) {
-            member.roles.add(leagueRole)
+            await member.roles.add(leagueRole)
         }
     }
 }

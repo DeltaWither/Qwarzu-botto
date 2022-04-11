@@ -11,7 +11,7 @@ const exec = async (oldPresence, newPresence) => {
     for(activityIndex in activities) {
         const activity = activities[activityIndex]
         if(activity.type === "PLAYING" && activity.name.toLowerCase().includes("genshin")) {
-            member.roles.add(genshinRole)
+            await member.roles.add(genshinRole)
         }
     }
 }
