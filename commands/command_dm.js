@@ -30,6 +30,6 @@ const exec = async (message, args) => {
 const description = ""
 
 const dm = new Command("dm", description, exec)
-dm.executeGroup = groups.adminsAndDevs
+dm.executeGroup = groups.staffAndDevs
 
 module.exports = dm
