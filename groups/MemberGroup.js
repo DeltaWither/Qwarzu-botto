@@ -40,14 +40,18 @@ class MemberGroup {
             }
         }
         
-        check = await member.roles.cache.hasAny(this.disallowedRoles)
-        if (check) {
-            memberInGroup = false
+        for (const role of this.disallowedRoles) {
+            check = await member.roles.cache.has(role)
+            if (check) {
+                memberInGroup = false
+            }
         }
         
-        check = await member.roles.cache.hasAny(this.allowedRoles)
-        if (check) {
-            memberInGroup = true
+        for (const role of this.allowedRoles) {
+            check = await member.roles.cache.has(role)
+            if (check) {
+                memberInGroup = true
+            }
         }
         
         for (const memberId of this.disallowedMembers) {
