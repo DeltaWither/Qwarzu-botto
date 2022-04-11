@@ -19,6 +19,5 @@ const exec = async (oldPresence, newPresence) => {
 const description = ""
 
 const leagueRole = new Listener("leaguerole", description, exec, "presenceUpdate")
-leagueRole.enabled = true
 
 module.exports = leagueRole

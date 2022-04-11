@@ -2,17 +2,18 @@ const {Command} = require("./Command.js")
 const {individualListeners} = require("../listeners/listeners.js")
 
 const exec = (message, args) => {
-    listenersString = ""
+    listenersString = "```diff\n"
     for (listener in individualListeners) {
         let status
         if(individualListeners[listener].enabled) {
-            status = "enabled"
+            status = "+"
         } else {
-            status = "disabled"
+            status = "-"
         }
         
-        listenersString = listenersString + listener + "    status: " + status + "\n";
+        listenersString = listenersString + status + listener + "\n";
     }
+    listenersString = listenersString + "```"
     
     message.channel.send(listenersString)
 }
