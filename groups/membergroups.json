@@ -28,7 +28,7 @@
     {
         "name": "admins",
         "description": "",
-        "allowedPermissions": [
+        "allowedPerms": [
             "ADMINISTRATOR"
         ]
     },

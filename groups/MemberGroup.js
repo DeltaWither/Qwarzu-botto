@@ -2,15 +2,14 @@ class MemberGroup {
     constructor(name, description) {
         this.name = name
         this.description = description
+        this.everyone = false
+        this.disallowedPerms = []
+        this.allowedPerms = []
+        this.disallowedRoles = []
+        this.allowedRoles = []
+        this.disallowedMembers = []
+        this.allowedMembers = []
     }
-    
-    everyone = false
-    disallowedPerms = []
-    allowedPerms = []
-    disallowedRoles = []
-    allowedRoles = []
-    disallowedMembers = []
-    allowedMembers = []
     
     /*
      * Input a guildMember and returns boolean meaning whether the member passes the checks
@@ -27,43 +26,45 @@ class MemberGroup {
         let memberInGroup = this.everyone
         
         let check
-        for (perm of disallowedPerms) {
+        for (const perm of this.disallowedPerms) {
             check = await member.permissions.has(perm, false)
             if (check) {
                 memberInGroup = false
             }
         }
         
-        for (perm of allowedPerms) {
+        for (const perm of this.allowedPerms) {
             check = await member.permissions.has(perm, true)
             if (check) {
                 memberInGroup = true
             }
         }
         
-        check = await member.roles.cache.hasAny(disallowedRoles)
+        check = await member.roles.cache.hasAny(this.disallowedRoles)
         if (check) {
             memberInGroup = false
         }
         
-        check = await member.roles.cache.hasAny(allowedRoles)
+        check = await member.roles.cache.hasAny(this.allowedRoles)
         if (check) {
             memberInGroup = true
         }
         
-        for (memberId of disallowedMembers) {
+        for (const memberId of this.disallowedMembers) {
             check = await member.id === member
             if (check) {
                 memberInGroup = false
             }
         }
         
-        for (memberId of disallowedMembers) {
+        for (const memberId of this.disallowedMembers) {
             check = await member.id === member
             if (check) {
                 memberInGroup = true
             }
         }
+        
+        return memberInGroup
     }
 }
 
