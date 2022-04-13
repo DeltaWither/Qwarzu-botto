@@ -1,0 +1,102 @@
+Started by a command like ?remindme (time) (other args)
+Time is an argument specifying when the command will be executed
+Time is of the form (TIME-LIST) in the grammar below
+
+Grammar:
+
+(INT):
+    A non-negative integer (0, 1, 2...)
+
+
+(TIME-UNIT):
+    A time unit
+
+    Forms:
+    ms = millisecond
+    s = second
+    m = minute
+    h = hour
+    d = day
+    w = week
+    mo = month
+    y = year
+    both the abbreviations and the full names are TIME-UNITs
+
+
+(TIME-AMOUNT):
+    An amount of time
+    
+    Forms:
+        (INT)(TIME-UNIT)
+        Examples:
+            1h (1 hour)
+            3y (3 years)
+            1month (1 month)
+            0w (no time)
+            
+        (TIME-AMOUNT)(TIME-AMOUNT)
+        Examples:
+            1d4h (1 day 4 hours)
+            4minute1s (4 minutes 1 second)
+            2m8y (8 years 2 minutes)
+            1d1d (2 days)
+            1d1h1m1s1ms (1 day 1 hour 1 minute 1 second 1 millisecond)
+
+
+(TIME):
+    A point in time
+    
+    Forms:
+        n = now (current time)
+        (more to be added eventually)
+        
+        (TIME) + (TIME-AMOUNT)
+        Note: (TIME) + (TIME-AMOUNT) + (TIME-AMOUNT) + ... is useless and doesn't need to be implemented
+        Examples: 
+            now + 1d (A day from now)
+            
+        (TIME-AMOUNT)
+        Equivalent to now + (TIME-AMOUNT)
+        Examples:
+            1d (now + 1d)
+
+
+(TIME-LIST):
+    A list of points in time. May be finite or infinite
+    
+    Forms:
+        [(TIME), (TIME)...]
+        Examples:
+            [now]
+            
+        (TIME) -> (TIME-AMOUNT)
+        Examples:
+            now -> 1h (now, now + 1h, now + 2h...)
+            now + 3d -> 3m (now + 3d, now + 3d3m, now + 3d6m...)
+        
+        (TIME) -> (TIME-AMOUNT) x(INT)
+        Examples:
+            now -> 1h x2 (now, now + 1h)
+            now + 1h -> x3 (now + 1h, now + 2h, now + 3h)
+
+        (TIME)
+        Equivalent to [(TIME)]
+        Examples:
+            now ([now])
+            now + 3h ([now + 3h])
+            3h ([3h] or [now + 3h])
+            
+        (TIME-AMOUNT)-
+        Equivalent to now + (TIME-AMOUNT) -> (TIME-AMOUNT)
+        Examples:
+            3h- (equivalent to now + 3h -> 3h)
+
+
+
+
+
+
+
+
+
+
