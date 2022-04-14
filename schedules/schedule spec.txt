@@ -21,9 +21,9 @@ Grammar:
     y = year
     both the abbreviations and the full names are TIME-UNITs
 
-
-(TIME-AMOUNT):
-    An amount of time
+    
+(SINGLE-TIME-AMOUNT)
+    An amount of time of one type
     
     Forms:
         (INT)(TIME-UNIT)
@@ -33,9 +33,14 @@ Grammar:
             1month (1 month)
             0w (no time)
             
-        (TIME-AMOUNT)(TIME-AMOUNT)
+
+(TIME-AMOUNT):
+    An amount of time
+    
+    Forms:
+        (SINGLE-TIME-AMOUNT)(SINGLE-TIME-AMOUNT)... (one or more)
         Examples:
-            1d4h (1 day 4 hours)
+            1d (1 day)
             4minute1s (4 minutes 1 second)
             2m8y (8 years 2 minutes)
             1d1d (2 days)
