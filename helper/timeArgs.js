@@ -295,6 +295,30 @@ timeArgs.parseTime = (object) => {
     return returnObject
 }
 
+timeArgs.parseAmount = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    
+    if (string[position] !== "x") {
+        return null
+    }
+    
+    const int = timeArgs.parseInt({
+        currentPos: position + 1,
+        string: string
+    })
+    if (!int) {
+        return null
+    }
+    
+    const value = int.value
+    
+    return {
+        currentPos: int.currentPos,
+        type: "AMOUNT",
+        value: value
+    }
+}
 
 
 
