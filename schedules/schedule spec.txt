@@ -60,10 +60,12 @@ Grammar:
     
     Forms:
         (TIME-LITERAL)+(TIME-AMOUNT)
-        Note: (TIME)+(TIME-AMOUNT)+(TIME-AMOUNT)+ ... is useless and doesn't need to be implemented
+        Note: (TIME-LITERAL)+(TIME-AMOUNT)+(TIME-AMOUNT)+ ... is useless (for now) and doesn't need to be implemented
         Examples: 
             now+1d (A day from now)
             
+        (TIME-LITERAL)
+        
         (TIME-AMOUNT)
         Equivalent to now+(TIME-AMOUNT)
         Examples:

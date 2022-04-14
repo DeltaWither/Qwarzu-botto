@@ -180,9 +180,14 @@ timeArgs.parseTimeLiteral = (object) => {
         return null
     }
     
-    let value = string.slice(position, position + positionChange)
-    if (!timeLiterals.has(value)) {
+    let strValue = string.slice(position, position + positionChange)
+    if (!timeLiterals.has(strValue)) {
         return null
+    }
+    
+    let value = 0
+    if (strValue === "n" || strValue === "now") {
+        value = Date.now()
     }
     
     return {
@@ -191,6 +196,106 @@ timeArgs.parseTimeLiteral = (object) => {
         value: value
     }
 }
+
+const parseTimePath1 = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    
+    const timeLiteral = timeArgs.parseTimeLiteral({
+        currentPos: position,
+        string: string
+    })
+    if (!timeLiteral) {
+        return null
+    }
+    
+    if (string[timeLiteral.currentPos] !== "+") {
+        return null
+    }
+    
+    const timeAmount = timeArgs.parseTimeAmount({
+        currentPos: timeLiteral.currentPos + 1,
+        string: string
+    })
+    if (!timeAmount) {
+        return null
+    }
+    
+    const value = timeLiteral.value + timeAmount.value
+    
+    return {
+        currentPos: timeAmount.currentPos,
+        type: "TIME",
+        value: value
+    }
+}
+
+const parseTimePath2 = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    
+    const timeLiteral = timeArgs.parseTimeLiteral({
+        currentPos: position,
+        string: string
+    })
+    if (!timeLiteral) {
+        return null
+    }
+    
+    const value = timeLiteral.value
+    
+    return {
+        currentPos: timeLiteral.currentPos,
+        type: "TIME",
+        value: value
+    }
+}
+
+const parseTimePath3 = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    
+    const timeAmount = timeArgs.parseTimeAmount({
+        currentPos: position,
+        string: string
+    })
+    if (!timeAmount) {
+        return null
+    }
+    
+    const value = Date.now() + timeAmount.value
+    
+    return {
+        currentPos: timeAmount.currentPos,
+        type: "TIME",
+        value: value
+    }
+}
+
+timeArgs.parseTime = (object) => {
+    // (TIME-LITERAL)+(TIME-AMOUNT)
+    const path1 = parseTimePath1(object)
+    
+    // (TIME-LITERAL)
+    const path2 = parseTimePath2(object)
+    
+    // (TIME-AMOUNT)
+    const path3 = parseTimePath3(object)
+    
+    let returnObject = null
+    
+    if (path1) {
+        returnObject = path1
+    } else if (path2) {
+        returnObject = path2
+    } else if (path3) {
+        returnObject = path3
+    }
+    
+    return returnObject
+}
+
+
 
 
 module.exports = timeArgs
