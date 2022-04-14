@@ -124,5 +124,43 @@ timeArgs.parseSingleTimeAmount = (object) => {
     }
 }
 
+timeArgs.parseTimeAmount = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    let positionChange = 0
+    
+    let timeAmountArray = []
+    let index = 0
+    while (true) {
+        const timeAmount = timeArgs.parseSingleTimeAmount({
+            currentPos: position + positionChange,
+            string: string
+        })
+        if (!timeAmount) {
+            break
+        }
+        
+        positionChange = timeAmount.currentPos - position
+        timeAmountArray[index] = timeAmount
+        index++
+    }
+    
+    if (timeAmountArray.length === 0) {
+        return null
+    }
+    
+    // Transform to milliseconds
+    let value = 0
+    for (timeAmount of timeAmountArray) {
+        value += timeAmount.value
+    }
+    
+    return {
+        currentPos: position + positionChange,
+        type: "TIME-AMOUNT",
+        value: value
+    }
+}
+
 
 module.exports = timeArgs
