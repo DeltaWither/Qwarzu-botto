@@ -17,8 +17,9 @@ let timeArgs = {}
  * if the parse is wrong then return null and the next option is tried
  */
 
-const digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-//const timeUnits = ["ms", "s", "m", "h", "d", "w", "mo", "y"]
+const digitCheck = /^[0-9]$/
+const letterCheck = /^[a-zA-Z]$/
+const timeUnits = new Set(["ms", "s", "m", "h", "d", "w", "mo", "y", "millisecond", "second", "minute", "hour", "day", "week", "month", "year"])
 
 timeArgs.parseInt = (object) => {
     const position = object.currentPos
@@ -26,7 +27,7 @@ timeArgs.parseInt = (object) => {
     let positionChange = 0
     
     while (position + positionChange < string.length) {
-        if (string[position + positionChange] in digits) {
+        if (string[position + positionChange].match(digitCheck)) {
             positionChange++
         } else {
             break
@@ -45,5 +46,35 @@ timeArgs.parseInt = (object) => {
         value: value
     }
 }
+
+timeArgs.parseTimeUnit = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    let positionChange = 0
+    
+    while (position + positionChange < string.length) {
+        if (string[position + positionChange].match(letterCheck)) {
+            positionChange++
+        } else {
+            break
+        }
+    }
+    
+    if (positionChange === 0) {
+        return null
+    }
+    
+    let value = string.slice(position, position + positionChange)
+    if (!timeUnits.has(value)) {
+        return null
+    }
+    
+    return {
+        currentPos: position + positionChange,
+        type: "TIME-UNIT",
+        value: value
+    }
+}
+
 
 module.exports = timeArgs
