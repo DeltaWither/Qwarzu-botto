@@ -46,15 +46,20 @@ Grammar:
             1d1d (2 days)
             1d1h1m1s1ms (1 day 1 hour 1 minute 1 second 1 millisecond)
 
-
-(TIME):
-    A point in time
+            
+(TIME-LITERAL):
+    A point in time without any operations
     
     Forms:
         n = now (current time)
         (more to be added eventually)
-        
-        (TIME)+(TIME-AMOUNT)
+
+            
+(TIME):
+    A point in time
+    
+    Forms:
+        (TIME-LITERAL)+(TIME-AMOUNT)
         Note: (TIME)+(TIME-AMOUNT)+(TIME-AMOUNT)+ ... is useless and doesn't need to be implemented
         Examples: 
             now+1d (A day from now)
