@@ -1,6 +1,5 @@
 Started by a command like ?remindme (time) (other args)
-Time is an argument specifying when the command will be executed
-Time is of the form (TIME-LIST) in the grammar below
+Time is 1 to 3 arguments specifying when the command will be executed
 
 Grammar:
 
@@ -61,36 +60,46 @@ Grammar:
             1d (now + 1d)
 
 
-(TIME-LIST):
-    A list of points in time. May be finite or infinite
+(AMOUNT):
+    An amount of times to repeat the schedule
     
     Forms:
-        [(TIME), (TIME)...]
+        x(INT)
         Examples:
-            [now]
-            
-        (TIME) -> (TIME-AMOUNT)
-        Examples:
-            now -> 1h (now, now + 1h, now + 2h...)
-            now + 3d -> 3m (now + 3d, now + 3d3m, now + 3d6m...)
+            x1 (once)
+            x7 (7 times)
         
-        (TIME) -> (TIME-AMOUNT) x(INT)
-        Examples:
-            now -> 1h x2 (now, now + 1h)
-            now + 1h -> x3 (now + 1h, now + 2h, now + 3h)
 
-        (TIME)
-        Equivalent to [(TIME)]
-        Examples:
-            now ([now])
-            now + 3h ([now + 3h])
-            3h ([3h] or [now + 3h])
-            
+(INTERVAL):
+    A time amount that is specifically used as an interval
+    
+    Forms:
         (TIME-AMOUNT)-
-        Equivalent to now + (TIME-AMOUNT) -> (TIME-AMOUNT)
         Examples:
-            3h- (equivalent to now + 3h -> 3h)
+            3h- (Every 3 hours)
+            1h5s (Every 1 hour 5 seconds)
 
+=====================================================================================================
+
+Possible time arguments:
+
+3 arguments:
+    (TIME) (INTERVAL) (AMOUNT)
+    It will be executed first at the time of the first argument, then every time amount of the interval, up to the third argument amount of times
+    
+2 arguments:
+    (TIME) (INTERVAL)
+    Same as 3 arguments, but an infinite amount of times
+    
+    (INTERVAL) (AMOUNT)
+    Same as 3 arguments, but the starting time is now + the interval
+    
+1 argument:
+    (TIME)
+    It will be executed once at the specified time
+    
+    (INTERVAL)
+    Executed starting at now + the interval, an infinite amount of times
 
 
 =====================================================================================================
