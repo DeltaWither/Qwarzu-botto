@@ -20,6 +20,24 @@ let timeArgs = {}
 const digitCheck = /^[0-9]$/
 const letterCheck = /^[a-zA-Z]$/
 const timeUnits = new Set(["ms", "s", "m", "h", "d", "w", "mo", "y", "millisecond", "second", "minute", "hour", "day", "week", "month", "year"])
+const timeUnitsToMillis = {
+    "ms": 1,
+    "millisecond": 1,
+    "s": 1000,
+    "second": 1000,
+    "m": 1000 * 60,
+    "minute": 1000 * 60,
+    "h": 1000 * 60 * 60,
+    "hour": 1000 * 60 * 60,
+    "d": 1000 * 60 * 60 * 24,
+    "day": 1000 * 60 * 60 * 24,
+    "w": 1000 * 60 * 60 * 24 * 7,
+    "week": 1000 * 60 * 60 * 24 * 7,
+    "mo": 1000 * 60 * 60 * 24 * 7 * 30,
+    "month": 1000 * 60 * 60 * 24 * 7 * 30,
+    "y": 1000 * 60 * 60 * 24 * 7 * 365,
+    "year": 1000 * 60 * 60 * 24 * 7 * 365
+}
 
 timeArgs.parseInt = (object) => {
     const position = object.currentPos
@@ -72,6 +90,36 @@ timeArgs.parseTimeUnit = (object) => {
     return {
         currentPos: position + positionChange,
         type: "TIME-UNIT",
+        value: value
+    }
+}
+
+timeArgs.parseSingleTimeAmount = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    
+    const int = timeArgs.parseInt({
+        currentPos: position,
+        string: string
+    })
+    if (!int) {
+        return null
+    }
+    
+    const unit = timeArgs.parseTimeUnit({
+        currentPos: int.currentPos,
+        string: string
+    })
+    if(!unit) {
+        return null
+    }
+    
+    // Transform to milliseconds
+    let value = int.value * timeUnitsToMillis[unit.value]
+    
+    return {
+        currentPos: unit.currentPos,
+        type: "SINGLE-TIME-AMOUNT",
         value: value
     }
 }
