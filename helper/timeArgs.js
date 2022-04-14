@@ -19,6 +19,7 @@ let timeArgs = {}
 
 const digitCheck = /^[0-9]$/
 const letterCheck = /^[a-zA-Z]$/
+const timeLiterals = new Set(["n", "now"])
 const timeUnits = new Set(["ms", "s", "m", "h", "d", "w", "mo", "y", "millisecond", "second", "minute", "hour", "day", "week", "month", "year"])
 const timeUnitsToMillis = {
     "ms": 1,
@@ -158,6 +159,35 @@ timeArgs.parseTimeAmount = (object) => {
     return {
         currentPos: position + positionChange,
         type: "TIME-AMOUNT",
+        value: value
+    }
+}
+
+timeArgs.parseTimeLiteral = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    let positionChange = 0
+    
+    while (position + positionChange < string.length) {
+        if (string[position + positionChange].match(letterCheck)) {
+            positionChange++
+        } else {
+            break
+        }
+    }
+    
+    if (positionChange === 0) {
+        return null
+    }
+    
+    let value = string.slice(position, position + positionChange)
+    if (!timeLiterals.has(value)) {
+        return null
+    }
+    
+    return {
+        currentPos: position + positionChange,
+        type: "TIME-LITERAL",
         value: value
     }
 }
