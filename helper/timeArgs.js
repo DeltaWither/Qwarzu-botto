@@ -345,5 +345,211 @@ timeArgs.parseInterval = (object) => {
     }
 }
 
+const parseArgumentsPath1 = (args) => {
+    const time = timeArgs.parseTime({
+        currentPos: 0,
+        string: args[0]
+    })
+    if (!time) {
+        return null
+    }
+    
+    const interval = timeArgs.parseInterval({
+        currentPos: 0,
+        string: args[1]
+    })
+    if (!interval) {
+        return null
+    }
+    
+    const amount = timeArgs.parseAmount({
+        currentPos: 0,
+        string: args[2]
+    })
+    if (!amount) {
+        return null
+    }
+    
+    const timeObject = {
+        time: time.value,
+        amount: amount.value
+    }
+    timeObject.next = () => {
+        return this.time + interval.value
+    }
+    return timeObject
+}
+
+const parseArgumentsPath2 = (args) => {
+    const time = timeArgs.parseTime({
+        currentPos: 0,
+        string: args[0]
+    })
+    if (!time) {
+        return null
+    }
+    
+    const interval = timeArgs.parseInterval({
+        currentPos: 0,
+        string: args[1]
+    })
+    if (!interval) {
+        return null
+    }
+    
+    const timeObject = {
+        time: time.value,
+        amount: null
+    }
+    timeObject.next = () => {
+        return this.time + interval.value
+    }
+    
+    return timeObject
+}
+
+const parseArgumentsPath3 = (args) => {
+    const interval = timeArgs.parseInterval({
+        currentPos: 0,
+        string: args[0]
+    })
+    if (!interval) {
+        return null
+    }
+    
+    const amount = timeArgs.parseAmount({
+        currentPos: 0,
+        string: args[1]
+    })
+    if (!amount) {
+        return null
+    }
+    
+    const timeObject = {
+        time: Date.now() + interval.value,
+        amount: amount.value
+    }
+    timeObject.next = () => {
+        return this.time + interval.value
+    }
+    
+    return timeObject
+}
+
+const parseArgumentsPath4 = (args) => {
+    const interval = timeArgs.parseInterval({
+        currentPos: 0,
+        string: args[0]
+    })
+    if (!interval) {
+        return null
+    }
+    
+    const timeObject = {
+        time: Date.now() + interval.value,
+        amount: null
+    }
+    timeObject.next = () => {
+        return this.time + interval.value
+    }
+    
+    return timeObject
+}
+
+const parseArgumentsPath5 = (args) => {
+    const time = timeArgs.parseTime({
+        currentPos: 0,
+        string: args[0]
+    })
+    if (!time) {
+        return null
+    }
+    
+    const timeObject = {
+        time: time.value,
+        amount: 1
+    }
+    timeObject.next = () => {
+        return null
+    }
+    
+    return timeObject
+}
+
+
+/* wherever parseArguments is used, it's supposed to take all argumens after a certain point, knowing that the first 1, 2 or 3 args are time args. 
+ * The output is an object:
+ * {
+ *      timeObject: {...}
+ *      remainingArgs: []
+ * }
+ * where remainingArgs is an array of the remaining arguments and time object is
+ * {
+ *      time: 1234567890
+ *      amount: 123
+ *      next: () => {...}
+ * }
+ * 
+ * This is so a command that creates a schedule can have time commands anywhere other than just the end. Use the function and take the remaining args for whatever else there is to do
+ */
+timeArgs.parseArguments = (args) => {
+    const paths = []
+    if (args.length >= 3) {
+        // (TIME) (INTERVAL) (AMOUNT)
+        paths[0] = parseArgumentsPath1(args)
+        if (paths[0]) {
+            return {
+                timeObject: paths[0],
+                remainingArgs: args.slice(3)
+            }
+        }
+    }
+    
+    if (args.length >= 2) {
+        // (TIME) (INTERVAL)
+        paths[1] = parseArgumentsPath2(args)
+        if (paths[1]) {
+            return {
+                timeObject: paths[1],
+                remainingArgs: args.slice(2)
+            }
+        }
+        
+        // (INTERVAL) (AMOUNT)
+        paths[2] = parseArgumentsPath3(args)
+        if (paths[2]) {
+            return {
+                timeObject: paths[2],
+                remainingArgs: args.slice(2)
+            }
+        }
+    }
+    
+    if (args.length >= 1) {
+        // (INTERVAL)
+        paths[3] = parseArgumentsPath4(args)
+        if (paths[3]) {
+            return {
+                timeObject: paths[3],
+                remainingArgs: args.slice(1)
+            }
+        }
+        
+        // (TIME)
+        paths[4] = parseArgumentsPath5(args)
+        if (paths[4]) {
+            return {
+                timeObject: paths[4],
+                remainingArgs: args.slice(1)
+            }
+        }
+    }
+    
+    return {
+        timeObject: null,
+        remainingArgs: args
+    }
+}
+
 
 module.exports = timeArgs
