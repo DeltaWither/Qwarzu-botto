@@ -320,6 +320,30 @@ timeArgs.parseAmount = (object) => {
     }
 }
 
+timeArgs.parseInterval = (object) => {
+    const position = object.currentPos
+    const string = object.string
+    
+    const timeAmount = timeArgs.parseTimeAmount({
+        currentPos: position,
+        string: string
+    })
+    if (!timeAmount) {
+        return null
+    }
+    
+    if (string[timeAmount.currentPos] !== "-") {
+        return null
+    }
+    
+    const value = timeAmount.value
+    
+    return {
+        currentPos: timeAmount.currentPos + 1,
+        type: "INTERVAL",
+        value: value
+    }
+}
 
 
 module.exports = timeArgs
