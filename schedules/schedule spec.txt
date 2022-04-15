@@ -1,6 +1,8 @@
 Started by a command like ?remindme (time) (other args)
 Time is 1 to 3 arguments specifying when the command will be executed
 
+Every form is in order in which it should be checked, starting up going downwards. This is important where one form of a structure is the same as another but with less things at the end. The longer one must be checked first or else the shorter one will catch both cases. Same with the time arguments.
+
 Grammar:
 
 (INT):
@@ -107,11 +109,11 @@ Possible time arguments:
     Same as 3 arguments, but the starting time is now + the interval
     
 1 argument:
-    (TIME)
-    It will be executed once at the specified time
-    
     (INTERVAL)
     Executed starting at now + the interval, an infinite amount of times
+    
+    (TIME)
+    It will be executed once at the specified time
 
 
 =====================================================================================================
