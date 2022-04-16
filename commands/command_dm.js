@@ -19,12 +19,7 @@ const exec = async (message, args) => {
     
     let dmMessage = args.slice(1).join(" ")
     let user = await message.guild.members.fetch(userId)
-    
-    if (message.member.roles.cache.hasAny('708716555785076798', '708722040286478356', '945585653024964721')) {
-        user.send(dmMessage)
-    } else {
-        message.channel.send("no perms")
-    }
+    user.send(dmMessage)
 }
 
 const description = ""
