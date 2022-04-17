@@ -6,9 +6,10 @@
  */ 
 
 class AVLNode {
-    constructor(timeObject) {
-        this.timeObject = timeObject
-        this.balance = 0
+    constructor(key, value) {
+        this.key = key
+        this.value = value
+        this.height = 0
         this.left = null
         this.right = null
         this.parent = null
@@ -21,123 +22,229 @@ class AVLNode {
         return false
     }
     
-//     calculateHeight() {
-//         let leftHeight = -1
-//         let rightHeight = -1
-//         if (this.left !== null) {
-//             left = this.left.calculateHeight()
+    onlyHasLeft() {
+        if (this.left !== null && this.right === null) {
+            return true
+        }
+        return false
+    }
+    
+    onlyHasRight() {
+        if (this.left === null && this.right !== null) {
+            return true
+        }
+        return false
+    }
+    
+    get balance() {
+        let leftHeight = -1
+        let rightHeight = -1
+        if (this.left !== null) {
+            leftHeight = this.left.height
+        }
+        if (this.right !== null) {
+            rightHeight = this.right.height
+        }
+        
+        return rightHeight - leftHeight
+    }
+    
+//     static propagateBackwards(node, func) {
+//         let currentNode = node
+//         func(currentNode)
+//         while (currentNode.parent !== null) {
+//             currentNode = currentNode.parent
+//             func(currentNode)
 //         }
-//         if (this.right !== null) {
-//             right = this.right.calculateHeight()
-//         }
-//         
-//         this.height = Math.max(left, right) + 1
-//         return this.height
 //     }
+    
+    calculateHeight() {
+        let leftHeight = -1
+        let rightHeight = -1
+        if (this.left !== null) {
+            leftHeight = this.left.height
+        }
+        if (this.right !== null) {
+            rightHeight = this.right.height
+        }
+        
+        this.height = Math.max(leftHeight, rightHeight) + 1
+    }
 }
 
-// class AVLPriorityQueue {
-//     constructor() {
-//         this.root = null
-//     }
-//     
-//     outputs the node with a certain timestamp and its parent
-//     private traverse(timeStamp) {
-//         let currentNode = this.root
-//         let parentNode = null
-//         
-//         while (true) {
-//             const currentTime = currentNode.timeObject.time
-//             if (currentNode === null) {
-//                 return null
-//             }
-//             if (timeStamp === currentTime) {
-//                 return {currentNode: currentNode, parentNode: parentNode}
-//             }
-//             
-//             parentNode = currentNode
-//             if (timeStamp > currentTime) {
-//                 currentNode = currentNode.right
-//             } else {
-//                 currentNode = currentNode.left
-//             }
-//         }
-//     }
-//     
-//     public getNextGreater(timeStamp) {
-//         let nextGreater = null
-//         const node = traverse(timeStamp).currentNode
-//         if (node === null) {
-//             return
-//         }
-//         
-//         if (node.right !== null) {
-//             one to the right, then all the way to the left
-//             nextGreater = node.right
-//             while (nextGreater.left !== null) {
-//                 nextGreater = nextGreater.left
-//             }
-//             return nextGreater
-//         }
-//         
-//         if node.right doesn't exist then go through all the parents to the left and then one to the right
-//         while (node.parent !== null && node === node.parent.right) {
-//             nextGreater = node.parent
-//         }
-//         if (node.parent !== null) {
-//             nextGreater = node.parent
-//         }
-//         
-//         return nextGreater
-//     }
-//     
-//     private insert(timeObject) {
-//         let createdNode = null
-//         
-//         if (this.root === null) {
-//             this.root = new AVLNode(timeObject)
-//             createdNode = this.root
-//         }
-//         
-//         const nodes = traverse(timeObject.time)
-//         if (nodes.currentNode === null) {
-//             const parentTime = nodes.parentNode.timeObject.time
-//             
-//             if (timeObject.time > parentTime) {
-//                 nodes.parent.right = new AVLNode(timeObject)
-//                 createdNode = nodes.parent.right
-//             }
-//             
-//             if (timeObject.time < parentTime) {
-//                 nodes.parent.left = new AVLNode(timeObject)
-//                 createdNode = nodes.parent.left
-//             }
-//             
-//             createdNode.parent = nodes.parent
-//         }
-//         
-//         return createdNode
-//     }
-//     
-//     private remove(timeStamp) {
-//         let deletedNode = null
-//         
-//         const nodes = traverse(timeStamp)
-//         const currentNode = nodes.currentNode
-//         const parentNode = nodes.parentNode
-//         
-//         if (currentNode !== null) {
-//             deletedNode = currentNode
-//             
-//             if (currentNode = parentNode.left) {
-//                 delete parentNode.left
-//             } else {
-//                 delete parentNode.right
-//             }
-//         }
-//         
-//         
-//         return deletedNode
-//     }
-//     
-// }
+const getLastElement = (array) => {
+    return array.slice(-1)[0]
+}
+
+
+class AVLPriorityQueue {
+    constructor() {
+        this.root = null
+    }
+    
+    // outputs array with all nodes from root to the last one
+    #traverse(key) {
+        let currentNode = this.root
+        let nodeArray = []
+        let index = -1
+        
+        while (true) {
+            index++
+            nodeArray[index] = currentNode
+            
+            if (currentNode === null) {
+                return nodeArray
+            }
+            
+            const currentKey = currentNode.key
+            
+            if (key === currentKey) {
+                return nodeArray
+            }
+            
+            if (key > currentKey) {
+                currentNode = currentNode.right
+            } else {
+                currentNode = currentNode.left
+            }
+        }
+    }
+    
+    #getNextGreaterCase1(node) {
+        let nextGreater = node.right
+        while (nextGreater.left !== null) {
+            nextGreater = nextGreater.left
+        }
+        return nextGreater
+    }
+    
+    #getNextGreaterCase2(node) {
+        let nextGreater = node
+        while (nextGreater.parent !== null && nextGreater === nextGreater.parent.right) {
+            nextGreater = nextGreater.parent
+        }
+        
+        // if nextGreater has a parent it must be its left child. Otherwise it's root and there's no next greater
+        return nextGreater.parent
+    }
+    
+    getNextGreater(key) {
+        const node = getLastElement(this.#traverse(key))
+        if (node === null) {
+            return null
+        }
+        
+        if (node.right !== null) {
+            // one to the right, then all the way to the left
+            return this.#getNextGreaterCase1(node)
+        }
+        
+        // if node.right doesn't exist then go through all the parents to the left and then one to the right
+        return this.#getNextGreaterCase2(node)
+    }
+    
+    #insertRoot(key, value) {
+        this.root = new AVLNode(key, value)
+        return this.root
+    }
+    
+    #insertAt(parent, key, value) {
+        const parentKey = parent.key
+        let createdNode
+        
+        if (key > parentKey) {
+            parent.right = new AVLNode(key, value)
+            createdNode = parent.right
+        }
+        if (key < parentKey) {
+            parent.left = new AVLNode(key, value)
+            createdNode = parent.left
+        }
+        
+        createdNode.parent = parent
+        return createdNode
+    }
+    
+    insert(key, value) {
+        if (this.root === null) {
+            return this.#insertRoot(key, value)
+        }
+        
+        const nodes = this.#traverse(key)
+        const currentNode = getLastElement(nodes)
+        if (currentNode === null) {
+            const parentNode = nodes.slice(-2)[0]
+            return this.#insertAt(parentNode, key, value)
+        }
+    }
+    
+    #removeLeafAt(parentNode, currentNode) {
+        if (currentNode = parentNode.left) {
+            parentNode.left = null
+        } else {
+            parentNode.right = null
+        }
+    }
+    
+    #removeWithOneChildAt(parentNode, currentNode, direction) {
+        const childNode = currentNode[direction]
+        
+        if (currentNode = parentNode.left) {
+            parentNode.left = childNode
+        } else {
+            parentNode.right = childNode
+        }
+        
+        childNode.parent = parentNode
+    }
+    
+    #removeWithBothChildrenAt(parentNode, currentNode) {
+        nextGreater = this.getNextGreater(currentNode.key)
+        
+        // remove the next greater node from its position and make it replace currentNode completely
+        this.remove(nextGreater.key)
+        nextGreater.left = currentNode.left
+        nextGreater.right = currentNode.right
+        nextGreater.parent = currentNode.parent
+        
+        nextGreater.left.parent = nextGreater
+        nextGreater.right.parent = nextGreater
+        
+        if (currentNode = parentNode.left) {
+            parentNode.left = nextGreater
+        } else {
+            parentNode.right = nextGreater
+        }
+    }
+    
+    #removeAt(parentNode, currentNode) {
+        if (currentNode.isLeaf()) {
+            console.log(currentNode)
+            this.#removeLeafAt(parentNode, currentNode)
+        } else if (currentNode.onlyHasLeft()) {
+            this.#removeWithOneChildAt(parentNode, currentNode, "left")
+        } else if (currentNode.onlyHasRight()) {
+            this.#removeWithOneChildAt(parentNode, currentNode, "right")
+        } else {
+            this.#removeWithBothChildrenAt(parentNode, currentNode)
+        }
+    }
+    
+    remove(key) {
+        const nodes = this.#traverse(key)
+        const currentNode = getLastElement(nodes)
+        
+        if (currentNode !== null) {
+            const parentNode = currentNode.parent
+            this.#removeAt(parentNode, currentNode)
+            return currentNode
+        }
+        
+        return null
+    }
+    
+    
+}
+
+
+module.exports = AVLPriorityQueue
