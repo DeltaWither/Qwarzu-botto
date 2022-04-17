@@ -49,15 +49,6 @@ class AVLNode {
         return rightHeight - leftHeight
     }
     
-//     static propagateBackwards(node, func) {
-//         let currentNode = node
-//         func(currentNode)
-//         while (currentNode.parent !== null) {
-//             currentNode = currentNode.parent
-//             func(currentNode)
-//         }
-//     }
-    
     calculateHeight() {
         let leftHeight = -1
         let rightHeight = -1
@@ -143,6 +134,140 @@ class AVLPriorityQueue {
         return this.#getNextGreaterCase2(node)
     }
     
+    // Check wikipedia or google "AVL tree rotations" for info about how they work. 
+    // The names can't be much more descriptive than this
+    #rotateLeft(node) {
+        const x = node
+        const y = node.right
+        const t2 = y.left
+        
+        //rotate
+        x.right = t2
+        if (t2 !== null) {
+            t2.parent = x
+        }
+        
+        y.left = x
+        y.parent = x.parent
+        
+        x.parent = y
+        if (y.parent !== null) { //if not root
+            if (y.parent.right === x) {
+                y.parent.right = y
+            } else {
+                y.parent.left = y
+            }
+        } else {
+            this.root = y
+        }
+        
+        //recalculate 
+        x.calculateHeight()
+        y.calculateHeight()
+    }
+    
+    #rotateRightLeft(node) {
+        x = node
+        y = node.right
+        z = y.left
+        
+        //rotate
+        this.#rotateRight(y)
+        this.#rotateLeft(x)
+        
+        //recalculate
+        y.calculateHeight()
+        z.calculateHeight()
+        x.calculateHeight()
+    }
+    
+    #rotateRight(node) {
+        const x = node
+        const y = node.left
+        const t2 = y.right
+        
+        //rotate
+        x.left = t2
+        if (t2 !== null) {
+            t2.parent = x
+        }
+        
+        y.right = x
+        y.parent = x.parent
+        
+        x.parent = y
+        if (y.parent !== null) { // if not root
+            if (y.parent.right === x) {
+                y.parent.right = y
+            } else {
+                y.parent.left = y
+            }
+        } else {
+            this.root = y
+        }
+        
+        //recalculate 
+        x.calculateHeight()
+        y.calculateHeight()
+    }
+    
+    #rotateLeftRight(node) {
+        x = node
+        y = node.left
+        z = y.right
+        
+        //rotate
+        this.#rotateLeft(y)
+        this.#rotateRight(x)
+        
+        //recalculate
+        y.calculateHeight()
+        z.calculateHeight()
+        x.calculateHeight()
+    }
+    
+    #rotate(node) {
+        // this is the potentially unbalanced node
+        let rightBalance
+        let leftBalance
+        
+        if (node.right === null) {
+            rightBalance = 0
+        } else {
+            rightBalance = node.right.balance
+        }
+        
+        if (node.left === null) {
+            leftBalance = 0
+        } else {
+            leftBalance = node.left.balance
+        }
+        
+        if (node.balance === 2 && rightBalance >= 0) {
+            this.#rotateLeft(node)
+        }
+        if (node.balance === 2 && rightBalance === -1) {
+            this.#rotateRightLeft(node)
+        }
+        if (node.balance === -2 && leftBalance <= 0) {
+            this.#rotateRight(node)
+        }
+        if (node.balance === -2 && leftBalance === 1) {
+            this.#rotateLeftRight(node)
+        }
+    }
+    
+    #updateNodesUpwards(currentNode) {
+        currentNode.calculateHeight()
+        this.#rotate(currentNode)
+        
+        while (currentNode.parent !== null) {
+            currentNode = currentNode.parent
+            currentNode.calculateHeight()
+            this.#rotate(currentNode)
+        }
+    }
+    
     #insertRoot(key, value) {
         this.root = new AVLNode(key, value)
         return this.root
@@ -165,7 +290,7 @@ class AVLPriorityQueue {
         return createdNode
     }
     
-    insert(key, value) {
+    #insert(key, value) {
         if (this.root === null) {
             return this.#insertRoot(key, value)
         }
@@ -174,8 +299,12 @@ class AVLPriorityQueue {
         const currentNode = getLastElement(nodes)
         if (currentNode === null) {
             const parentNode = nodes.slice(-2)[0]
-            return this.#insertAt(parentNode, key, value)
+            const createdNode = this.#insertAt(parentNode, key, value)
+            this.#updateNodesUpwards(createdNode)
+            return createdNode
         }
+        
+        return null
     }
     
     #removeLeafAt(parentNode, currentNode) {
@@ -237,13 +366,18 @@ class AVLPriorityQueue {
         if (currentNode !== null) {
             const parentNode = currentNode.parent
             this.#removeAt(parentNode, currentNode)
+            this.#updateNodesUpwards(parentNode)
+            
             return currentNode
         }
         
         return null
     }
     
-    
+    /*
+     * (almost) all of the previous methods are private because this is supposed to be a priority queue 
+     * with a couple more things, so here are the typical methods of a priority queue
+     */
 }
 
 
