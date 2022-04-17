@@ -308,7 +308,13 @@ class AVLPriorityQueue {
     }
     
     #removeLeafAt(parentNode, currentNode) {
-        if (currentNode = parentNode.left) {
+        if (currentNode === this.root) {
+            this.root = null
+            return
+        }
+    
+        currentNode.parent = null
+        if (currentNode === parentNode.left) {
             parentNode.left = null
         } else {
             parentNode.right = null
@@ -317,8 +323,11 @@ class AVLPriorityQueue {
     
     #removeWithOneChildAt(parentNode, currentNode, direction) {
         const childNode = currentNode[direction]
+        currentNode.parent = null
         
-        if (currentNode = parentNode.left) {
+        if (currentNode = this.root) {
+            this.root = childNode
+        } else if (currentNode = parentNode.left) {
             parentNode.left = childNode
         } else {
             parentNode.right = childNode
@@ -328,7 +337,7 @@ class AVLPriorityQueue {
     }
     
     #removeWithBothChildrenAt(parentNode, currentNode) {
-        nextGreater = this.getNextGreater(currentNode.key)
+        const nextGreater = this.getNextGreater(currentNode.key)
         
         // remove the next greater node from its position and make it replace currentNode completely
         this.remove(nextGreater.key)
@@ -336,10 +345,16 @@ class AVLPriorityQueue {
         nextGreater.right = currentNode.right
         nextGreater.parent = currentNode.parent
         
-        nextGreater.left.parent = nextGreater
-        nextGreater.right.parent = nextGreater
+        if (nextGreater.left !== null) {
+            nextGreater.left.parent = nextGreater
+        }
+        if (nextGreater.right !== null) {
+            nextGreater.right.parent = nextGreater
+        }
         
-        if (currentNode = parentNode.left) {
+        if (currentNode = this.root) {
+            this.root = nextGreater
+        } else if (currentNode = parentNode.left) {
             parentNode.left = nextGreater
         } else {
             parentNode.right = nextGreater
@@ -348,7 +363,6 @@ class AVLPriorityQueue {
     
     #removeAt(parentNode, currentNode) {
         if (currentNode.isLeaf()) {
-            console.log(currentNode)
             this.#removeLeafAt(parentNode, currentNode)
         } else if (currentNode.onlyHasLeft()) {
             this.#removeWithOneChildAt(parentNode, currentNode, "left")
@@ -366,7 +380,10 @@ class AVLPriorityQueue {
         if (currentNode !== null) {
             const parentNode = currentNode.parent
             this.#removeAt(parentNode, currentNode)
-            this.#updateNodesUpwards(parentNode)
+            
+            if (parentNode !== null) {
+                this.#updateNodesUpwards(parentNode)
+            }
             
             return currentNode
         }
@@ -378,6 +395,34 @@ class AVLPriorityQueue {
      * (almost) all of the previous methods are private because this is supposed to be a priority queue 
      * with a couple more things, so here are the typical methods of a priority queue
      */
+    #getNextInQueue() {
+        if (this.root === null) {
+            return null
+        }
+    
+        let currentNode = this.root
+        while (currentNode.left !== null) {
+            currentNode = currentNode.left
+        }
+        return currentNode
+    }
+    
+    push(key, value) {
+        return this.#insert(key, value)
+    }
+    
+    pop() {
+        const nextElement = this.#getNextInQueue()
+        if (nextElement !== null) {
+            return this.remove(nextElement.key)
+        }
+        return null
+    }
+    
+    peek() {
+        const nextElement = this.#getNextInQueue()
+        return nextElement
+    }
 }
 
 
