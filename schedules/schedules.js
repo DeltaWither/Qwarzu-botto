@@ -24,20 +24,12 @@ const startQueue = () => {
     if (nextSchedule === null) {
         return
     }
+    
     const timeObject = nextSchedule.value
     const oldTime = timeObject.time
     
     timeout = setTimeout(() => {
-        // remove and reinsert
-        schedulesQueue.pop()
-        timeObject.time = timeObject.next()
-        if (timeObject.amount !== null) {
-            timeObject.amount--
-        }
-        if (timeObject.amount > 0 || timeObject.amount === null) {
-            addSchedule(timeObject, timeObject.schedule.name, timeObject.args, timeObject.message)
-        }
-        
+        reinsertNextSchedule()
         
         // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
         timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, oldTime)
@@ -45,6 +37,17 @@ const startQueue = () => {
             startQueue()
         }
     }, nextSchedule.key - Date.now())
+}
+
+const reinsertNextSchedule = () => {
+    const timeObject = schedulesQueue.pop().value
+    timeObject.time = timeObject.next()
+    if (timeObject.amount !== null) {
+        timeObject.amount--
+    }
+    if (timeObject.amount > 0 || timeObject.amount === null) {
+        addSchedule(timeObject)
+    }
 }
 
 const pokeQueue = () => {
@@ -103,6 +106,8 @@ const clearTimeoutWrapped = () => {
     clearTimeout(timeout)
     timeout = null
 }
+
+
 
 module.exports = {"schedules": scheduleList, "schedulesQueue": schedulesQueue, "addSchedule": addSchedule, "removeSchedule": removeSchedule}
 
