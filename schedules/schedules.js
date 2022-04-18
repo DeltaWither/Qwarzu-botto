@@ -17,13 +17,10 @@ const schedulesIdMap = {}
  *      args: arguments for the function
  * }
  */
-let queueActive = false
 let timeout = null
 const startQueue = () => {
-    queueActive = true
     const nextSchedule = schedulesQueue.peek()
     if (nextSchedule === null) {
-        queueActive = false
         return
     }
     const timeObject = nextSchedule.value
@@ -43,9 +40,6 @@ const startQueue = () => {
         
         // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
         timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, oldTime)
-        if (schedulesQueue.root === null) {
-            queueActive = false
-        }
         if (schedulesQueue.root !== null) {
             startQueue()
         }
@@ -53,7 +47,7 @@ const startQueue = () => {
 }
 
 const pokeQueue = () => {
-    if (!queueActive) {
+    if (timeout === null) {
         startQueue()
     }
 }
@@ -91,8 +85,7 @@ const removeSchedule = (scheduleId) => {
     delete schedulesIdMap[scheduleId]
     
     if (peek === removed) {
-        clearTimeout(timeout)
-        timeout = null
+        clearTimeoutWrapped()
         startQueue()
     }
     
@@ -100,6 +93,12 @@ const removeSchedule = (scheduleId) => {
         return true
     }
     return false
+}
+
+// To make sure timeout is always set to null when not active. It shows when the queue is running
+const clearTimeoutWrapped = () => {
+    clearTimeout(timeout)
+    timeout = null
 }
 
 //export the list before anything is imported into it to avoid circular dependencies
