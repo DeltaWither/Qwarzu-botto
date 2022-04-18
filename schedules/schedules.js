@@ -52,7 +52,7 @@ const pokeQueue = () => {
 }
 
 const addSchedule = (timeObject, scheduleName, args, message) => {
-    if (timeObject.amount <= 0) {
+    if (timeObject.amount <= 0 && timeObject.amount !== null) {
         return
     }
     
