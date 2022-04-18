@@ -52,21 +52,17 @@ const pokeQueue = () => {
 }
 
 const addSchedule = (timeObject, scheduleName, args, message) => {
-    if (timeObject.amount === 0) {
+    if (timeObject.amount <= 0) {
         return
     }
     
+    // fields that aren't set when the arguments are parsed
     timeObject.schedule = scheduleList[scheduleName]
     timeObject.args = args
     timeObject.message = message
     
-    if (schedulesQueue.root === null) {
-        schedulesQueue.push(timeObject.time + Math.random(), timeObject)
-        pokeQueue()
-    } else {
-        schedulesQueue.push(timeObject.time + Math.random(), timeObject)
-        pokeQueue()
-    }
+    schedulesQueue.push(timeObject.time + Math.random(), timeObject)
+    pokeQueue()
 }
 
 //export the list before anything is imported into it to avoid circular dependencies
