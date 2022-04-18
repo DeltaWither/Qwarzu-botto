@@ -101,6 +101,20 @@ class AVLPriorityQueue {
         }
     }
     
+    traverseTree() {
+        const nodeArray = []
+        let currentNode = this.peek()
+        
+        let index = 0
+        while (currentNode !== null) {
+            nodeArray[index] = currentNode
+            currentNode = this.getNextGreater(currentNode.key)
+            index++
+        }
+        
+        return nodeArray
+    }
+    
     #getNextGreaterCase1(node) {
         let nextGreater = node.right
         while (nextGreater.left !== null) {

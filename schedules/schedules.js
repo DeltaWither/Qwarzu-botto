@@ -4,6 +4,8 @@ const AVLPriorityQueue= require("./AVLPriorityQueue.js")
 const scheduleList = {}
 const schedulesQueue = new AVLPriorityQueue()
 
+const schedulesIdMap = {}
+
 /*
  * Each node has key: timeStamp + random()
  * The random is to separate those with same timeStamp
@@ -16,13 +18,18 @@ const schedulesQueue = new AVLPriorityQueue()
  * }
  */
 let queueActive = false
+let timeout = null
 const startQueue = () => {
     queueActive = true
     const nextSchedule = schedulesQueue.peek()
+    if (nextSchedule === null) {
+        queueActive = false
+        return
+    }
     const timeObject = nextSchedule.value
     const oldTime = timeObject.time
     
-    setTimeout(() => {
+    timeout = setTimeout(() => {
         // remove and reinsert
         schedulesQueue.pop()
         timeObject.time = timeObject.next()
@@ -61,12 +68,42 @@ const addSchedule = (timeObject, scheduleName, args, message) => {
     timeObject.args = args
     timeObject.message = message
     
-    schedulesQueue.push(timeObject.time + Math.random(), timeObject)
+    let id
+    if (!timeObject.id) {
+        id = Date.now().toString() + Math.floor(Math.random() * 1000).toString()
+        timeObject.id = id
+    } else {
+        id = timeObject.id
+    }
+    
+    const key = timeObject.time + Math.random()
+    schedulesQueue.push(key, timeObject)
+    schedulesIdMap[id] = key
     pokeQueue()
 }
 
+const removeSchedule = (scheduleId) => {
+    const key = schedulesIdMap[scheduleId]
+    const peek = schedulesQueue.peek()
+    const removed = schedulesQueue.remove(key)
+    console.log(schedulesIdMap)
+    console.log(peek)
+    delete schedulesIdMap[scheduleId]
+    
+    if (peek === removed) {
+        clearTimeout(timeout)
+        timeout = null
+        startQueue()
+    }
+    
+    if (removed !== null) {
+        return true
+    }
+    return false
+}
+
 //export the list before anything is imported into it to avoid circular dependencies
-module.exports = {"schedules": scheduleList, "schedulesQueue": schedulesQueue, "addSchedule": addSchedule}
+module.exports = {"schedules": scheduleList, "schedulesQueue": schedulesQueue, "addSchedule": addSchedule, "removeSchedule": removeSchedule}
 
 // Not sure why it has to go to ./listeners when . is already the commands folder
 const files = fs.readdirSync("./schedules");
