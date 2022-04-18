@@ -22,6 +22,7 @@ let timeout = null
 const startQueue = () => {
     const nextSchedule = schedulesQueue.peek()
     if (nextSchedule === null) {
+        timeout = null
         return
     }
     
@@ -33,6 +34,7 @@ const startQueue = () => {
         
         // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
         timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, oldTime)
+        
         if (schedulesQueue.root !== null) {
             startQueue()
         }
@@ -80,6 +82,11 @@ const addSchedule = (timeObject, scheduleName, args, message) => {
     const key = timeObject.time + Math.random()
     schedulesQueue.push(key, timeObject)
     schedulesIdMap[id] = key
+    
+    // Check if it's the next to be executed
+    if (schedulesQueue.peek().key === key) {
+        clearTimeoutWrapped()
+    }
     pokeQueue()
 }
 
