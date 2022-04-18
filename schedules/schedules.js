@@ -19,21 +19,15 @@ let queueActive = false
 const startQueue = () => {
     queueActive = true
     const nextSchedule = schedulesQueue.peek()
-    // console.log(nextSchedule)
     setTimeout(() => {
         nextSchedule.value.schedule.fullyWrappedExec(nextSchedule.value.args)
         schedulesQueue.pop()
         
-        console.log("schedule before")
-        console.log(nextSchedule.value.next())
-            console.log(nextSchedule.value)
         nextSchedule.value.time = nextSchedule.value.next()
         if (!nextSchedule.value.amount === null) {
             nextSchedule.value.amount -= 1
         }
         if (nextSchedule.value.amount > 0 || nextSchedule.value.amount === null) {
-            console.log("schedule after")
-            console.log(nextSchedule.value)
             
             schedulesQueue.push(nextSchedule.value.time + Math.random(), nextSchedule.value)
         }
