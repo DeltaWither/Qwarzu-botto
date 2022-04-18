@@ -14,7 +14,7 @@ const exec = (message, args) => {
         return
     }
     
-    addSchedule(timeObject, scheduleName, remainingArgs)
+    addSchedule(timeObject, scheduleName, remainingArgs, message)
     message.channel.send(`Schedule ${scheduleName} has been started`)
 }
 

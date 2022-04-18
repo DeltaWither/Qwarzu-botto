@@ -167,9 +167,9 @@ class AVLPriorityQueue {
     }
     
     #rotateRightLeft(node) {
-        x = node
-        y = node.right
-        z = y.left
+        const x = node
+        const y = node.right
+        const z = y.left
         
         //rotate
         this.#rotateRight(y)
@@ -212,9 +212,9 @@ class AVLPriorityQueue {
     }
     
     #rotateLeftRight(node) {
-        x = node
-        y = node.left
-        z = y.right
+        const x = node
+        const y = node.left
+        const z = y.right
         
         //rotate
         this.#rotateLeft(y)

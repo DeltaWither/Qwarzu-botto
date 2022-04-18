@@ -5,9 +5,9 @@ class Schedule {
         this.exec = exec
     }
     
-    async fullyWrappedExec(args) {
+    async fullyWrappedExec(message, args, time) {
         try {
-            await this.exec(args)
+            await this.exec(message, args, time)
         } catch(err) {
             console.log(`=======\n=======\n=======\n=======\n`);
             console.log("Something bad just happened");

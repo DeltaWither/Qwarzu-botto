@@ -19,23 +19,28 @@ let queueActive = false
 const startQueue = () => {
     queueActive = true
     const nextSchedule = schedulesQueue.peek()
+    const timeObject = nextSchedule.value
+    const oldTime = timeObject.time
+    
     setTimeout(() => {
-        nextSchedule.value.schedule.fullyWrappedExec(nextSchedule.value.args)
+        // remove and reinsert
         schedulesQueue.pop()
-        
-        nextSchedule.value.time = nextSchedule.value.next()
-        if (!nextSchedule.value.amount === null) {
-            nextSchedule.value.amount -= 1
+        timeObject.time = timeObject.next()
+        if (timeObject.amount !== null) {
+            timeObject.amount--
         }
-        if (nextSchedule.value.amount > 0 || nextSchedule.value.amount === null) {
-            
-            schedulesQueue.push(nextSchedule.value.time + Math.random(), nextSchedule.value)
+        if (timeObject.amount > 0 || timeObject.amount === null) {
+            addSchedule(timeObject, timeObject.schedule.name, timeObject.args, timeObject.message)
         }
         
-        if (schedulesQueue.peek() !== null) {
-            startQueue()
-        } else {
+        
+        // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
+        timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, oldTime)
+        if (schedulesQueue.root === null) {
             queueActive = false
+        }
+        if (schedulesQueue.root !== null) {
+            startQueue()
         }
     }, nextSchedule.key - Date.now())
 }
@@ -46,16 +51,22 @@ const pokeQueue = () => {
     }
 }
 
-const addSchedule = (timeObject, scheduleName, args) => {
+const addSchedule = (timeObject, scheduleName, args, message) => {
     if (timeObject.amount === 0) {
         return
     }
     
     timeObject.schedule = scheduleList[scheduleName]
     timeObject.args = args
+    timeObject.message = message
     
-    schedulesQueue.push(timeObject.time + Math.random(), timeObject)
-    pokeQueue()
+    if (schedulesQueue.root === null) {
+        schedulesQueue.push(timeObject.time + Math.random(), timeObject)
+        pokeQueue()
+    } else {
+        schedulesQueue.push(timeObject.time + Math.random(), timeObject)
+        pokeQueue()
+    }
 }
 
 //export the list before anything is imported into it to avoid circular dependencies
