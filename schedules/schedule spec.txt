@@ -120,16 +120,18 @@ Possible time arguments:
 
 The grammar above allows for time arguments as simple as "1d", executing in one day, but can go up to specifying a starting point and an interval or an explicit list of times to be executed. This is powerful enough for most uses while being simple, but maybe in the future there could be other more powerful options like cron syntax.
 
-After the time argument is parsed, how it's handled can be one of several ways:
-    Delay with setTimeout and then the intervals with setInterval
-        This is a simple way but it gives less control over the inner workings of schedules and might be harder to use with a more powerful syntax.
-        
-    Priority queue:
-        Once a schedule has been started, an object with a timestamp, an id, a parameter for executions left (undefined or null if infinite), the function to be executed and a next() function will be added to a priority queue. The queue will be popped when the time reaches the head's timestamp. Then the next() function will give the next timestamp when the function should be executed again, and a new object with the new timestamp, the same id, same executed function, same next() function and executions left -1 (if defined).
-        
-        The id will also be the key in an object containing all these objects so they can be found by id.
-        
-        The priority queue could be a min heap, but then removing schedules would be weird. It could also be a balanced binary search tree. Then the next schedule to be executed would always be the leftmost node, deleting anything is easy and there is total order too.
+After the time argument is parsed, how it's handled with a priority queue:
+    Once a schedule has been started, an object with a timestamp, an id, a parameter for executions left (undefined or null if infinite), the function to be executed and a next() function will be added to a priority queue. The queue will be popped when the time reaches the head's timestamp. Then the next() function will give the next timestamp when the function should be executed again, and a new object with the new timestamp, the same id, same executed function, same next() function and executions left -1 (if defined).
+    
+    The id will also be the key in an object containing all these objects so they can be found by id.
+    
+    There is a command for starting any schedule with any time parameters. However, that should be only for admin or dev use, and usually schedules will be called by other commands that give limits to the time commands to avoid spamming messages with 1ms interval.
+    
+    Another command is able to stop schedules only if the caller is an admin or whoever started the schedule.
+    
+    Another command lists the next schedules to be executed, including the same schedules after being executed and renewed.
+    
+    The priority queue is a balanced binary search tree. The next schedule to be executed is always the leftmost node, deleting anything is easy and there is total order too.
 
 
 
