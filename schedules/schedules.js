@@ -59,18 +59,21 @@ const addSchedule = (timeObject, scheduleName, args, message) => {
     }
     
     // fields that aren't set when the arguments are parsed
-    timeObject.schedule = scheduleList[scheduleName]
-    timeObject.args = args
-    timeObject.message = message
-    
+    // only set them if the timeObject comes from parsing (doesn't have any of these)
+    // If it comes from startQueue then it already has everything
     let id
-    if (!timeObject.id) {
+    
+    if (!timeObject.schedule && !timeObject.args && !timeObject.message && !timeObject.id) {
+        timeObject.schedule = scheduleList[scheduleName]
+        timeObject.args = args
+        timeObject.message = message
         id = Date.now().toString() + Math.floor(Math.random() * 1000).toString()
         timeObject.id = id
     } else {
         id = timeObject.id
     }
     
+    // Update the map and queue
     const key = timeObject.time + Math.random()
     schedulesQueue.push(key, timeObject)
     schedulesIdMap[id] = key
@@ -80,8 +83,8 @@ const addSchedule = (timeObject, scheduleName, args, message) => {
 const removeSchedule = (scheduleId) => {
     const key = schedulesIdMap[scheduleId]
     const peek = schedulesQueue.peek()
-    const removed = schedulesQueue.remove(key)
     
+    const removed = schedulesQueue.remove(key)
     delete schedulesIdMap[scheduleId]
     
     if (peek === removed) {
