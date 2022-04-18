@@ -372,10 +372,11 @@ const parseArgumentsPath1 = (args) => {
     
     const timeObject = {
         time: time.value,
+        interval: interval.value,
         amount: amount.value
     }
     timeObject.next = () => {
-        return this.time + interval.value
+        return timeObject.time + interval.value
     }
     return timeObject
 }
@@ -399,10 +400,11 @@ const parseArgumentsPath2 = (args) => {
     
     const timeObject = {
         time: time.value,
+        interval: interval.value,
         amount: null
     }
     timeObject.next = () => {
-        return this.time + interval.value
+        return timeObject.time + interval.value
     }
     
     return timeObject
@@ -427,10 +429,11 @@ const parseArgumentsPath3 = (args) => {
     
     const timeObject = {
         time: Date.now() + interval.value,
+        interval: interval.value,
         amount: amount.value
     }
     timeObject.next = () => {
-        return this.time + interval.value
+        return timeObject.time + interval.value
     }
     
     return timeObject
@@ -447,10 +450,11 @@ const parseArgumentsPath4 = (args) => {
     
     const timeObject = {
         time: Date.now() + interval.value,
+        interval: interval.value,
         amount: null
     }
     timeObject.next = () => {
-        return this.time + interval.value
+        return timeObject.time + interval.value
     }
     
     return timeObject
@@ -467,10 +471,11 @@ const parseArgumentsPath5 = (args) => {
     
     const timeObject = {
         time: time.value,
+        interval: 9999999999999,
         amount: 1
     }
     timeObject.next = () => {
-        return null
+        return 9999999999999
     }
     
     return timeObject
@@ -487,6 +492,7 @@ const parseArgumentsPath5 = (args) => {
  * {
  *      time: 1234567890
  *      amount: 123
+ *      interval: 542664
  *      next: () => {...}
  * }
  * 
