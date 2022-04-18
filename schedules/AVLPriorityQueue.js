@@ -286,6 +286,10 @@ class AVLPriorityQueue {
             createdNode = parent.left
         }
         
+        if (key === parentKey) {
+            return null
+        }
+        
         createdNode.parent = parent
         return createdNode
     }

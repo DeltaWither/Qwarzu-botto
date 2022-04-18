@@ -5,7 +5,7 @@ class Schedule {
         this.exec = exec
     }
     
-    async fullyWrappedExec(time, args) {
+    async fullyWrappedExec(args) {
         try {
             await this.exec(args)
         } catch(err) {
