@@ -15,6 +15,7 @@ const schedulesIdMap = {}
  *      next: () => {...} returning the next object with amount-1 new Timestamp
  *      exec: () => {...} function that gets executed
  *      args: arguments for the function
+ *      id: its id that doesn't change unlike the key
  * }
  */
 let timeout = null
@@ -80,8 +81,7 @@ const removeSchedule = (scheduleId) => {
     const key = schedulesIdMap[scheduleId]
     const peek = schedulesQueue.peek()
     const removed = schedulesQueue.remove(key)
-    console.log(schedulesIdMap)
-    console.log(peek)
+    
     delete schedulesIdMap[scheduleId]
     
     if (peek === removed) {
@@ -101,10 +101,9 @@ const clearTimeoutWrapped = () => {
     timeout = null
 }
 
-//export the list before anything is imported into it to avoid circular dependencies
 module.exports = {"schedules": scheduleList, "schedulesQueue": schedulesQueue, "addSchedule": addSchedule, "removeSchedule": removeSchedule}
 
-// Not sure why it has to go to ./listeners when . is already the commands folder
+// Not sure why it has to go to ./schedules when . is already the commands folder
 const files = fs.readdirSync("./schedules");
 
 for (const fileIndex in files) {
