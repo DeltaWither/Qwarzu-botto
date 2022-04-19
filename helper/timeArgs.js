@@ -373,11 +373,12 @@ const parseArgumentsPath1 = (args) => {
     const timeObject = {
         time: time.value,
         interval: interval.value,
-        amount: amount.value
+        amount: amount.value,
+        next: function () {
+            return this.time + this.interval
+        }
     }
-    timeObject.next = () => {
-        return timeObject.time + interval.value
-    }
+    
     return timeObject
 }
 
@@ -401,11 +402,12 @@ const parseArgumentsPath2 = (args) => {
     const timeObject = {
         time: time.value,
         interval: interval.value,
-        amount: null
+        amount: null,
+        next: function () {
+            return this.time + this.interval
+        }
     }
-    timeObject.next = () => {
-        return timeObject.time + interval.value
-    }
+    
     
     return timeObject
 }
@@ -430,11 +432,12 @@ const parseArgumentsPath3 = (args) => {
     const timeObject = {
         time: Date.now() + interval.value,
         interval: interval.value,
-        amount: amount.value
+        amount: amount.value,
+        next: function () {
+            return this.time + this.interval
+        }
     }
-    timeObject.next = () => {
-        return timeObject.time + interval.value
-    }
+    
     
     return timeObject
 }
@@ -451,10 +454,10 @@ const parseArgumentsPath4 = (args) => {
     const timeObject = {
         time: Date.now() + interval.value,
         interval: interval.value,
-        amount: null
-    }
-    timeObject.next = () => {
-        return timeObject.time + interval.value
+        amount: null,
+        next: function () {
+            return this.time + this.interval
+        }
     }
     
     return timeObject
@@ -472,11 +475,12 @@ const parseArgumentsPath5 = (args) => {
     const timeObject = {
         time: time.value,
         interval: 9999999999999,
-        amount: 1
+        amount: 1,
+        next: function () {
+            return this.time + this.interval
+        }
     }
-    timeObject.next = () => {
-        return 9999999999999
-    }
+    
     
     return timeObject
 }
