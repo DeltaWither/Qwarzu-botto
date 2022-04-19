@@ -16,11 +16,11 @@ const exec = (message, args) => {
     
     const list = getNextScheduleList(initialList, listSize)
     
-    let string = "Next schedules: "
+    let string = "```\nNext schedules: "
     for (schedule of list) {
-        string = string + "\n" + schedule.value.id
+        string += "\nId: " + schedule.value.id + "  creator: " + schedule.value.message.author.username + "  schedule: " + schedule.value.schedule.name
     }
-    
+    string += "\n```"
     message.channel.send(string)
 }
 
@@ -74,7 +74,8 @@ const createNewSchedule = (nextSchedule) => {
                 interval: nextSchedule.value.interval,
                 id: nextSchedule.value.id,
                 args: nextSchedule.value.args,
-                message: nextSchedule.value.message
+                message: nextSchedule.value.message,
+                schedule: nextSchedule.value.schedule
             }
         }
         newSchedule.key = newSchedule.value.next()
