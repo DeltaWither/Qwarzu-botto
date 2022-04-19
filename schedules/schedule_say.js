@@ -1,6 +1,6 @@
 const {Schedule} = require("./Schedule.js")
 
-const exec = async (message, args, time) => {
+const exec = async (message, args, timeObject) => {
     await message.channel.send(args.join(" "))
 }
 
