@@ -1,7 +1,14 @@
 const {Schedule} = require("./Schedule.js")
 
 const exec = async (message, args, timeObject) => {
-    await message.channel.send(args.join(" "))
+    let string = ""
+    if (!args[0]) {
+        string = "** **" //empty message
+    } else {
+        string = args.join(" ")
+    }
+    
+    await message.channel.send(string)
 }
 
 const description = ""
