@@ -19,7 +19,7 @@ const schedulesIdMap = {}
  * }
  */
 let timeout = null
-const startQueue = () => {
+const startQueue = async () => {
     const nextSchedule = schedulesQueue.peek()
     if (nextSchedule === null) {
         timeout = null
@@ -34,11 +34,14 @@ const startQueue = () => {
         
         // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
         timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, oldTime)
-        
-        if (schedulesQueue.root !== null) {
-            startQueue()
-        }
+        startQueue()
     }, nextSchedule.key - Date.now())
+}
+
+const updateMapAndQueue = (timeObject) => {
+    const key = timeObject.time + Math.random()
+    schedulesQueue.push(key, timeObject)
+    schedulesIdMap[timeObject.id] = key
 }
 
 const reinsertNextSchedule = () => {
@@ -46,48 +49,14 @@ const reinsertNextSchedule = () => {
     timeObject.time = timeObject.next()
     if (timeObject.amount !== null) {
         timeObject.amount--
-    }
-    if (timeObject.amount > 0 || timeObject.amount === null) {
-        addSchedule(timeObject)
-    }
-}
-
-const pokeQueue = () => {
-    if (timeout === null) {
-        startQueue()
-    }
-}
-
-const addSchedule = (timeObject, scheduleName, args, message) => {
-    if (timeObject.amount <= 0 && timeObject.amount !== null) {
-        return
+        
+        if (timeObject.amount <= 0) {
+            delete schedulesIdMap[timeObject.id]
+            return
+        }
     }
     
-    // fields that aren't set when the arguments are parsed
-    // only set them if the timeObject comes from parsing (doesn't have any of these)
-    // If it comes from startQueue then it already has everything
-    let id
-    
-    if (!timeObject.schedule && !timeObject.args && !timeObject.message && !timeObject.id) {
-        timeObject.schedule = scheduleList[scheduleName]
-        timeObject.args = args
-        timeObject.message = message
-        id = Date.now().toString() + Math.floor(Math.random() * 1000).toString()
-        timeObject.id = id
-    } else {
-        id = timeObject.id
-    }
-    
-    // Update the map and queue
-    const key = timeObject.time + Math.random()
-    schedulesQueue.push(key, timeObject)
-    schedulesIdMap[id] = key
-    
-    // Check if it's the next to be executed
-    if (schedulesQueue.peek().key === key) {
-        clearTimeoutWrapped()
-    }
-    pokeQueue()
+    updateMapAndQueue(timeObject)
 }
 
 const removeSchedule = (scheduleId) => {
@@ -97,7 +66,8 @@ const removeSchedule = (scheduleId) => {
     const removed = schedulesQueue.remove(key)
     delete schedulesIdMap[scheduleId]
     
-    if (peek === removed) {
+    // Restart if the next schedule is the removed one
+    if (key === peek.key) {
         clearTimeoutWrapped()
         startQueue()
     }
@@ -108,7 +78,24 @@ const removeSchedule = (scheduleId) => {
     return false
 }
 
-// To make sure timeout is always set to null when not active. It shows when the queue is running
+// addSchedule must be called ONLY to insert NEW schedules, not reinsert
+const addSchedule = (timeObject, scheduleName, args, message) => {
+    if (timeObject.amount <= 0 && timeObject.amount !== null) {
+        return
+    }
+    
+    // fields that aren't set when the arguments are parsed
+    timeObject.schedule = scheduleList[scheduleName]
+    timeObject.args = args
+    timeObject.message = message
+    timeObject.id = Date.now().toString() + Math.floor(Math.random() * 1000).toString()
+    
+    updateMapAndQueue(timeObject)
+    
+    clearTimeoutWrapped()
+    startQueue()
+}
+
 const clearTimeoutWrapped = () => {
     clearTimeout(timeout)
     timeout = null
