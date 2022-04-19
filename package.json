@@ -1,6 +1,6 @@
 {
   "name": "qwarzu-botto",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Bot for actually good custom commands for Qwarzu Outposto",
   "main": "index.js",
   "scripts": {
