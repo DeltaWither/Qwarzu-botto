@@ -2,7 +2,7 @@ const {Command} = require("./Command.js")
 const {schedulesQueue} = require("../schedules/schedules.js")
 const groups = require("../groups/membergroups.js")
 
-const exec = (message, args) => {
+const exec = async (message, args) => {
     let listSize = args[0]
     if (!args[0]) {
         listSize = 10
@@ -21,7 +21,7 @@ const exec = (message, args) => {
         string += "\nId: " + schedule.value.id + "  creator: " + schedule.value.message.author.username + "  schedule: " + schedule.value.schedule.name
     }
     string += "\n```"
-    message.channel.send(string)
+    await message.channel.send(string)
 }
 
 const getNextScheduleList = (initialList, listSize) => {
