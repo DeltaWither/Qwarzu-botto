@@ -25,6 +25,6 @@ const exec = async (message, args) => {
 const description = ""
 
 const dm = new Command("dm", description, exec)
-dm.executeGroup = groups.staffAndDevs
+dm.executeGroup = groups.staff
 
 module.exports = dm
