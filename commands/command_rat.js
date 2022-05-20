@@ -32,8 +32,7 @@ const exec = (message, args) => {
         "https://media.discordapp.net/attachments/819012888328011796/858079733090353182/E4mFQgFWQAQGgMc.png",
         "https://media.discordapp.net/attachments/819012888328011796/858079605024751676/1555855478832.png",
         "https://cdn.discordapp.com/attachments/873699856915505212/879348689645232198/hakos_baelz_and_mr_squeaks_hololive_and_1_more_drawn_by_rangu__sample-e4d21f0f371f8cade3b0ac4a686f19.png",
-        "https://cdn.discordapp.com/attachments/709253499430371328/939214495799197756/Rat_fans.png",
-        "https://media.discordapp.net/attachments/704876759656562779/950420584985137172/Go_low.gif"
+        "https://cdn.discordapp.com/attachments/709253499430371328/939214495799197756/Rat_fans.png"
     ]
     
     let index = Math.floor(Math.random() * ratArray.length)
