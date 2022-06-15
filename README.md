@@ -1,62 +1,34 @@
-# Qwarzu botto
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Getting Started
 
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-pull-requests.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)](https://forthebadge.com)
+First, run the development server:
 
-
-Qwarzu botto is a Discord bot written in Javascript used to control commands in Qwarzu Outposto
-
-## Installation
-
-To run the bot yourself clone the repository, then at the root create a config.json file with these contents:
-```json
-{
-	"token": "BOT TOKEN",
-	"clientId": "CLIENT ID"
-}
-```
-Then run `npm install` and `npm start` (make sure you are using the latest version). To add your own command, add a file `command_commandName.js` in the commands folder. It must have this format:
-## Usage
-
-``` javascript
-
-const {Command} = require("./Command.js")
-
-const exec = (message, args) => {
-	//code here
-}
-
-const description = "description here"
-
-const command = new Command("commandName", description, exec)
-
-module.exports = command
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
-To add a listener (function that executes after a certain event) add a file `listener_listenerName.js` in the listeners folder. It must have this format:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-``` javascript
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-const {Listener} = require("./Listener.js")
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-const exec = (object) => {
-	//code here
-}
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-const description = "description here"
+## Learn More
 
-const listener = new Listener("listenerName", description, exec, "eventType")
+To learn more about Next.js, take a look at the following resources:
 
-module.exports = listener
-```
-The list of event types is in listeners/listeners.js. There's almost all of the available event types from discord.js, but if you want to add another one or read info on each one go [here.](https://discord.js.org/#/docs/discord.js/stable/class/Client)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Please make sure to update tests as appropriate.
+## Deploy on Vercel
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
