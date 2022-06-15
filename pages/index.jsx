@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Qwarzu Botto documentation</h1>
+        <h1>Qwarzu Botto documentation</h1>
         
         <h2>What's Qwarzu Botto?</h2>
         <p>Qwarzu Botto is the most 1337 Discord bot out there, since it can do ANYTHING.</p>
