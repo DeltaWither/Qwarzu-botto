@@ -2,6 +2,10 @@
   padding: 0 2rem;
 }
 
+.container a {
+    color: #0000ff;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;

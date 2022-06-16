@@ -27,6 +27,8 @@ export default function Home() {
         
         <h2>How the guide works</h2>
         <p>Whether you faint on the sight of a line of code or you are a 60 year old Linux kernel hacker with the experience of a thousand senior devs, this guide is fine for you. I'll start explaining the features on a basic level and how to handle them without any coding. Then I'll explain how to create your own commmands, listeners, schedules, groups and such, and in the end I'll explain the entire structure of the bot and how everything ties together under the hood for those who want to go wacky or maybe contribute. You can choose where you want to stop.</p>
+        
+        <a href="versions/0.1.0">Link to v0.1.0 index</a>
     </div>
   )
 }
