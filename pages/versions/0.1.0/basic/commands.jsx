@@ -1,8 +1,6 @@
-import styles from '../../../../styles/Home.module.css'
-
 export default function Commands() {
     return (
-        <div className={styles.container}>
+        <div className="container">
             <h2>Commands basic</h2>
             
             <p>Commands are the most basic part of any bot, and they work just like you would expect. For example, to run the "test" command that comes by default, just type the message "?test". The question mark is the prefix that tells the bot this is a command. Once the bot sees the message, it will execute some code, and in the case of ?test, it will output a random number from 1 to 100.</p>

@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <title>Qwarzu Botto documentation</title>
         <meta name="description" content="Documentation for Qwarzu Botto Discord bot" />

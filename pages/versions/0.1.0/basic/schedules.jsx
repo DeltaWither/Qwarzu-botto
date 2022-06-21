@@ -1,8 +1,6 @@
-import styles from '../../../../styles/Home.module.css'
-
 export default function Schedules() {
     return (
-        <div className={styles.container}>
+        <div className="container">
             <h2>Schedules basic</h2>
             
             <p>If listeners run on specific events, schedules run on specific times. There really isn't much more to them. They can run any number of times (including infinite), with regular intervals down to 1 millisecond, starting at any point in time.</p>

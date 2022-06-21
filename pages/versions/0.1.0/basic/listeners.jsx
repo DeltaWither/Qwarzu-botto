@@ -1,8 +1,6 @@
-import styles from '../../../../styles/Home.module.css'
-
 export default function Listeners() {
     return (
-        <div className={styles.container}>
+        <div className="container">
             <h2>Listeners basic</h2>
             
             <p>Listeners can be thought of as commands, but better. In fact, commands are handled by a listener, and I think that's really damn cool.</p>

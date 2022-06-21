@@ -1,8 +1,6 @@
-import styles from '../../../../styles/Home.module.css'
-
 export default function MemberGroups() {
     return (
-        <div className={styles.container}>
+        <div className="container">
             <h2>Member groups basic</h2>
             
             <p>Member groups are similar to Discord roles, but more powerful. While a Discord role is essentially a list of individual members, membership of a member role can depend on individual users, roles the user has, permissions, and potentially any arbitrary rule if you can code, such as their name being a specific way or having been in the server for a certain amount of time.</p>
