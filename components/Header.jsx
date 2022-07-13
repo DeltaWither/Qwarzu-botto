@@ -6,7 +6,7 @@ export default function Header() {
         <header id={styles.mainHeader}>
           <p>Qwarzu Botto</p>
 
-          <div className="links">
+          <div className={styles.links}>
             
             <Link className="linkBox" href="/">
               <a>Main page</a>
