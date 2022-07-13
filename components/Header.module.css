@@ -1,0 +1,17 @@
+#mainHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(220, 220, 240);
+    width: 100%;
+    height: 100px;
+}
+
+#mainHeader p {
+    font-size: 20px;
+}
+
+.linkBox {
+    
+}
