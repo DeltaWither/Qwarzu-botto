@@ -28,6 +28,9 @@ export default function v0_1_x_index() {
             <a href="advanced/schedules">Schedules</a>
             <a href="advanced/member_groups">Member groups</a>
           </div>
+
+          <h3>Changelog</h3>
+          <a href="changelog">Changelog</a>
         </div>
     );
 }

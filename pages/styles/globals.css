@@ -68,3 +68,16 @@ a {
     display: flex;
     flex-direction: column;
 }
+
+/*
+Changelog
+*/
+
+.changelog.featureAdd {
+    color: #00af50;
+    line-height: 0.5rem;
+}
+
+.changelog.featureAdd::before {
+    content: "+";
+}
