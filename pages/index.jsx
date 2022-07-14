@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 export default function Home() {
     return (
@@ -33,15 +33,15 @@ export default function Home() {
             some permission or role, although there is a hacky way to make a group check for whatever you
             want.</p>
           
-		  <p>There is also a folder with helper functions for whatever functionality you may need in different
+	  <p>There is also a folder with helper functions for whatever functionality you may need in different
             commands, listeners and schedules.</p>
 
           <p>Lastly, there is a (to be changed) database that consists of JSON files in a database folder and 4
             CRUD helper functions. It's not the most sophisticated piece of software, but it's enough for a bunch
             of stuff.</p>
-		  <p>All of these features are explained in more detail in their parts of the guide.</p>
+	  <p>All of these features are explained in more detail in their parts of the guide.</p>
 		  
-		  <h2>How the guide works</h2>
+	  <h2>How the guide works</h2>
 
           <p>Whether you faint on the sight of a line of code or you are a 60 year old Linux kernel hacker with
             the experience of a thousand senior devs, this guide is fine for you. I'll start explaining the
@@ -50,7 +50,7 @@ export default function Home() {
             structure of the bot and how everything ties together under the hood for those who want to go wacky
             or maybe contribute. You can choose where you want to stop.</p>
           
-          <a href="versions/0.1.0/contents">Link to v0.1.0 contents</a>
-	    </div>
-    )
+          <a href="versions/0.1.x/contents">Link to v0.1.x contents</a>
+	</div>
+    );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./Header.module.css"
+import styles from "./Header.module.css";
 
 export default function Header() {
     return(
@@ -12,7 +12,7 @@ export default function Header() {
               <a>Main page</a>
             </Link>
             
-            <Link className="linkBox" href="/versions/0.1.0/contents">
+            <Link className="linkBox" href="/versions/0.1.x/contents">
               <a>0.1.x docs</a>
             </Link>
             
