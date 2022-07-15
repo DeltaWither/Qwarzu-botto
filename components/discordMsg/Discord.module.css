@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Whitney';
+    src: url('whitneylight-webfont.woff2') format('woff2'),
+         url('whitneylight-webfont.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Whitney';
+    src: url('whitneybook-webfont.woff2') format('woff2'),
+         url('whitneybook-webfont.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Whitney';
+    src: url('whitneymedium-webfont.woff2') format('woff2'),
+         url('whitneymedium-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Whitney';
+    src: url('whitneysemibold-webfont.woff2') format('woff2'),
+         url('whitneysemibold-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Whitney';
+    src: url('whitneybold-webfont.woff2') format('woff2'),
+         url('whitneybold-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+div.discordbg {
+    background-color: #36393f;
+    font-family: Whitney;
+    font-size: 1.2rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+div.textContainer {
+    margin-left: 1rem;
+    line-height: 1.375rem;
+}
+
+div.container {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0 1rem 0;
+}
+
+pre.message {
+    color: #dcddde; 
+    font-family: Whitney;
+    font-weight: 200;
+}
+
+div.username, div.botname {
+    font-weight: 300;
+}
+
+div.username {
+    color: #5d62e9;
+}
+
+div.botname {
+    color: #546e7a;
+}
+
+.img {
+    border-radius: 50%;
+}

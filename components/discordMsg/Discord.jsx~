@@ -1,0 +1,9 @@
+import styles from "./Discord.module.css";
+
+export default function DiscordBG(props) {
+    return (
+        <div className={styles.discordbg}>
+          {props.children}
+        </div>
+    );
+}

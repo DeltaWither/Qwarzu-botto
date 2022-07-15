@@ -81,3 +81,57 @@ Changelog
 .changelog.featureAdd::before {
     content: "+";
 }
+
+/*
+Code blocks
+*/
+
+pre.prismjs {
+    margin-left: 0.5rem;
+    background-color: #17162f;
+    border-style: solid;
+    border-radius: 6px;
+    padding: 1rem 0 1rem 0;
+    margin-bottom: 2rem;
+}
+
+code {
+    font-size: 1rem;
+    line-height: 1.1rem;
+}
+
+span.linenumber {
+    color: #bfa1b2;
+}
+
+span.token.keyword {
+    color: #e68fd4;
+}
+
+span.token.punctuation {
+    color: #5cbeff;
+}
+
+span.token.maybe-class-name, span.token.class-name {
+    color: #b493f9;
+}
+
+span.token.operator {
+    color: #f8f8f2;
+}
+
+span.token.function {
+    color: #50d458;
+}
+
+span.token.string {
+    color: #e5f97c;
+}
+
+span.token.parameter {
+    color: #8be9d8;
+}
+
+pre.prismjs code span {
+    color: #d1bfe5;
+}
