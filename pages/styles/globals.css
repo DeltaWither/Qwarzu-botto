@@ -69,6 +69,28 @@ a {
     flex-direction: column;
 }
 
+span.ping {
+    
+}
+
+span.inlineCode {
+    font-family: monospace;
+    background-color: #091c3c;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #0f0437;
+    font-size: 1rem;
+    padding: 0.1rem;
+    color: #77ee7c;
+    border-radius: 3px;
+}
+
+span.ping {
+    border-radius: 3px;
+    padding: 0 2px;
+    background-color: #3d4372;
+}
+
 /*
 Changelog
 */
