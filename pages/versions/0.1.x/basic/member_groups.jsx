@@ -1,3 +1,5 @@
+import { DiscordBG, UserMsg, BotMsg } from './../../../../components/discordMsg/Discord.jsx';
+
 export default function MemberGroups() {
     return (
         <div className="container">
@@ -11,14 +13,25 @@ export default function MemberGroups() {
           <p>You can think of it as a black box where you input a user and in return you get whether they belong
             to the group or not. You can even see that in action with the ?groupcheck command:</p>
           
-          <p>?groupcheck admins @DeltaWither</p>
+          <DiscordBG>
+            <UserMsg>
+              ?groupcheck admins <span className="ping">@DeltaWither</span>
+            </UserMsg>
+            <BotMsg>
+              true
+            </BotMsg>
+          </DiscordBG>
           
-          <p>The first argument is the name of an existing group and the second argument is a mention or id of a
-            member. If the member belongs to the group, Qwarzu Botto will say "true", and if not then "false".
-            The command itself has execute group of staffAndDevs, which in Qwarzu Outposto is for Trusty and
+          <p>The first argument (<span className="inlineCode">admin</span>) is the name of an existing group and
+            the second argument (<span className="inlineCode ping">@DeltaWither</span>) is a mention or id of a
+            member. If the member belongs to the group, Qwarzu Botto will
+            say <span className="inlineCode">true</span>, and if not
+            then <span className="inlineCode">false</span>. The command itself has execute group
+            of <span className="inlineCode">staffAndDevs</span>, which in Qwarzu Outposto is for Trusty and
             above, and also the programmeru role.</p>
           
-          <p>You can also use the command "?groups" to check all the existing groups in the bot.</p>
+          <p>You can also use the command <span className="inlineCode">?groups</span> to check all the existing
+            groups in the bot.</p>
           
           <p>Groups also have a description that can be used to explain who each group includes and such
             stuff.</p>
@@ -28,5 +41,5 @@ export default function MemberGroups() {
             However, in the future it may be used for more stuff, like who can create and delete commands in the
             future dashboard, who can access certain information and such.</p>
         </div>
-    )
+    );
 }
