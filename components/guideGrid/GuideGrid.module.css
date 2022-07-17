@@ -1,0 +1,33 @@
+.grid {
+    display: grid;
+    grid-template-columns: 25% 10rem 10rem 10rem;
+}
+
+.grid * {
+    margin: 0;
+    align-self: center;
+}
+
+.grid h3 {
+    justify-self: center;
+}
+
+.grid h4 {
+    justify-self: right;
+}
+
+.grid a {
+    padding: 1.5rem 0 1.5rem 0;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+a.exists {
+    background-color: #1bf229;
+}
+
+a.notExists {
+    background-color: #930c0c;
+}
