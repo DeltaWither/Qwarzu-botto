@@ -33,44 +33,54 @@ module.exports = copy;`;
             > messageCreate</a> event</p>
 
           <p>Before any code, look at the discord.js docs for events. It specifies parameters, which are objects
-            containing information on the event. For example messageCreate has a message parameter, which is the
-            object with all of the info about the message that was just created. Other events have different
-            parameters, and even 2 or 3 of them, which influences the code for the listener.</p>
+            containing information on the event. For
+            example <span className="inlineCode">messageCreate</span> has
+            a <span className="inlineCode">message</span> parameter, which is the object with all of the info
+            about the message that was just created. Other events have different parameters, and even 2 or 3 of
+            them, which influences the code for the listener.</p>
 
-          <p>But enough about that, let's make our listener. Its name will be copy, so go to the listeners folder
-            and create a listener_copy.js file. The "listener_" prefix makes the bot load it on startup without
-            you having to do anything. Now here's the code:</p>
+          <p>But enough about that, let's make our listener. Its name will
+            be <span className="inlineCode">copy</span>, so go to the listeners folder and create a
+            listener_copy.js file. The "listener_" prefix makes the bot load it on startup without you having to
+            do anything. Now here's the code:</p>
 
           <JsCode>
             {code1}
           </JsCode>
 
-          <p>Rejoice, it looks very similar to a command. The first two lines are simply importing the Listener
-            class (always necessary) and the bot's id (necessary for this particular listener).</p>
+          <p>Rejoice, it looks very similar to a command. The first two lines are simply importing
+            the <span className="inlineCode">Listener</span> class (always necessary) and the bot's id
+            (necessary for this particular listener).</p>
 
           <JsCode>
             {getLines(code1, 0, 2)}
           </JsCode>
 
-          <p>Just like in commands, exec is the function that executes the code of the listener. However, in
-            listeners the argumments of exec vary. As you saw earlier in the discord.js docs, messageCreate has
-            one parameter, which is the message that was created. That's why in messageCreate listeners it's
-            approrpiate for exec to have a "message" parameter. However in messageReactionAdd you would have to
-            use a "messageReaction" and a "user" parameters in that order.</p>
+          <p>Just like in commands, <span className="inlineCode">exec</span> is the function that executes the
+            code of the listener. However, in listeners the argumments
+            of <span className="inlineCode">exec</span> vary. As you saw earlier in the discord.js
+            docs, <span className="inlineCode">messageCreate</span> has one parameter, which is the message that
+            was created. That's why in <span className="inlineCode">messageCreate</span> listeners it's
+            approrpiate for exec to have a <span className="inlineCode">message</span> parameter. However
+            in <span className="inlineCode">messageReactionAdd</span> you would have to use
+            a <span className="inlineCode">messageReaction</span> and
+            a <span className="inlineCode">user</span> parameters in that order.</p>
           
           <JsCode line={4}>
             {getLines(code1, 3, 4)}
           </JsCode>
 
-          <p>Inside exec we can use the bot's id (add it in config.json) to make sure it doesn't start a loop of
-            copying its own messages. If it's not its own message, send message.content to message.channel.</p>
+          <p>Inside <span className="inlineCode">exec</span> we can use the bot's id (add it in config.json) to
+            make sure it doesn't start a loop of copying its own messages. If it's not its own message,
+            send <span className="inlineCode">message.content</span> to <span className="inlineCode">message.channel</span>.</p>
 
           <JsCode line={4}>
             {getLines(code1, 3, 7)}
           </JsCode>
 
-          <p>Make sure to add a good description and create the listener by using the Listener constructor.
-            The first parameter is the name, the second the description, the third the exec function, and the
+          <p>Make sure to add a good description and create the listener by using
+            the <span className="inlineCode">Listener</span> constructor. The first parameter is the name, the
+            second the description, the third the <span className="inlineCode">exec</span> function, and the
             fourth is the type of event. All the types of events are named after the discord.js events, so you
             can take it from the docs linked earlier.</p>
 
@@ -116,8 +126,9 @@ module.exports = copy;`;
              getLines(code1, 11, 14)}
           </JsCode>
 
-          <p>The ?enable and ?disable commands switch that enabled field on and off, so if you set it in this
-            file it will be enabled by default.</p>
+          <p>The <span className="inlineCode">?enable</span> and <span className="inlineCode">?disable</span>
+            commands switch that <span className="inlineCode">enabled</span> field on and off, so if you set it
+            in this file it will be enabled on startup.</p>
         </div>
     );
 }
