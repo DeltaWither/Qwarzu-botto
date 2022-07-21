@@ -3,7 +3,7 @@
 ** TODO for v0.1.1
 
 - [X] Make commands not available for other bots due to someone being able to get bots with admin perms to say whatever.
-- [ ] Fix member groups checking members wrong.
+- [X] Fix member groups checking members wrong.
 - [ ] Make the bot store active listeners and schedules in the database and call them on startup automatically.
 
 * 29/03/2022

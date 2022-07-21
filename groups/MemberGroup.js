@@ -61,7 +61,7 @@ class MemberGroup {
             }
         }
         
-        for (const memberId of this.disallowedMembers) {
+        for (const memberId of this.allowedMembers) {
             check = await member.id === member
             if (check) {
                 memberInGroup = true
