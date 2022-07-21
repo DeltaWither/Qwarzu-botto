@@ -3,8 +3,12 @@ const commands = require("../commands/commands.js");
 
 const exec = async (message) => {
     let command = message.content;
-    if(command[0] !== "?") {
+    if (command[0] !== "?") {
         return;
+    }
+
+    if (message.author.bot) {
+	return;
     }
     
     let commandAndArgs = command.slice(1).split(" ")
@@ -12,7 +16,7 @@ const exec = async (message) => {
     let commandName = commandAndArgs[0].toLowerCase();
     let args = commandAndArgs.slice(1);
     
-    if(commands[commandName]) {
+    if (commands[commandName]) {
         await commands[commandName].fullyWrappedExec(message, args);
     }
 }
