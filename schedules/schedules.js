@@ -33,8 +33,11 @@ const startQueue = async () => {
         reinsertNextSchedule()
         
         // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
-        timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, timeObject)
-        startQueue()
+	// Also check that it wasn't delayed for too long to avoid spamming schedules?running
+	if (Date.now() - oldTime < timeObject.interval) {
+            timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, timeObject)
+	}
+	startQueue()
     }, nextSchedule.key - Date.now())
 }
 

@@ -4,7 +4,7 @@
 
 - [X] Make commands not available for other bots due to someone being able to get bots with admin perms to say whatever.
 - [X] Fix member groups checking members wrong.
-- [ ] Make the bot store active listeners and schedules in the database and call them on startup automatically.
+- [X] Make the bot store active listeners and schedules in the database and call them on startup automatically.
 
 * 29/03/2022
 
