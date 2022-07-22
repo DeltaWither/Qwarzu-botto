@@ -1,6 +1,18 @@
+* 22/07/2022
+
+** TODO for v0.1.2
+
+- [ ] Make commands return strings that then are sent to message.channel instead of using message.channel inside the command.
+- [ ] Make commands usable in code. Also make it easy to skip permission checks if a command is used straight in code.
+- [ ] Add the json file with member groups to the database. Also make it so that if it doesn't exist it will be created with default values.
+- [ ] Create commands to manipulate member groups.
+- [ ] Add descriptions to everything.
+- [ ] Make a help command that tells you about the bot, other help pages, features and specific commands/listeners/schedules/groups (using their descriptions).
+- [ ] (Optional) Make some commands return not only strings, but whatever may be more useful to be used by other commands. For example ?running returning the string it sends to message.channel as well as an array of objects with the same info.
+
 * 21/07/2022
 
-** TODO for v0.1.1
+** DONE for v0.1.1
 
 - [X] Make commands not available for other bots due to someone being able to get bots with admin perms to say whatever.
 - [X] Fix member groups checking members wrong.
