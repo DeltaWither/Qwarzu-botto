@@ -27,5 +27,5 @@ for (const eventIndex in eventTypeList) {
     });
 }
 
-
+exports.client = client;
 client.login(token);
