@@ -17,7 +17,7 @@ const exec = async (message) => {
     let args = commandAndArgs.slice(1);
     
     if (commands[commandName]) {
-        const result = await commands[commandName].fullyWrappedExec(message, args);
+        const result = await commands[commandName].wrappedExec(message, args);
 
 	if (!result) {
 	    await message.channel.send(commandName + " - No output");
