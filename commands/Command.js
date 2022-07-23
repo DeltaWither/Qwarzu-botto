@@ -9,15 +9,18 @@ class Command {
     
     executeGroup = groups.admins //default
     
-    async executePermWrapper(message, args) {
-        const isMemberInGroup = await this.executeGroup.checkMember(message.member)
-        if (isMemberInGroup) {
-            return await this.exec(message, args);
-        }
-    }
-    
-    async fullyWrappedExec(message, args) {
-        return await this.executePermWrapper(message, args);
+    async fullyWrappedExec(message, args, options) {
+	// check perms
+	if (!options || !options.skipExecGroup) {
+	    const isMemberInGroup = await this.executeGroup.checkMember(message.member)
+            if (!isMemberInGroup) {
+		return {
+		    string: `You can't run ?${this.name} because you aren't in group ${this.executeGroup.name}`
+		};
+	    }
+	}
+	
+        return await this.exec(message, args);
     }
 }
 
