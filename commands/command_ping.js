@@ -2,7 +2,9 @@ const {Command} = require("./Command.js")
 const groups = require("../groups/membergroups.js")
 
 const exec = async (message, args) => {
-    message.reply('Pong!');
+    return {
+	string: 'Pong!'
+    };
 }
 
 const description = "The ping command"

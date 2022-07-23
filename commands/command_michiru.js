@@ -43,7 +43,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * michiruArray.length)
     
-    message.channel.send(michiruArray[index]);
+    return {
+	string: michiruArray[index]
+    };
 }
 
 const description = ""

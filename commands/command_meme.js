@@ -53,7 +53,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * memeArray.length)
     
-    message.channel.send(memeArray[index]);
+    return {
+	string: memeArray[index]
+    };
 }
 
 const description = ""

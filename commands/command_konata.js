@@ -13,7 +13,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * konataArray.length)
     
-    message.channel.send(konataArray[index]);
+    return {
+	string: konataArray[index]
+    };
 }
 
 const description = ""

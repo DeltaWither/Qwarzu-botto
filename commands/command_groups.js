@@ -7,7 +7,9 @@ const exec = (message, args) => {
         groupsString = groupsString + group + "\n";
     }
     
-    message.channel.send(groupsString)
+    return {
+	string: groupsString
+    };
 }
 
 const description = ""

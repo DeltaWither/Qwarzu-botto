@@ -10,12 +10,15 @@ const exec = (message, args) => {
     
     
     if(!schedules.hasOwnProperty(scheduleName)) {
-        message.channel.send(`Schedule ${scheduleName} doesn't exist`)
-        return
+        return {
+	    string: `Schedule ${scheduleName} doesn't exist`
+	};
     }
     
     addSchedule(timeObject, scheduleName, remainingArgs, message)
-    message.channel.send(`Schedule ${scheduleName} has been started`)
+    return {
+	string: `Schedule ${scheduleName} has been started`
+    };
 }
 
 const description = ""

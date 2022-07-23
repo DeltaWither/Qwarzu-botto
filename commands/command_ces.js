@@ -16,7 +16,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * cesArray.length)
     
-    message.channel.send(cesArray[index]);
+    return {
+	string: cesArray[index]
+    };
 }
 
 const description = ""

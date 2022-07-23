@@ -10,8 +10,9 @@ const exec = async (message, args) => {
     
     const initialList = schedulesQueue.traverseTree().slice(0, listSize)
     if (!initialList[0]) {
-        message.channel.send("No schedules running")
-        return
+        return {
+	    string: "No schedules running"
+	};
     }
     
     const list = getNextScheduleList(initialList, listSize)
@@ -21,7 +22,10 @@ const exec = async (message, args) => {
         string += "\nId: " + schedule.value.id + "  creator: " + schedule.value.message.author.username + "  schedule: " + schedule.value.schedule.name
     }
     string += "\n```"
-    await message.channel.send(string)
+    
+    return {
+	string: string
+    };
 }
 
 const getNextScheduleList = (initialList, listSize) => {

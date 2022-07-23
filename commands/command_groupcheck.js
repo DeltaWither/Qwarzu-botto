@@ -15,7 +15,9 @@ const exec = async (message, args) => {
             userId = userId.slice(1)
         }
     } else {
-        return
+        return {
+	    string: "wrong format"
+	};
     }
     
     const member = await message.guild.members.fetch(userId)
@@ -23,7 +25,9 @@ const exec = async (message, args) => {
     
     console.log(await member.permissions.has("ADMINISTRATOR"))
     
-    await message.channel.send(isMemberOfGroup.toString())
+    return {
+	string: isMemberOfGroup.toString()
+    };
 }
 
 const description = ""

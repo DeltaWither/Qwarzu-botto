@@ -17,7 +17,16 @@ const exec = async (message) => {
     let args = commandAndArgs.slice(1);
     
     if (commands[commandName]) {
-        await commands[commandName].fullyWrappedExec(message, args);
+        const result = await commands[commandName].fullyWrappedExec(message, args);
+
+	if (!result) {
+	    await message.channel.send(commandName + " - No output");
+	    return;
+	}
+	if (!result.string) {
+	    await message.channel.send(commandName + " - No string");
+	}
+	await message.channel.send(result.string);
     }
 }
 

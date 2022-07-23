@@ -34,7 +34,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * qwarzArray.length)
     
-    message.channel.send(qwarzArray[index]);
+    return {
+	string :(qwarzArray[index])
+    };
 }
 
 const description = ""

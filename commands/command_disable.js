@@ -6,12 +6,16 @@ const exec = (message, args) => {
     const listenerName = args[0]
     
     if(!individualListeners.hasOwnProperty(listenerName)) {
-        message.channel.send(`Listener ${listenerName} doesn't exist`)
-        return
+        return {
+	    string:`Listener ${listenerName} doesn't exist`
+	};
+	
     }
     
     individualListeners[listenerName].enabled = false
-    message.channel.send(`Listener ${listenerName} has been disabled`)
+    return {
+	string: `Listener ${listenerName} has been disabled`
+    };
 }
 
 const description = ""

@@ -15,7 +15,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * mioArray.length)
     
-    message.channel.send(mioArray[index]);
+    return {
+	string: mioArray[index]
+    };
 }
 
 const description = ""

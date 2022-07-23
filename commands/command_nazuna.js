@@ -31,7 +31,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * nazunaArray.length)
     
-    message.channel.send(nazunaArray[index]);
+    return {
+	string: nazunaArray[index]
+    };
 }
 
 const description = ""

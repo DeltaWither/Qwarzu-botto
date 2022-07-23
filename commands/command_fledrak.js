@@ -20,7 +20,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * fledrakArray.length)
     
-    message.channel.send(fledrakArray[index]);
+    return {
+	string: fledrakArray[index]
+    };
 }
 
 const description = ""

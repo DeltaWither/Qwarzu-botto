@@ -12,12 +12,12 @@ class Command {
     async executePermWrapper(message, args) {
         const isMemberInGroup = await this.executeGroup.checkMember(message.member)
         if (isMemberInGroup) {
-            await this.exec(message, args)
+            return await this.exec(message, args);
         }
     }
     
     async fullyWrappedExec(message, args) {
-        await this.executePermWrapper(message, args)
+        return await this.executePermWrapper(message, args);
     }
 }
 

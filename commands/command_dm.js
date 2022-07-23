@@ -5,6 +5,12 @@ const groups = require("../groups/membergroups.js")
 const exec = async (message, args) => {
     let userId
     
+    if (!args[0]) {
+        return {
+	    string: "No mention"
+	};
+    }
+    
     if( await id.isMemberId(args[0], message.guild) ) {
         userId = args[0]
     } else if( await id.isMemberMention(args[0], message.guild) ) {
@@ -13,13 +19,17 @@ const exec = async (message, args) => {
             userId = userId.slice(1)
         }
     } else {
-        message.channel.send("no mention")
-        return
+        return {
+	    string: "No mention"
+	};
     }
     
     let dmMessage = args.slice(1).join(" ")
-    let user = await message.guild.members.fetch(userId)
-    user.send(dmMessage)
+    let member = await message.guild.members.fetch(userId)
+    await member.send(dmMessage)
+    return {
+	string: `Message sent to ${member.user.username}`
+    };
 }
 
 const description = ""

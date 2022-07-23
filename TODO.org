@@ -2,7 +2,7 @@
 
 ** TODO for v0.1.2
 
-- [ ] Make commands return strings that then are sent to message.channel instead of using message.channel inside the command.
+- [X] Make commands return strings that then are sent to message.channel instead of using message.channel inside the command.
 - [ ] Make commands usable in code. Also make it easy to skip permission checks if a command is used straight in code.
 - [ ] Add the json file with member groups to the database. Also make it so that if it doesn't exist it will be created with default values.
 - [ ] Create commands to manipulate member groups.

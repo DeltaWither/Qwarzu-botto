@@ -7,7 +7,9 @@ const exec = (message, args) => {
     for (command in commandList) {
         commandsString = commandsString + command + ", ";
     }
-    message.channel.send(commandsString.slice(0, -2));
+    return {
+	string: commandsString.slice(0, -2)
+    };
 }
 const description = "List all commands"
 

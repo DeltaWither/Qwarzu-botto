@@ -37,7 +37,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * ratArray.length)
     
-    message.channel.send(ratArray[index]);
+    return {
+	string: ratArray[index]
+    };
 }
 
 const description = ""

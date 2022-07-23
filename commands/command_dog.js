@@ -8,10 +8,12 @@ const exec = (message, args) => {
         "https://media.discordapp.net/attachments/801762830478344203/957291521999261726/3180-Pug_green_grass-732x549-thumbnail-732x549.png",
         "https://media.discordapp.net/attachments/801762830478344203/957291566626643978/image.png"
     ]
-        
-
-let index = Math.floor(Math.random() * dogArray.length)
-message.channel.send(dogArray[index]);
+    
+    
+    let index = Math.floor(Math.random() * dogArray.length)
+    return {
+	string:dogArray[index]
+    };
 }
 
 const description = ""

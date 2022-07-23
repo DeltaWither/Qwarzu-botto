@@ -3,7 +3,9 @@ const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
     if (!args[0]) {
-        return message.reply('Please ask me a question.');
+        return {
+	    string: 'Please ask me a question.'
+	};
     } else {
         message.channel.sendTyping();
         let eightball = [
@@ -40,11 +42,14 @@ const exec = (message, args) => {
             'Good Luck',
         ];
         let index = (Math.floor(Math.random() * Math.floor(eightball.length)));
-        setTimeout(() => {
-            message.reply({
-                content: eightball[index],
-            });
-        }, 750);
+        //setTimeout(() => {
+        //    message.reply({
+        //        content: eightball[index],
+        //    });
+        //}, 750);
+	return {
+	    string: eightball[index]
+	};
     }
 }
 

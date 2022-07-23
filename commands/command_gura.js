@@ -24,7 +24,9 @@ const exec = (message, args) => {
     
     let index = Math.floor(Math.random() * guraArray.length)
     
-    message.channel.send(guraArray[index]);
+    return {
+	string: guraArray[index]
+    };
 }
 
 const description = "Random picture of gura"

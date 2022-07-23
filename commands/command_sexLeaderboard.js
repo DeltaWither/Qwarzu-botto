@@ -31,7 +31,9 @@ const exec = async (message, args) => {
         reply = reply + user.user.username + ":\t\t" + sexLeaderboard[i].count + "\n"
     }
     
-    await message.channel.send(reply)
+    return {
+	string: reply
+    };
 }
 
 const description = ""

@@ -16,7 +16,9 @@ const exec = (message, args) => {
     }
     listenersString = listenersString + "```"
     
-    message.channel.send(listenersString)
+    return {
+	string: listenersString
+    };
 }
 const description = "List all listeners"
 

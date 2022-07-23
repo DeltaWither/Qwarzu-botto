@@ -8,9 +8,13 @@ const exec = (message, args) => {
     
     const removed = removeSchedule(scheduleId)
     if (removed) {
-        message.channel.send(`The schedule has been stopped`)
+        return {
+	    string: `The schedule has been stopped`
+	};
     } else {
-        message.channel.send(`That schedule doesn't exist`)
+        return {
+	    string: `That schedule doesn't exist`
+	};
     }
 }
 
