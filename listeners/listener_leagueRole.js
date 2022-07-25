@@ -16,7 +16,9 @@ const exec = async (oldPresence, newPresence) => {
     }
 }
 
-const description = ""
+const description = `Listener type: presenceUpdate
+
+Whenever some changes their discord presence, it checks if they are playing league and if so gives them league player role.`;
 
 const leagueRole = new Listener("leaguerole", description, exec, "presenceUpdate")
 

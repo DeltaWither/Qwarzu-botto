@@ -16,7 +16,9 @@ const exec = async (oldPresence, newPresence) => {
     }
 }
 
-const description = ""
+const description = `Listener type: presenceUpdate
+
+Every time someone changes their discord presence it checks if they're playing genshin and gives them genshin player role.`;
 
 const genshinRole = new Listener("genshinrole", description, exec, "presenceUpdate")
 

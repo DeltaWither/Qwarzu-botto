@@ -30,7 +30,9 @@ const exec = async (message) => {
     }
 }
 
-const description = "";
+const description = `Listener type: ready
+
+When the bot starts it enables listeners and starts schedules that were saved before the bot turned off.`;
 
 const loadRunning = new Listener("loadRunning", description, exec, "ready");
 loadRunning.enabled = true //This one needs to be enabled by default

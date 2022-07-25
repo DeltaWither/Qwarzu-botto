@@ -6,7 +6,9 @@ const exec = (message) => {
     message.channel.send("a message was sent")
 }
 
-const description = ""
+const description = `Listener type: messageCreate
+
+Don't enable this one. It just sends a message for every message that is sent.`;
 
 const messageCreateTest = new Listener("messagecreatetest", description, exec, "messageCreate")
 

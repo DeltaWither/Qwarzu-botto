@@ -30,7 +30,9 @@ const exec = async (message) => {
     }
 }
 
-const description = ""
+const description = `Listener type: messageCreate
+
+Whenever a message is sent it checks if it's a command and executes it.`;
 
 const handleCommand = new Listener("handlecommand", description, exec, "messageCreate")
 handleCommand.enabled = true //This one needs to be enabled by default
