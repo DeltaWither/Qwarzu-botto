@@ -7,27 +7,27 @@ module.exports = groupList
 
 let groups = database.read("memberGroups");
 if (!groups) {
-    database.create("memberGroups", [
-	{
+    database.create("memberGroups", {
+	"everyone": {
             "name": "everyone",
             "description": "",
             "everyone": true
 	},
-	{ 
+	"staff": { 
             "name": "staff",
             "description": "",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
-	{ 
+	"staffWithoutTrial": { 
             "name": "staffWithoutTrial",
             "description": "",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
-	{ 
+	"admins": { 
             "name": "admins",
             "description": "",
             "everyone": true,
@@ -35,39 +35,40 @@ if (!groups) {
 		"ADMINISTRATOR"
             ]
 	},
-	{ 
+	"devs": { 
             "name": "devs",
             "description": "",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
-	{
+	"staffAndDevs": {
             "name": "staffAndDevs",
             "description": "",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
-	{
+	"notNewMembers": {
             "name": "notNewMembers",
             "description": "",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	}
-    ]
+    }
 		   );
 
     groups = database.read("memberGroups");
 }
 
-for (group of groups) {
-    const newGroup = new MemberGroup(group.name, group.description)
+for (groupName in groups) {
+    const storedGroup = groups[groupName];
+    const newGroup = new MemberGroup(groupName, groups[groupName].description);
     
-    for (key of Object.keys(group)) {
-        newGroup[key] = group[key]
+    for (key of Object.keys(storedGroup)) {
+        newGroup[key] = storedGroup[key];
     }
     
-    groupList[newGroup.name] = newGroup
+    groupList[newGroup.name] = newGroup;
 }
