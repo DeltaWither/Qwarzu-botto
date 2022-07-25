@@ -10,26 +10,26 @@ if (!groups) {
     database.create("memberGroups", {
 	"everyone": {
             "name": "everyone",
-            "description": "",
+            "description": "Includes everyone",
             "everyone": true
 	},
 	"staff": { 
             "name": "staff",
-            "description": "",
+            "description": "Includes only mods and admins",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
 	"staffWithoutTrial": { 
             "name": "staffWithoutTrial",
-            "description": "",
+            "description": "Includes mods and admins but not trial",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
 	"admins": { 
             "name": "admins",
-            "description": "",
+            "description": "Includes only those with admin permission",
             "everyone": true,
             "allowedPerms": [
 		"ADMINISTRATOR"
@@ -37,21 +37,21 @@ if (!groups) {
 	},
 	"devs": { 
             "name": "devs",
-            "description": "",
+            "description": "The devs of the bot",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
 	"staffAndDevs": {
             "name": "staffAndDevs",
-            "description": "",
+            "description": "Includes staff and the devs",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
 	},
 	"notNewMembers": {
             "name": "notNewMembers",
-            "description": "",
+            "description": "Everyone except oranges",
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
