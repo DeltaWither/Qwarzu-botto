@@ -1,6 +1,7 @@
 const { Command } = require("./Command.js");
 const groups = require("../groups/membergroups.js");
 const database = require("../helper/database.js");
+const id = require("../helper/id.js")
 
 const permissions = [
     "CREATE_INSTANT_INVITE",
@@ -168,6 +169,34 @@ const edit = (args) => {
 	return {
 	    string: `${field} field in group ${group.name} is now ${group[field].toString()}`
 	};
+    }
+
+    //edit anything with ids
+    if (field === "allowedRoles" ||
+	field === "disallowedRoles" ||
+	field === "allowedMembers" ||
+	field === "disallowedMembers") {
+	const readId = args[2].slice(1).toUpperCase();
+
+	if (args[2][0] === "+") {
+	    if (id.isId(readId) && !group[field].includes(readId)) {
+		group[field].push(readId);
+	    }
+	}
+
+	if (args[2][0] === "-") {
+	    group[field] = group[field].filter((value) => {
+		return value !== readId;
+	    });
+	}
+
+	const groupsData = database.read("memberGroups");
+	groupsData[groupName][field] = group[field];
+	database.update("memberGroups", groupsData);
+
+	return {
+	    string: `${field} field in group ${group.name} is now ${group[field].toString()}`
+	}
     }
     
     return {string:"nothing happened"};
