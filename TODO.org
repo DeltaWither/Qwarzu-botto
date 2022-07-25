@@ -5,7 +5,7 @@
 - [X] Make commands return strings that then are sent to message.channel instead of using message.channel inside the command.
 - [X] Make commands usable in code. Also make it easy to skip permission checks if a command is used straight in code.
 - [X] Add the json file with member groups to the database. Also make it so that if it doesn't exist it will be created with default values.
-- [ ] Create commands to manipulate member groups.
+- [X] Create commands to manipulate member groups.
 - [ ] Add descriptions to everything.
 - [ ] Make a help command that tells you about the bot, other help pages, features and specific commands/listeners/schedules/groups (using their descriptions).
 - [ ] (Optional) Make some commands return not only strings, but whatever may be more useful to be used by other commands. For example ?running returning the string it sends to message.channel as well as an array of objects with the same info.
