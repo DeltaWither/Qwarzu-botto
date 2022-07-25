@@ -31,7 +31,9 @@ const exec = async (message, args, timeObject) => {
     database.update("runningListSched", newState);
 }
 
-const description = "";
+const description = `Usage: ?start [time arguments] saveRunning
+
+Saves the currently enabled listeners and active schedules to the database so they can be enabled after restarting the bot.`;
 
 const saveRunning = new Schedule("saveRunning", description, exec);
 

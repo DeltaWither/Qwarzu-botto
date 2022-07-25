@@ -11,7 +11,9 @@ const exec = async (message, args, timeObject) => {
     await message.channel.send(string)
 }
 
-const description = ""
+const description = `Usage: ?start [time arguments] say [text]
+
+Repeats the text.`;
 
 const say = new Schedule("say", description, exec)
 
