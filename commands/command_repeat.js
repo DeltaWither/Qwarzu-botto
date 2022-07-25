@@ -25,7 +25,9 @@ const exec = async (message, args) => {
 
     return returnObj;
 }
-const description = "";
+const description = `Usage: ?repeat [amount <= 20] [any other command usage]
+
+Repeats a command up to 20 times and shows all the output in one message.`;
 
 const repeat = new Command("repeat", description, exec)
 repeat.executeGroup = groups.staff;

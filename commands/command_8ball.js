@@ -53,7 +53,9 @@ const exec = (message, args) => {
     }
 }
 
-const description = "8ball command :pog:"
+const description = `Usage: ?8ball [question]
+
+Answers any question with perfect precision and understanding`;
 
 const _8ball = new Command("8ball", description, exec)
 _8ball.executeGroup = groups.everyone

@@ -28,7 +28,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?b3
+
+Posts a randomized image of b3 (ryuko?)`;
 
 const b3 = new Command("b3", description, exec)
 b3.executeGroup = groups.everyone

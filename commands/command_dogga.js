@@ -15,7 +15,9 @@ const exec = (message, args) => {
     }
 }
 
-const description = ""
+const description = `Usage: ?dogga
+
+Returns a cooler doggo with a probability of being shiny.`;
 
 const dogga = new Command("dogga", description, exec)
 dogga.executeGroup = groups.everyone

@@ -20,7 +20,9 @@ const exec = (message, args) => {
 	string: listenersString
     };
 }
-const description = "List all listeners"
+const description = `Usage: ?listeners
+
+Lists all listeners. Those starting with "+" are enabled and those with "-" are disabled.`;
 
 const listeners = new Command("listeners", description, exec)
 listeners.executeGroup = groups.everyone

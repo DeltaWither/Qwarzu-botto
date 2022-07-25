@@ -21,7 +21,15 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?start [schedule name] [time arguments] [schedule arguments]
+
+Starts a schedule to run at certain times.
+Time arguments can be:
+[interval]-
+[time from now]
+[interval]- x[amount]
+[time from now] [interval]-
+[time from now] [interval]- x[amount]`;
 
 const start = new Command("start", description, exec)
 start.executeGroup = groups.admins

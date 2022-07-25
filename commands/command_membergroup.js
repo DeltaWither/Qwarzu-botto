@@ -202,7 +202,18 @@ const edit = (args) => {
     return {string:"nothing happened"};
 }
 
-const description = "";
+const description = `Usage: ?membergroup describe [group name]
+       ?membergroup edit [group name] [field] [change]
+
+"describe" describes all properties of a member group
+
+"edit" allows you to change the properties of a member group.
+
+In edit, "field" is one of everyone, disallowedPerms, allowedPerms, disallowedRoles, allowedRoles, disallowedMembers and allowedMembers.
+
+If the field is everyone, the change is true or false
+If the field is perms, the change is +[perm name] to add one or -[perm name] to remove one. All permissions in the discordjs docs
+If the field is roles or members, the change is +[id] to add one or -[id] to remove one`;
 
 const membergroup = new Command("membergroup", description, exec);
 membergroup.executeGroup = groups.everyone;

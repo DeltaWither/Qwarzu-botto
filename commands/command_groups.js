@@ -12,7 +12,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?groups
+
+Lists all member groups.`;
 
 const groupsCommand = new Command("groups", description, exec)
 groupsCommand.executeGroup = groups.everyone

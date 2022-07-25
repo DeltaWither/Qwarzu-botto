@@ -11,7 +11,9 @@ const exec = (message, args) => {
 	string: commandsString.slice(0, -2)
     };
 }
-const description = "List all commands"
+const description = `Usage: ?commands
+
+Lists all commands`;
 
 const commands = new Command("commands", description, exec)
 commands.executeGroup = groups.everyone

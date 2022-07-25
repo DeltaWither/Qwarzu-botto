@@ -18,7 +18,9 @@ const exec = (message, args) => {
     }
 }
 
-const description = ""
+const description = `Usage: ?stop [schedule id]
+
+Stops an active schedule. Get the id from ?running.`;
 
 const stop = new Command("stop", description, exec)
 stop.executeGroup = groups.admins

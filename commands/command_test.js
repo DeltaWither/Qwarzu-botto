@@ -9,7 +9,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?test
+
+Returns a random number from 1 to 100.`;
 
 const test = new Command("test", description, exec)
 test.executeGroup = groups.everyone

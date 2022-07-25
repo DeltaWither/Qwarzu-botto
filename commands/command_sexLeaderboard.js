@@ -36,7 +36,9 @@ const exec = async (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?sexLeaderboard
+
+Returns the 10 people who have said "sex" the most while the sexCounter listener is enabled.`;
 
 const sexLeaderboard = new Command("sexleaderboard", description, exec)
 sexLeaderboard.executeGroup = groups.everyone

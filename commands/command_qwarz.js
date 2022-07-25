@@ -39,7 +39,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?qwarz
+
+Posts a random image of qwarz atarz.`;
 
 const qwarz = new Command("qwarz", description, exec)
 qwarz.executeGroup = groups.everyone

@@ -21,7 +21,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?ces
+
+Returns a randomized image of ces (kaguya?)`;
 
 const ces = new Command("ces", description, exec)
 ces.executeGroup = groups.everyone

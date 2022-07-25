@@ -30,7 +30,9 @@ const exec = async (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?groupcheck [member group name] [user id or mention]
+
+Returns whether the member is in the group or not.`;
 
 const groupCheck = new Command("groupcheck", description, exec)
 groupCheck.executeGroup = groups.staffAndDevs

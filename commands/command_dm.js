@@ -32,7 +32,9 @@ const exec = async (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?dm [user id or mention] [message]
+
+Sends a dm to someone with a message.`;
 
 const dm = new Command("dm", description, exec)
 dm.executeGroup = groups.staff

@@ -18,7 +18,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?disable [listener name]
+
+Disables a running listener.`;
 
 const disable = new Command("disable", description, exec)
 disable.executeGroup = groups.admins

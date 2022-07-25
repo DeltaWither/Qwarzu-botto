@@ -21,7 +21,9 @@ const exec = (message, args) => {
     return returnObj;
 }
 
-const description = ""
+const description = `Usage: ?canibemod
+
+Can you be mod? There's a chance it won't say no.`;
 
 const canibemod = new Command("canibemod", description, exec)
 canibemod.executeGroup = groups.everyone

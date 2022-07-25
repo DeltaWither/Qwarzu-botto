@@ -29,7 +29,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = "Random picture of gura"
+const description = `Usage: ?gura
+
+Posts a random image of the shork gura.`;
 
 const gura = new Command("gura", description, exec)
 gura.executeGroup = groups.everyone

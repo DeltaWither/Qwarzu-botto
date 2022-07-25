@@ -58,7 +58,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?meme
+
+Posts a video of a "meme", which is actually a furry animation made either by a 12 year old girl or a 40 year old neckbeard.`;
 
 const meme = new Command("meme", description, exec)
 meme.executeGroup = groups.everyone

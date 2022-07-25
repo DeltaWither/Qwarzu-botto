@@ -17,7 +17,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?enable [listener name]
+
+Enables a disabled listener.`;
 
 const enable = new Command("enable", description, exec)
 enable.executeGroup = groups.admins

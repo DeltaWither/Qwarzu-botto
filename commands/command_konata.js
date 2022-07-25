@@ -18,7 +18,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?konata
+
+Posts a random image of konata.`;
 
 const konata = new Command("konata", description, exec)
 konata.executeGroup = groups.everyone

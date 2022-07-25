@@ -36,7 +36,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?nazuna
+
+Posts a random image of nazuna from bna.`;
 
 const nazuna = new Command("nazuna", description, exec)
 nazuna.executeGroup = groups.everyone

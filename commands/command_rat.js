@@ -42,7 +42,9 @@ const exec = (message, args) => {
     };
 }
 
-const description = ""
+const description = `Usage: ?rat
+
+Posts an image of a cute uwu rat.`;
 
 const rat = new Command("rat", description, exec)
 rat.executeGroup = groups.everyone

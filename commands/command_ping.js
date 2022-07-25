@@ -7,7 +7,9 @@ const exec = async (message, args) => {
     };
 }
 
-const description = "The ping command"
+const description = `Usage: ?ping
+
+Returns a message just to show the bot works.`;
 
 const ping = new Command("ping", description, exec)
 ping.executeGroup = groups.everyone
