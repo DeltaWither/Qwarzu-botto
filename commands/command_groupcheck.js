@@ -3,28 +3,24 @@ const groups = require("../groups/membergroups.js")
 const id = require("../helper/id.js")
 
 const exec = async (message, args) => {
-    const groupName = args[0]
-    const group = groups[groupName]
-    
-    let userId
-    if( await id.isMemberId(args[1], message.guild) ) {
-        userId = args[1]
-    } else if( await id.isMemberMention(args[1], message.guild) ) {
-        userId = args[1].slice(2, -1)
-        if(userId[1] === "!") {
-            userId = userId.slice(1)
-        }
-    } else {
-        return {
-	    string: "wrong format"
+    if (!args[0] || !args[1]) {
+	return {
+	    string: "Please input group name and member id/mention."
 	};
     }
-    
-    const member = await message.guild.members.fetch(userId)
+
+    const groupName = args[0]
+    const group = groups[groupName]
+    const member = await id.parseMember(args[1], message.guild);
+
+    if(!member) {
+	return {
+	    string: "Please input group name and member id/mention."
+	};
+    }
+
     const isMemberOfGroup = await group.checkMember(member)
-    
-    console.log(await member.permissions.has("ADMINISTRATOR"))
-    
+
     return {
 	string: isMemberOfGroup.toString()
     };
