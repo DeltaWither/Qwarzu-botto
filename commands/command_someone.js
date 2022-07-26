@@ -6,7 +6,8 @@ const exec = async (message, args) => {
     const randomMember = members.random()
     
     return {
-	string: `<@${randomMember.user.id}>`
+	string: `<@${randomMember.user.id}>`,
+	useful: randomMember
     };
 }
 

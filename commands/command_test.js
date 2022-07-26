@@ -5,7 +5,8 @@ const exec = (message, args) => {
     let number = Math.floor(Math.random() * 100)
     
     return {
-	string: number.toString()
+	string: number.toString(),
+	useful: number
     };
 }
 

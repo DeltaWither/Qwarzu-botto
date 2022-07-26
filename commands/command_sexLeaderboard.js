@@ -32,7 +32,8 @@ const exec = async (message, args) => {
     }
     
     return {
-	string: reply
+	string: reply,
+	useful: sexLeaderboard
     };
 }
 

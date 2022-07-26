@@ -24,7 +24,8 @@ const exec = async (message, args) => {
     string += "\n```"
     
     return {
-	string: string
+	string: string,
+	useful: list
     };
 }
 

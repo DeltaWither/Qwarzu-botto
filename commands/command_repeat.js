@@ -4,7 +4,8 @@ const groups = require("../groups/membergroups.js")
 
 const exec = async (message, args) => {
     const returnObj = {
-	string: ""
+	string: "",
+	useful: []
     };
 
     const amount = parseInt(args[0]);
@@ -21,6 +22,10 @@ const exec = async (message, args) => {
 	const temp = await repeatedCommand.wrappedExec(message, repeatedCommandArgs);
 	returnObj.string += temp.string;
 	returnObj.string += "\n";
+
+	if (temp.useful) {
+	    returnObj.useful.push(temp.useful);
+	}
     }
 
     return returnObj;

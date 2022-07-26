@@ -8,7 +8,7 @@
 - [X] Create commands to manipulate member groups.
 - [X] Add descriptions to everything.
 - [X] Make a help command that tells you about the bot, other help pages, features and specific commands/listeners/schedules/groups (using their descriptions).
-- [ ] (Optional) Make some commands return not only strings, but whatever may be more useful to be used by other commands. For example ?running returning the string it sends to message.channel as well as an array of objects with the same info.
+- [X] (Optional) Make some commands return not only strings, but whatever may be more useful to be used by other commands. For example ?running returning the string it sends to message.channel as well as an array of objects with the same info.
 - [ ] General code cleanup. Make things simpler and more readable.
   
 * 21/07/2022
