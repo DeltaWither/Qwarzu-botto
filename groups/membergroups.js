@@ -30,7 +30,6 @@ if (!groups) {
 	"admins": { 
             "name": "admins",
             "description": "Includes only those with admin permission",
-            "everyone": true,
             "allowedPerms": [
 		"ADMINISTRATOR"
             ]
