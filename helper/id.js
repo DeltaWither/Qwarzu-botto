@@ -20,7 +20,7 @@ id.isMemberId = async (string, guild) => {
     } catch(err) {}
     
     if(member) {
-        return true
+        return member;
     }
     
     return false
@@ -38,7 +38,7 @@ id.isRoleId = async (string, guild) => {
     } catch(err) {}
     
     if(role) {
-        return true
+        return role
     }
     
     return false
@@ -56,7 +56,7 @@ id.isChannelId = async (string, guild) => {
     } catch(err) {}
     
     if(channel) {
-        return true
+        return channel
     }
     
     return false
@@ -75,7 +75,7 @@ id.isGuildEmojiId = async (string, guild) => {
     } catch(err) {}
     
     if(emoji) {
-        return true
+        return emoji
     }
     
     return false
@@ -83,35 +83,42 @@ id.isGuildEmojiId = async (string, guild) => {
 
 id.isMemberMention = async (string, guild) => {
     //Sometimes it starts with <@!, sometimes with <@
+    let member = await id.isMemberId(string.slice(3, -1), guild);
     if(string.slice(0, 3) === "<@!" &&
-        await id.isMemberId(string.slice(3, -1), guild) &&
-        string.slice(-1) === ">") {
-        return true
+       member &&
+       string.slice(-1) === ">") {
+        return member;
     }
     
+    member = await id.isMemberId(string.slice(2, -1), guild);
     if(string.slice(0, 2) === "<@" &&
-        await id.isMemberId(string.slice(2, -1), guild) &&
-        string.slice(-1) === ">") {
-        return true
+       member &&
+       string.slice(-1) === ">") {
+        return member;
     }
+
     return false
 }
 
 id.isRoleMention = async (string, guild) => {
+    let role = await id.isRoleId(string.slice(3, -1), guild)
     if(string.slice(0, 3) === "<@&" &&
-        await id.isRoleId(string.slice(3, -1), guild) &&
-        string.slice(-1) === ">") {
-        return true
+       role &&
+       string.slice(-1) === ">") {
+        return role;
     }
+
     return false
 }
 
 id.isChannelMention = async (string, guild) => {
+    let channel = await id.isChannelId(string.slice(2, -1), guild);
     if(string.slice(0, 2) === "<#" &&
-        await id.isChannelId(string.slice(2, -1), guild) &&
+       channel &&
         string.slice(-1) === ">") {
-        return true
+        return channel
     }
+    
     return false
 }
 
@@ -134,6 +141,16 @@ id.isGuildEmoji = async (string, guild) => {
     return false
 }
 
+id.parseMember = async (string, guild) => {
+    let member = await id.isMemberId(string, guild);
+    if (member) {
+	return member;
+    }
 
+    member = await id.isMemberMention(string, guild);
+    if (member) {
+	return member;
+    }
+}
 
 module.exports = id
