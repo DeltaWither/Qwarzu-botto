@@ -3,14 +3,17 @@ const commandsList = require("./commands.js")
 const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {
-    commandsString = ""
+    let commandsString = "";
+
     for (command in commandList) {
         commandsString = commandsString + command + ", ";
     }
+
     return {
 	string: commandsString.slice(0, -2)
     };
 }
+
 const description = `Usage: ?commands
 
 Lists all commands`;
