@@ -23,9 +23,10 @@ const sortSex = (sexCounter) => {
 const exec = async (message, args) => {
     const sexCounter = database.read("sexCounter")
     const sexLeaderboard = sortSex(sexCounter)
+    const quantity = args[0] && args[0] < 40 ? args[0] : 10;
     
     let reply = "Sex counter leaderboard\n-----------------\n"
-    for (let i = 0; i < Math.min(10, sexLeaderboard.length); i++) {
+    for (let i = 0; i < Math.min(quantity, sexLeaderboard.length); i++) {
         let user;
 
 	try {
@@ -45,9 +46,11 @@ const exec = async (message, args) => {
     };
 }
 
-const description = `Usage: ?sexLeaderboard
+const description = `Usage: ?sexleaderboard
+       ?sexleaderboard [amount <= 40]
 
-Returns the 10 people who have said "sex" the most while the sexCounter listener is enabled.`;
+Returns the 10 people who have said "sex" the most while the sexCounter listener is enabled.
+If you specify an amount 40 or less it will post the top up to that amount.`;
 
 const sexLeaderboard = new Command("sexleaderboard", description, exec)
 sexLeaderboard.executeGroup = groups.everyone
