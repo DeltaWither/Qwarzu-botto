@@ -27,11 +27,7 @@ const exec = async (message, args) => {
     
     let reply = "Sex counter leaderboard\n-----------------\n"
     for (let i = 0; i < Math.min(quantity, sexLeaderboard.length); i++) {
-        let user;
-
-	try {
-	    user = await message.guild.members.fetch(sexLeaderboard[i].id);
-	} catch {}
+        let user = message.guild.members.cache.get(sexLeaderboard[i].id);
         
 	if (user) {
             reply = reply + user.user.username + ":\t\t" + sexLeaderboard[i].count + "\n"
