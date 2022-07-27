@@ -1,3 +1,17 @@
+* 27/07/2022
+
+** TODO for v0.2.0
+
+- [ ] Figure out good behavior for modules. What they should be, how they should work.
+- [ ] Implement modules.
+- [ ] Figure out good behavior for subcommands.
+- [ ] Implement subcommands.
+- [ ] Allow commands, listeners and schedules to be edited without restarting the bot.
+- [ ] Allow output of commands to be used as input of others. Example:
+  ?dm @User {?michiru}
+would execute ?michiru, take the output and use it as the arguments for ?dm.
+- [ ] (Optional) Allow arguments to have spaces by grouping them with quotes.
+
 * 22/07/2022
 
 ** DONE for v0.1.2
