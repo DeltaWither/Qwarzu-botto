@@ -6,8 +6,6 @@ const groups = require("../groups/membergroups.js")
 const exec = (message, args) => {
     const scheduleName = args[0]
     const {timeObject, remainingArgs} = parseArguments(args.slice(1))
-
-    
     
     if(!schedules.hasOwnProperty(scheduleName)) {
         return {
