@@ -1,6 +1,6 @@
 * 22/07/2022
 
-** TODO for v0.1.2
+** DONE for v0.1.2
 
 - [X] Make commands return strings that then are sent to message.channel instead of using message.channel inside the command.
 - [X] Make commands usable in code. Also make it easy to skip permission checks if a command is used straight in code.
@@ -9,7 +9,7 @@
 - [X] Add descriptions to everything.
 - [X] Make a help command that tells you about the bot, other help pages, features and specific commands/listeners/schedules/groups (using their descriptions).
 - [X] (Optional) Make some commands return not only strings, but whatever may be more useful to be used by other commands. For example ?running returning the string it sends to message.channel as well as an array of objects with the same info.
-- [ ] General code cleanup. Make things simpler and more readable.
+- [X] General code cleanup. Make things simpler and more readable.
   
 * 21/07/2022
 
