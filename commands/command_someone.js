@@ -2,7 +2,7 @@ const {Command} = require("./Command.js")
 const groups = require("../groups/membergroups.js")
 
 const exec = async (message, args) => {
-    const members = await message.guild.members.fetch()
+    const members = message.guild.members.cache
     const randomMember = members.random()
     
     return {
