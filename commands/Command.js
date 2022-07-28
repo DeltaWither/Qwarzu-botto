@@ -19,8 +19,15 @@ class Command {
 		};
 	    }
 	}
-	
-        return await this.exec(message, args);
+
+	try {
+            return await this.exec(message, args);
+	} catch (err) {
+	    console.log(err);
+	    return {
+		string: "error"
+	    };
+	}
     }
 }
 
