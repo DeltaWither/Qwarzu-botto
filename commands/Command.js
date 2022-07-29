@@ -1,4 +1,6 @@
 const groups = require("../groups/membergroups.js")
+const { splitWithBrackets } = require("../helper/splitCommand.js");
+const commands = require("./commands.js");
 
 class Command {
     constructor(name, description, exec) {
@@ -20,15 +22,48 @@ class Command {
 	    }
 	}
 
+	//eval brackets
+	if (!options || !options.skipEvalBrackets) {
+	    console.log(this.name);
+	    console.log(options);
+	    await this.#evalBrackets(message, args);
+	}
+
 	try {
             return await this.exec(message, args);
 	} catch (err) {
+            console.log(`=======\n=======\n=======\n=======\n`);
+            console.log("Something bad just happened");
 	    console.log(err);
+            console.log(`=======\n=======\n=======\n=======\n`);
 	    return {
 		string: "error"
 	    };
 	}
     }
+
+    async #evalBrackets(message, args) {
+	for (let i = 0; i < args.length; i++) {
+	    const arg = args[i];
+
+	    if (arg.slice(0, 2) === "{?" &&
+		arg.slice(-1) === "}") {
+		let innerCommand = arg.slice(1, -1);
+		innerCommand = splitWithBrackets(innerCommand);
+
+		const commandName = innerCommand[0];
+		const innerArgs = innerCommand.slice(1);
+
+		if (!commands[commandName]) {
+		    args[i] = "-";
+		    continue;
+		};
+
+		const returnedObj = await commands[commandName].wrappedExec(message, innerArgs);
+		args[i] = returnedObj.string;
+	    }	
+	}
+    }
 }
 
-module.exports = {Command}
+module.exports = {Command};
