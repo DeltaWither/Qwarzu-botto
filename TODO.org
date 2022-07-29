@@ -11,6 +11,7 @@
   ?dm @User {?michiru}
 would execute ?michiru, take the output and use it as the arguments for ?dm.
 - [ ] (Optional) Allow arguments to have spaces by grouping them with quotes.
+- [ ] Code cleanup
 
 * 22/07/2022
 
