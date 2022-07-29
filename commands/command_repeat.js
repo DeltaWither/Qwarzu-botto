@@ -36,5 +36,8 @@ Repeats a command up to 20 times and shows all the output in one message.`;
 
 const repeat = new Command("repeat", description, exec)
 repeat.executeGroup = groups.staff;
+repeat.defaultOptions = {
+    skipEvalBrackets: true
+};
 
 module.exports = repeat

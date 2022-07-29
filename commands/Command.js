@@ -10,8 +10,13 @@ class Command {
     }
     
     executeGroup = groups.admins //default
+    defaultOptions = {};
     
     async wrappedExec(message, args, options) {
+	if (!options) {
+	    options = this.defaultOptions;
+	}
+	
 	// check perms
 	if (!options || !options.skipExecGroup) {
 	    const isMemberInGroup = await this.executeGroup.checkMember(message.member)
