@@ -7,7 +7,7 @@
 - [ ] Figure out good behavior for subcommands.
 - [ ] Implement subcommands.
 - [ ] Allow commands, listeners and schedules to be edited without restarting the bot.
-- [ ] Allow output of commands to be used as input of others. Example:
+- [X] Allow output of commands to be used as input of others. Example:
   ?dm @User {?michiru}
 would execute ?michiru, take the output and use it as the arguments for ?dm.
 - [ ] (Optional) Allow arguments to have spaces by grouping them with quotes.

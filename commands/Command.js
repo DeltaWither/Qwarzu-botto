@@ -29,9 +29,7 @@ class Command {
 
 	//eval brackets
 	if (!options || !options.skipEvalBrackets) {
-	    console.log(this.name);
-	    console.log(options);
-	    await this.#evalBrackets(message, args);
+	    args = await this.#evalBrackets(message, args);
 	}
 
 	try {
@@ -48,6 +46,7 @@ class Command {
     }
 
     async #evalBrackets(message, args) {
+	const newArgs = [];
 	for (let i = 0; i < args.length; i++) {
 	    const arg = args[i];
 
@@ -60,14 +59,17 @@ class Command {
 		const innerArgs = innerCommand.slice(1);
 
 		if (!commands[commandName]) {
-		    args[i] = "-";
+		    newArgs.push("-");
 		    continue;
 		};
 
 		const returnedObj = await commands[commandName].wrappedExec(message, innerArgs);
-		args[i] = returnedObj.string;
-	    }	
+		newArgs.push(returnedObj.string);
+	    } else {
+		newArgs.push(arg);
+	    }
 	}
+	return newArgs;
     }
 }
 
