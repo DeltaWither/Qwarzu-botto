@@ -18,7 +18,7 @@ const exec = async (message, args) => {
     const repeatedCommandArgs = args.slice(2);
 
 
-    for (i = 0; i < amount; i++) {
+    for (let i = 0; i < amount; i++) {
 	const temp = await repeatedCommand.wrappedExec(message, repeatedCommandArgs);
 	returnObj.string += temp.string;
 	returnObj.string += "\n";
