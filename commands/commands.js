@@ -1,4 +1,3 @@
-const {Command} = require("./Command.js")
 const fs = require("fs")
 
 commandList = {}
