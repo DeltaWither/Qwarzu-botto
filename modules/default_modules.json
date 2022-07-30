@@ -5,5 +5,12 @@
 	"description": "The parent of all modules",
 	"executeGroup": "admins",
 	"parent": null
+    },
+    "system": {
+	"name": "system",
+	"enabled": true,
+	"description": "All the important commands that manage the bot itself",
+	"executeGroup": "admins",
+	"parent": "root"
     }
 }
