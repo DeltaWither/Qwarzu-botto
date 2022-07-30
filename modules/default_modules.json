@@ -1,0 +1,9 @@
+{
+    "root": {
+	"name": "root",
+	"enabled": true,
+	"description": "The parent of all modules",
+	"executeGroup": "admins",
+	"parent": null
+    }
+}
