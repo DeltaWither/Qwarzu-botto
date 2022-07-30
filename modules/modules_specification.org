@@ -1,0 +1,12 @@
+* What they are
+Modules are structured in a tree starting at the root module, which has the main modules as its children.
+Each module has as children other submodules, commands, listeners and schedules.
+A default modules.json file specifies all the settings of each module to be written to the database. Each module in the database specifies whether it's enabled or disabled and any paramaters for its children to inherit.
+If a module is disabled, all its children are disabled. If it's enabled, each of its children's enabled parameter decides whether it's enabled or disabled.
+For permissions it's the opposite way. A module's group for a certain permission is overriden if a child has a different group. For example, if a command has execute group of null, it takes from its parent module. If that parent module also doesn't have one, it takes it from its parent module, etc.
+Each module also has its own database space. Its children can read and write to it, but from outside they can only read it (maybe not forced but good practice).
+
+* How they work
+A folder called "modules" has modules.js, which collects all info about the existing modules (just like commands.js) and the root module. Inside the root module are the main modules. Inside each module folder are their submodules.
+On start up modules.js will create symbolic links inside each module folder to their children commands, listeners and schedules. This is just to make it easier to visualize the structure of the modules and be able to edit the commands listeners and schedules of those modules.
+The parent module of a command is specified in the command itself, and the module will add it to its list of children from there.
