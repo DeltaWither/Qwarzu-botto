@@ -31,5 +31,6 @@ Time arguments can be:
 
 const start = new Command("start", description, exec)
 start.executeGroup = groups.admins
+start.parent = "system";
 
 module.exports = start

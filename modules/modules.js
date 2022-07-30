@@ -38,24 +38,27 @@ for (module in modules) {
 for (command in commands) {
     const thisCommand = commands[command];
     if (!thisCommand.parent) {
-	thisCommand.parent = modules.root;
+	thisCommand.parent = "root";
     }
+    thisCommand.parent = modules[thisCommand.parent];
     thisCommand.parent.children.commands.push(thisCommand);
 }
 
 for (listener in individualListeners) {
     const thisListener = individualListeners[listener];
     if (!thisListener.parent) {
-	thisListener.parent = modules.root;
+	thisListener.parent = "root";
     }
+    thisListener.parent = modules[thisListener.parent];
     thisListener.parent.children.listeners.push(thisListener);
 }
 
 for (schedule in schedules) {
     const thisSchedule = schedules[schedule];
     if (!thisSchedule.parent) {
-	thisSchedule.parent = modules.root;
+	thisSchedule.parent = "root";
     }
+    thisSchedule.parent = modules[thisSchedule.parent];
     thisSchedule.parent.children.schedules.push(thisSchedule);
 }
 
@@ -64,29 +67,29 @@ const createDirs = () => {
     createDir("./modules/", modules.root);
 }
 
-const createDir = async (path, thisModule) => {
-    await fs.mkdirSync(path + "module_" + thisModule.name);
+const createDir = (path, thisModule) => {
+    fs.mkdirSync(path + "module_" + thisModule.name);
 
     for (command of thisModule.children.commands) {
 	const target = `../commands/command_${command.name}.js`;
 	const linkPath = `${path}module_${thisModule.name}/command_${command.name}.js`;
-	await fs.symlinkSync(target, linkPath, "file");
+	fs.symlinkSync(target, linkPath, "file");
     }
 
     for (listener of thisModule.children.listeners) {
 	const target = `../listeners/listener_${listener.name}.js`;
 	const linkPath = `${path}module_${thisModule.name}/listener_${listener.name}.js`;
-	await fs.symlinkSync(target, linkPath, "file");
+	fs.symlinkSync(target, linkPath, "file");
     }
     
     for (schedule of thisModule.children.schedules) {
 	const target = `../schedules/schedule_${schedule.name}.js`;
 	const linkPath = `${path}module_${thisModule.name}/schedule_${schedule.name}.js`;
-	await fs.symlinkSync(target, linkPath, "file");
+	fs.symlinkSync(target, linkPath, "file");
     }
 
     for (module of thisModule.children.modules) {
-	await createDirSync(`${path}/module_${thisModule.name}/`, module)
+	createDir(`${path}/module_${thisModule.name}/`, module);
     }
 }
 

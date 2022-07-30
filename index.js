@@ -1,6 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require("./config.json");
 const { listeners, eventTypeList } = require("./listeners/listeners.js");
+const { modules } = require("./modules/modules.js");
 
 const client = new Client({ 
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
