@@ -105,6 +105,7 @@ for (const eventType in listenerListSeparatedByTypes) {
 }
 
 module.exports = {
+    "individualListeners": listenerList,
     "listeners": masterFunctions,
     "eventTypeList": eventTypeList
 };
