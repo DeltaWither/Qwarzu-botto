@@ -40,5 +40,19 @@
 	"description": "Sex counter and leaderboard",
 	"executeGroup": "everyone",
 	"parent": "root"
+    },
+    "mines": {
+	"name": "mines",
+	"enabled": true,
+	"description": "A dystopian punishment",
+	"executeGroup": "staff",
+	"parent": "root"
+    },
+    "rolepersist": {
+	"name": "rolepersist",
+	"enabled": true,
+	"description": "For keeping track of who has what roles even after they leave",
+	"executeGroup": "staff",
+	"parent": "root"
     }
 }
