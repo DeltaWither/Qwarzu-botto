@@ -18,5 +18,6 @@ Lists all member groups.`;
 
 const groupsCommand = new Command("groups", description, exec)
 groupsCommand.executeGroup = groups.everyone
+groupsCommand.parent = "help";
 
 module.exports = groupsCommand

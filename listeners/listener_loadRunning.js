@@ -36,5 +36,6 @@ When the bot starts it enables listeners and starts schedules that were saved be
 
 const loadRunning = new Listener("loadRunning", description, exec, "ready");
 loadRunning.enabled = true //This one needs to be enabled by default
+loadRunning.parent = "system";
 
 module.exports = loadRunning;

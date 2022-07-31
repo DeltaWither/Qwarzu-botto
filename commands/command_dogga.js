@@ -21,5 +21,6 @@ Returns a cooler doggo with a probability of being shiny.`;
 
 const dogga = new Command("dogga", description, exec)
 dogga.executeGroup = groups.everyone
+dogga.parent = "randomized";
 
 module.exports = dogga

@@ -21,5 +21,6 @@ const description = `Listener type: presenceUpdate
 Whenever some changes their discord presence, it checks if they are playing league and if so gives them league player role.`;
 
 const leagueRole = new Listener("leaguerole", description, exec, "presenceUpdate")
+leagueRole.parent = "cringe_gaming_roles";
 
 module.exports = leagueRole

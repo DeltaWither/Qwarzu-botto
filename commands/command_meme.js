@@ -65,5 +65,6 @@ Posts a video of a "meme", which is actually a furry animation made either by a 
 
 const meme = new Command("meme", description, exec)
 meme.executeGroup = groups.everyone
+meme.parent = "randomized";
 
 module.exports = meme

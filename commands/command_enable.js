@@ -23,5 +23,6 @@ Enables a disabled listener.`;
 
 const enable = new Command("enable", description, exec)
 enable.executeGroup = groups.admins
+enable.parent = "system";
 
 module.exports = enable

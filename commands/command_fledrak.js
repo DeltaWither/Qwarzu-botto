@@ -31,5 +31,6 @@ Posts a randomized image of fledrak (a monke?)`;
 
 const fledrak = new Command("fledrak", description, exec)
 fledrak.executeGroup = groups.everyone
+fledrak.parent = "randomized";
 
 module.exports = fledrak

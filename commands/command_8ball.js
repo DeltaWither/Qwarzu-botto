@@ -54,5 +54,6 @@ Answers any question with perfect precision and understanding`;
 
 const _8ball = new Command("8ball", description, exec)
 _8ball.executeGroup = groups.everyone
+_8ball.parent = "randomized";
 
 module.exports = _8ball

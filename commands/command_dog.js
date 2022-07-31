@@ -21,5 +21,6 @@ Shows a randomized image of a dog.`;
 
 const dog = new Command("dog", description, exec)
 dog.executeGroup = groups.everyone
+dog.parent = "randomized";
 
 module.exports = dog

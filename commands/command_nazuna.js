@@ -43,5 +43,6 @@ Posts a random image of nazuna from bna.`;
 
 const nazuna = new Command("nazuna", description, exec)
 nazuna.executeGroup = groups.everyone
+nazuna.parent = "randomized";
 
 module.exports = nazuna

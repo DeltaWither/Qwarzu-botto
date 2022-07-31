@@ -24,5 +24,6 @@ Posts a random image of konata.`;
 
 const konata = new Command("konata", description, exec)
 konata.executeGroup = groups.everyone
+konata.parent = "randomized";
 
 module.exports = konata

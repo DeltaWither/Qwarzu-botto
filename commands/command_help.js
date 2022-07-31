@@ -105,5 +105,6 @@ Posts useful information about the bot and its features.`;
 
 const help = new Command("help", description, exec);
 help.executeGroup = groups.everyone;
+help.parent = "help";
 
 module.exports = help;

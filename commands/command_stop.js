@@ -24,5 +24,6 @@ Stops an active schedule. Get the id from ?running.`;
 
 const stop = new Command("stop", description, exec)
 stop.executeGroup = groups.admins
+stop.parent = "system";
 
 module.exports = stop

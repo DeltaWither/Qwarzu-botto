@@ -219,5 +219,6 @@ If the field is roles or members, the change is +[id] to add one or -[id] to rem
 
 const membergroup = new Command("membergroup", description, exec);
 membergroup.executeGroup = groups.everyone;
+membergroup.parent = "help";
 
 module.exports = membergroup;

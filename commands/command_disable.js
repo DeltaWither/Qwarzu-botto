@@ -24,5 +24,6 @@ Disables a running listener.`;
 
 const disable = new Command("disable", description, exec)
 disable.executeGroup = groups.admins
+disable.parent = "system";
 
 module.exports = disable

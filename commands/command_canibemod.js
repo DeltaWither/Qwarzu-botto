@@ -27,5 +27,6 @@ Can you be mod? There's a chance it won't say no.`;
 
 const canibemod = new Command("canibemod", description, exec)
 canibemod.executeGroup = groups.everyone
+canibemod.parent = "randomized";
 
 module.exports = canibemod

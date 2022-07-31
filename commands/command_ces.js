@@ -27,5 +27,6 @@ Returns a randomized image of ces (kaguya?)`;
 
 const ces = new Command("ces", description, exec)
 ces.executeGroup = groups.everyone
+ces.parent = "randomized";
 
 module.exports = ces

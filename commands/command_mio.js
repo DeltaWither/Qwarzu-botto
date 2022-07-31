@@ -27,5 +27,6 @@ Posts a random image of ookami mio.`;
 
 const mio = new Command("mio", description, exec)
 mio.executeGroup = groups.everyone
+mio.parent = "randomized";
 
 module.exports = mio

@@ -50,5 +50,6 @@ If you specify an amount 40 or less it will post the top up to that amount.`;
 
 const sexLeaderboard = new Command("sexleaderboard", description, exec)
 sexLeaderboard.executeGroup = groups.everyone
+sexLeaderboard.parent = "sex";
 
 module.exports = sexLeaderboard

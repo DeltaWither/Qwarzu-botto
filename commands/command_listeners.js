@@ -26,5 +26,6 @@ Lists all listeners. Those starting with "+" are enabled and those with "-" are 
 
 const listeners = new Command("listeners", description, exec)
 listeners.executeGroup = groups.everyone
+listeners.parent = "help";
 
 module.exports = listeners

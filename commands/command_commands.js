@@ -20,5 +20,6 @@ Lists all commands`;
 
 const commands = new Command("commands", description, exec)
 commands.executeGroup = groups.everyone
+commands.parent = "help";
 
 module.exports = commands

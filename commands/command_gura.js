@@ -35,5 +35,6 @@ Posts a random image of the shork gura.`;
 
 const gura = new Command("gura", description, exec)
 gura.executeGroup = groups.everyone
+gura.parent = "randomized";
 
 module.exports = gura

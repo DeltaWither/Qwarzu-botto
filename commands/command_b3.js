@@ -35,5 +35,6 @@ Posts a randomized image of b3 (ryuko?)`;
 
 const b3 = new Command("b3", description, exec)
 b3.executeGroup = groups.everyone
+b3.parent = "randomized";
 
 module.exports = b3

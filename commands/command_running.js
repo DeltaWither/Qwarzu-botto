@@ -96,5 +96,6 @@ Shows the next schedules to be executed in order. The default amount is 10.`;
 
 const running = new Command("running", description, exec)
 running.executeGroup = groups.admins
+running.parent = "system";
 
 module.exports = running

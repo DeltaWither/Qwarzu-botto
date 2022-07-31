@@ -38,5 +38,6 @@ Whenever a message is sent it checks if it's a command and executes it.`;
 
 const handleCommand = new Listener("handlecommand", description, exec, "messageCreate")
 handleCommand.enabled = true //This one needs to be enabled by default
+handleCommand.parent = "system";
 
 module.exports = handleCommand

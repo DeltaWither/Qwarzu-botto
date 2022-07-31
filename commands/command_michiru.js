@@ -54,5 +54,6 @@ Posts a random image of michiru from bna.`;
 
 const michiru = new Command("michiru", description, exec)
 michiru.executeGroup = groups.everyone
+michiru.parent = "randomized";
 
 module.exports = michiru

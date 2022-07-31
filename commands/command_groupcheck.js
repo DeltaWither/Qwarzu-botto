@@ -32,5 +32,6 @@ Returns whether the member is in the group or not.`;
 
 const groupCheck = new Command("groupcheck", description, exec)
 groupCheck.executeGroup = groups.staffAndDevs
+groupCheck.parent = "help";
 
 module.exports = groupCheck

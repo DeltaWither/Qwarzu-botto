@@ -46,5 +46,6 @@ Posts a random image of qwarz atarz.`;
 
 const qwarz = new Command("qwarz", description, exec)
 qwarz.executeGroup = groups.everyone
+qwarz.parent = "randomized";
 
 module.exports = qwarz
