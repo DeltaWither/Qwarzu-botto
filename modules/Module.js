@@ -8,7 +8,16 @@ class Module {
     }
 
     //command specific
-    executeGroup = null;
+    get executeGroup() {
+	if (this.#executeGroup) {
+	    return this.#executeGroup;
+	}
+	return this.parent.executeGroup;
+    }
+    set executeGroup(group) {
+	this.#executeGroup = group;
+    }
+    #executeGroup = null;
 
 
     parent = null;

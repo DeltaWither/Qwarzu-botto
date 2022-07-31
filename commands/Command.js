@@ -7,9 +7,20 @@ class Command {
         this.name = name
         this.description = description
         this.exec = exec
+	this.parent = null;
     }
     
-    executeGroup = groups.admins //default
+    get executeGroup() {
+	if (this.#executeGroup) {
+	    return this.#executeGroup;
+	}
+	return this.parent.executeGroup;
+    }
+    set executeGroup(group) {
+	this.#executeGroup = group;
+    }
+    #executeGroup; //default
+    
     defaultOptions = {};
     
     async wrappedExec(message, args, options) {
