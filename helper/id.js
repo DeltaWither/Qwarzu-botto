@@ -153,4 +153,16 @@ id.parseMember = async (string, guild) => {
     }
 }
 
+id.parseRole = async (string, guild) => {
+    let role = await id.isRoleId(string, guild);
+    if (role) {
+	return role;
+    }
+
+    role = await id.isRoleMention(string, guild);
+    if (role) {
+	return role;
+    }
+}
+
 module.exports = id
