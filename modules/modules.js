@@ -5,6 +5,7 @@ const { individualListeners } = require("../listeners/listeners.js");
 const { schedules } = require("../schedules/schedules.js");
 const groups = require("../groups/membergroups.js");
 const { Module } = require("./Module.js");
+const path = require("path");
 
 let modules = {};
 
@@ -70,32 +71,32 @@ for (schedule in schedules) {
 
 // Set up filesystem to look like the modules structure
 const createDirs = () => {
-    createDir("./modules/", modules.root);
+    createDir("./modules/", modules.root, path.resolve("."));
 }
 
-const createDir = (path, thisModule) => {
+const createDir = (path, thisModule, projPath) => {
     fs.mkdirSync(path + "module_" + thisModule.name);
 
     for (command of thisModule.children.commands) {
-	const target = `../commands/command_${command.name}.js`;
+	const target = `${projPath}/commands/command_${command.name}.js`;
 	const linkPath = `${path}module_${thisModule.name}/command_${command.name}.js`;
 	fs.symlinkSync(target, linkPath, "file");
     }
 
     for (listener of thisModule.children.listeners) {
-	const target = `../listeners/listener_${listener.name}.js`;
+	const target = `${projPath}/listeners/listener_${listener.name}.js`;
 	const linkPath = `${path}module_${thisModule.name}/listener_${listener.name}.js`;
 	fs.symlinkSync(target, linkPath, "file");
     }
     
     for (schedule of thisModule.children.schedules) {
-	const target = `../schedules/schedule_${schedule.name}.js`;
+	const target = `${projPath}/schedules/schedule_${schedule.name}.js`;
 	const linkPath = `${path}module_${thisModule.name}/schedule_${schedule.name}.js`;
 	fs.symlinkSync(target, linkPath, "file");
     }
 
     for (module of thisModule.children.modules) {
-	createDir(`${path}/module_${thisModule.name}/`, module);
+	createDir(`${path}/module_${thisModule.name}/`, module, projPath);
     }
 }
 
