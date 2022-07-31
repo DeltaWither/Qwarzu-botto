@@ -3,6 +3,7 @@ const database = require("../helper/database");
 const commands = require("../commands/commands.js");
 const { individualListeners } = require("../listeners/listeners.js");
 const { schedules } = require("../schedules/schedules.js");
+const groups = require("../groups/membergroups.js");
 const { Module } = require("./Module.js");
 
 let modules = {};
@@ -22,6 +23,11 @@ for (moduleName in modules) {
     const parentName = preModule.parent;
     if (parentName) {
 	thisModule.parent = modules[parentName];
+    }
+
+    const executeGroup = preModule.executeGroup;
+    if (executeGroup) {
+	thisModule.executeGroup = groups[executeGroup];
     }
 
     modules[moduleName] = thisModule;
