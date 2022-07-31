@@ -9,8 +9,36 @@
     "system": {
 	"name": "system",
 	"enabled": true,
-	"description": "All the important commands that manage the bot itself",
+	"description": "All the important stuff that manage the bot itself",
 	"executeGroup": "admins",
+	"parent": "root"
+    },
+    "randomized": {
+	"name": "randomized",
+	"enabled": true,
+	"description": "Commands with random output",
+	"executeGroup": "everyone",
+	"parent": "root"
+    },
+    "help": {
+	"name": "help",
+	"enabled": true,
+	"description": "For listing and describing",
+	"executeGroup": "everyone",
+	"parent": "root"
+    },
+    "cringe_gaming_roles": {
+	"name": "cringe_gaming_roles",
+	"enabled": true,
+	"description": "Shame",
+	"executeGroup": null,
+	"parent": "root"
+    },
+    "sex": {
+	"name": "sex",
+	"enabled": true,
+	"description": "Sex counter and leaderboard",
+	"executeGroup": "everyone",
 	"parent": "root"
     }
 }
