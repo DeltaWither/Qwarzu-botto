@@ -13,6 +13,7 @@ would execute ?michiru, take the output and use it as the arguments for ?dm.
 - [ ] (Optional) Allow arguments to have spaces by grouping them with quotes.
 - [ ] Code cleanup
 - [ ] (Optional) Code restructuring. Requiring from one place to another to another in loops might be getting hairy, gotta look into it.
+- [ ] Fix naming convention for commands, listeners, schedules and maybe groups and modules
 
 * 22/07/2022
 
