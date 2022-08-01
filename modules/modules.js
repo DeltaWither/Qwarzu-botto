@@ -7,12 +7,17 @@ const groups = require("../groups/membergroups.js");
 const { Module } = require("./Module.js");
 const path = require("path");
 
-let modules = {};
+const modules = {};
 
 
 const loadModules = () => {
     const modulesJson = fs.readFileSync("./modules/default_modules.json", "utf8");
-    modules = JSON.parse(modulesJson);
+    const tempModules = JSON.parse(modulesJson);
+    
+    for (modName in tempModules) {
+	modules[modName] = tempModules[modName];
+    }
+
     database.create("modules", modules);
 
     for (moduleName in modules) {
