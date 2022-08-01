@@ -19,13 +19,30 @@ class Command {
     set executeGroup(group) {
 	this.#executeGroup = group;
     }
-    #executeGroup; //default
-    
+    #executeGroup;
+
+    get enabled() {
+	return this.parent.enabled && this.#enabled;
+    }
+    set enabled(bool) {
+	this.#enabled = bool;
+    }
+    #enabled = true;
+
     defaultOptions = {};
     
     async wrappedExec(message, args, options) {
 	if (!options) {
 	    options = this.defaultOptions;
+	}
+
+	// check enabled
+	if (!options || !options.skipEnabled) {
+	    if (!this.enabled) {
+		return {
+		    string: `The command ?${this.name} is disabled`
+		};
+	    }
 	}
 	
 	// check perms
