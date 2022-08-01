@@ -1,6 +1,6 @@
 const groups = require("../groups/membergroups.js")
 const { splitWithBrackets } = require("../helper/splitCommand.js");
-const commands = require("./commands.js");
+const { commandList } = require("./commands.js");
 
 class Command {
     constructor(name, description, exec) {
@@ -86,12 +86,12 @@ class Command {
 		const commandName = innerCommand[0];
 		const innerArgs = innerCommand.slice(1);
 
-		if (!commands[commandName]) {
+		if (!commandList[commandName]) {
 		    newArgs.push("-");
 		    continue;
 		};
 
-		const returnedObj = await commands[commandName].wrappedExec(message, innerArgs);
+		const returnedObj = await commandList[commandName].wrappedExec(message, innerArgs);
 		newArgs.push(returnedObj.string);
 	    } else {
 		newArgs.push(arg);
