@@ -3,10 +3,25 @@ class Schedule {
         this.name = name
         this.description = description
         this.exec = exec
+	this.parent = null;
     }
+
+    get enabled() {
+	return this.parent.enabled && this.#enabled;
+    }
+    set enabled(bool) {
+	this.#enabled = bool;
+    }
+    #enabled = true;
+    
+
     
     async fullyWrappedExec(message, args, timeObject) {
-        try {
+	if (!this.enabled) {
+	    return;
+	}
+
+	try {
             await this.exec(message, args, timeObject)
         } catch(err) {
             console.log(`=======\n=======\n=======\n=======\n`);

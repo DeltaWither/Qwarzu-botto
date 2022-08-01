@@ -4,9 +4,16 @@ class Listener {
         this.description = description
         this.exec = exec
         this.eventType = eventType
+	this.parent = null;
     }
 
-    enabled = false
+    get enabled() {
+	return this.parent.enabled && this.#enabled;
+    }
+    set enabled(bool) {
+	this.#enabled = bool;
+    }
+    #enabled = false;
     
     async enabledWrapper(object1, object2, object3) {
         if(this.enabled) {
