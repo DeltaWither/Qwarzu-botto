@@ -1,5 +1,5 @@
 const {Command} = require("./Command.js")
-const commandsList = require("./commands.js")
+const { commandList } = require("./commands.js")
 const groups = require("../groups/membergroups.js")
 
 const exec = (message, args) => {

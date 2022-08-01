@@ -1,5 +1,5 @@
 const { Command } = require("./Command.js")
-const commandsList = require("./commands.js")
+const { commandList } = require("./commands.js")
 const groups = require("../groups/membergroups.js")
 
 const exec = async (message, args) => {
@@ -14,7 +14,7 @@ const exec = async (message, args) => {
 	    string: "Please don't repeat over 20 times"
 	};
     }
-    const repeatedCommand = commandsList[args[1]];
+    const repeatedCommand = commandList[args[1]];
     const repeatedCommandArgs = args.slice(2);
 
 

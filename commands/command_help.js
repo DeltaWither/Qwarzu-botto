@@ -1,6 +1,6 @@
 const { Command } = require("./Command.js");
 const groups = require("../groups/membergroups.js");
-const commandsList = require("./commands.js");
+const { commandList } = require("./commands.js");
 const { individualListeners } = require("../listeners/listeners.js");
 const { schedules } = require("../schedules/schedules.js");
 
@@ -45,7 +45,7 @@ Use
 for info on specific commands.`;
     }
 
-    const currentCommand = commandsList[args[0]];
+    const currentCommand = commandList[args[0]];
 
     if (currentCommand) {
 	return currentCommand.description;
