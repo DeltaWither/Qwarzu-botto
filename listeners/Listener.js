@@ -14,16 +14,15 @@ class Listener {
 	this.#enabled = bool;
     }
     #enabled = false;
-    
-    async enabledWrapper(object1, object2, object3) {
-        if(this.enabled) {
-            await this.exec(object1, object2, object3)
-        }
-    }
-    
+
+
     async fullyWrappedExec(object1, object2, object3) {
+        if(!this.enabled) {
+            return;
+        }
+
         try {
-            await this.enabledWrapper(object1, object2, object3)
+            await this.exec(object1, object2, object3)
         } catch(err) {
             console.log(`=======\n=======\n=======\n=======\n`);
             console.log("Something bad just happened");
