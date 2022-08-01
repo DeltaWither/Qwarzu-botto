@@ -1,12 +1,18 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require("./config.json");
-const { listeners, eventTypeList } = require("./listeners/listeners.js");
-const { modules } = require("./modules/modules.js");
+const { loadCommands } = require("./commands/commands.js");
+const { listeners, eventTypeList, loadListeners } = require("./listeners/listeners.js");
+const { loadSchedules } = require("./schedules/schedules.js");
+const { loadModules } = require("./modules/modules.js");
 
 const client = new Client({ 
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING", "GUILD_SCHEDULED_EVENTS"] 
 });
+
+loadCommands();
+loadListeners();
+loadSchedules();
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -27,6 +33,8 @@ for (const eventIndex in eventTypeList) {
         }
     });
 }
+
+loadModules();
 
 exports.client = client;
 client.login(token);

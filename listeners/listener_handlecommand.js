@@ -1,5 +1,5 @@
 const { Listener } = require("./Listener.js");
-const commands = require("../commands/commands.js");
+const { commandList } = require("../commands/commands.js");
 const { splitWithBrackets } = require("../helper/splitCommand.js");
 
 const exec = async (message) => {
@@ -17,7 +17,7 @@ const exec = async (message) => {
     let commandName = commandAndArgs[0].toLowerCase();
     let args = commandAndArgs.slice(1);
 
-    const commandObj = commands[commandName];
+    const commandObj = commandList[commandName];
     if (commandObj) {
         const result = await commandObj.wrappedExec(message, args);
 

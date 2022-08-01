@@ -1,10 +1,10 @@
 const fs = require("fs")
 const AVLPriorityQueue= require("./AVLPriorityQueue.js")
 
-const scheduleList = {}
-const schedulesQueue = new AVLPriorityQueue()
+const scheduleList = {};
+const schedulesQueue = new AVLPriorityQueue();
 
-const schedulesIdMap = {}
+const schedulesIdMap = {};
 
 /*
  * Each node has key: timeStamp + random()
@@ -35,7 +35,7 @@ const startQueue = async () => {
         // Execute after pushing back so if any schedule needs to look at the queue it doesn't just look at itself
 	// Also check that it wasn't delayed for too long to avoid spamming schedules?running
 	if (Date.now() - oldTime < timeObject.interval) {
-            timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, timeObject)
+	    timeObject.schedule.fullyWrappedExec(timeObject.message, timeObject.args, timeObject)
 	}
 	startQueue()
     }, nextSchedule.key - Date.now())
@@ -54,8 +54,8 @@ const reinsertNextSchedule = () => {
         timeObject.amount--
         
         if (timeObject.amount <= 0) {
-            delete schedulesIdMap[timeObject.id]
-            return
+	    delete schedulesIdMap[timeObject.id]
+	    return
         }
     }
     
@@ -105,15 +105,21 @@ const clearTimeoutWrapped = () => {
 }
 
 
+const loadSchedules = () => {
+    const files = fs.readdirSync("./schedules");
 
-module.exports = {"schedules": scheduleList, "schedulesQueue": schedulesQueue, "addSchedule": addSchedule, "removeSchedule": removeSchedule}
-
-// Not sure why it has to go to ./schedules when . is already the commands folder
-const files = fs.readdirSync("./schedules");
-
-for (const fileIndex in files) {
-    if(files[fileIndex].startsWith("schedule_")) {
-        const schedule = require("./" + files[fileIndex])
-        scheduleList[schedule.name] = schedule
+    for (const fileIndex in files) {
+	if(files[fileIndex].startsWith("schedule_")) {
+            const schedule = require("./" + files[fileIndex])
+            scheduleList[schedule.name] = schedule
+	}
     }
+}
+
+module.exports = {
+    "schedules": scheduleList,
+    "schedulesQueue": schedulesQueue,
+    "addSchedule": addSchedule,
+    "removeSchedule": removeSchedule,
+    "loadSchedules": loadSchedules
 }

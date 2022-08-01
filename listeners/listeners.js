@@ -1,20 +1,8 @@
 const fs = require("fs")
 
-const listenerList = {}
-
-//export the list before anything is imported into it to avoid circular dependencies
-module.exports = {"individualListeners": listenerList}
-
-// Not sure why it has to go to ./listeners when . is already the commands folder
-const files = fs.readdirSync("./listeners");
-
-for (const fileIndex in files) {
-    if(files[fileIndex].startsWith("listener_")) {
-        const listener = require("./" + files[fileIndex])
-        listenerList[listener.name] = listener
-    }
-}
-
+const listenerList = {};
+//Make master functions that execute all listener functions of their type
+const masterFunctions = {};
 const eventTypeList = [
     "channelCreate",
     "channelDelete",
@@ -75,37 +63,45 @@ const eventTypeList = [
     "userUpdate",
     "voiceStateUpdate",
     "webhookUpdate"
-]
+];
 
-// Separate all listeners into objects each with a type of listener
-const listenerListSeparatedByTypes = {}
+const loadListeners = () => {
+    const files = fs.readdirSync("./listeners");
 
-for (const eventTypeIndex in eventTypeList) {
-    const eventType = eventTypeList[eventTypeIndex]
-    listenerListSeparatedByTypes[eventType] = {}
-}
+    for (const fileIndex in files) {
+	if(files[fileIndex].startsWith("listener_")) {
+            const listener = require("./" + files[fileIndex])
+            listenerList[listener.name] = listener
+	}
+    }
 
-for (const listenerName in listenerList) {
-    const listener = listenerList[listenerName]
-    const listenerType = listener.eventType
-    
-    listenerListSeparatedByTypes[listenerType][listener.name] = listener
-}
+    // Separate all listeners into objects each with a type of listener
+    const listenerListSeparatedByTypes = {}
 
+    for (const eventTypeIndex in eventTypeList) {
+	const eventType = eventTypeList[eventTypeIndex]
+	listenerListSeparatedByTypes[eventType] = {}
+    }
 
-//Make master functions that execute all listener functions of their type
-const masterFunctions = {}
+    for (const listenerName in listenerList) {
+	const listener = listenerList[listenerName]
+	const listenerType = listener.eventType
+	
+	listenerListSeparatedByTypes[listenerType][listener.name] = listener
+    }
 
-for (const eventType in listenerListSeparatedByTypes) {
-    masterFunctions[eventType] = (object1, object2, object3) => {
-        for (const listenerName in listenerListSeparatedByTypes[eventType]) {
-            listenerList[listenerName].fullyWrappedExec(object1, object2, object3)
-        }
+    for (const eventType in listenerListSeparatedByTypes) {
+	masterFunctions[eventType] = (object1, object2, object3) => {
+            for (const listenerName in listenerListSeparatedByTypes[eventType]) {
+		listenerList[listenerName].fullyWrappedExec(object1, object2, object3)
+            }
+	}
     }
 }
 
 module.exports = {
     "individualListeners": listenerList,
     "listeners": masterFunctions,
-    "eventTypeList": eventTypeList
+    "eventTypeList": eventTypeList,
+    "loadListeners": loadListeners
 };
