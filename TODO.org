@@ -2,8 +2,8 @@
 
 ** TODO for v0.2.0
 
-- [ ] Figure out good behavior for modules. What they should be, how they should work.
-- [ ] Implement modules.
+- [X] Figure out good behavior for modules. What they should be, how they should work.
+- [X] Implement modules.
 - [ ] Figure out good behavior for subcommands.
 - [ ] Implement subcommands.
 - [ ] Allow commands, listeners and schedules to be edited without restarting the bot.
