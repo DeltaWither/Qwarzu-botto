@@ -4,7 +4,8 @@
 
 - [X] Figure out good behavior for modules. What they should be, how they should work.
 - [X] Implement modules.
-- [ ] Figure out good behavior for subcommands.
+- [?] Figure out good behavior for subcommands.
+  in the commands folder, a folder called subcommands_commandname where commandname is the name of the parent command. Inside it there will be js files called subcommand_name.js with the name of the subcommand. The name of the subcommand is basically the first argument of the parent command and it runs if the first argument is that
 - [ ] Implement subcommands.
 - [ ] Allow commands, listeners and schedules to be edited without restarting the bot.
 - [X] Allow output of commands to be used as input of others. Example:
