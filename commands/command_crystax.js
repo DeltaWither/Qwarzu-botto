@@ -124,10 +124,10 @@ const crystaxArray = [
 
 const exec = (message, args) => {
     
-    let index = Math.floor(Math.random() * b3Array.length)
+    let index = Math.floor(Math.random() * crystaxArray.length)
     
     return {
-	string: (b3Array[index])
+	string: (crystaxArray[index])
     };
 }
 
