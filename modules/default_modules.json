@@ -54,5 +54,12 @@
 	"description": "For keeping track of who has what roles even after they leave",
 	"executeGroup": "staff",
 	"parent": "root"
+    },
+    "logging": {
+	"name": "logging",
+	"enabled": true,
+	"description": "For keeping track of the state of the server",
+	"executeGroup": "admins",
+	"parent": "system"
     }
 }
