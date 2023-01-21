@@ -4,8 +4,7 @@ const database = require("../helper/database.js")
 const id = require("../helper/id.js")
 
 const exec = async (newMember) => {
-    console.log("hi");
-    const rolepersists = database.read("rolepersist");
+    const rolepersists = database.read("memberRoles");
     if(!rolepersists[newMember.id]) {
         return;
     }
@@ -20,9 +19,9 @@ const exec = async (newMember) => {
 
 const description = `Listener type: guildMemberAdd
 
-Checks the member's rolepersists and gives them the roles.`;
+Checks the member's logged roles before they left and gives them the roles.`;
 
-const rolepersist = new Listener("rolepersist", description, exec, "guildMemberAdd");
-rolepersist.parent = "rolepersist";
+const softRolepersist = new Listener("softrolepersist", description, exec, "guildMemberAdd");
+softRolepersist.parent = "rolepersist";
 
-module.exports = rolepersist;
+module.exports = softRolepersist;
