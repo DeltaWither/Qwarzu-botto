@@ -35,7 +35,7 @@ const exec = async (message, args) => {
 
     database.update("minescount", mineCount);
 
-    if (!mineCount[message.author.id) {
+    if (!mineCount[message.author.id]) {
         return {
             string: `<@${message.author.id}> thanks for your voluntary contribution! Be free.`
         }
