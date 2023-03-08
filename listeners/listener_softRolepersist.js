@@ -11,7 +11,7 @@ const exec = async (newMember) => {
 
     for (roleId of rolepersists[newMember.id]) {
         try {
-            newMember.roles.add(roleId);
+            await newMember.roles.add(roleId);
         }
         catch (err) {}
     }
