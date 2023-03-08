@@ -43,7 +43,7 @@ const exec = async (message, args) => {
         }
     }
     return {
-        string: `<@${message.author.id}> only ${mineCount[message.author.id]} "?mine"s left> `
+        string: `<@${message.author.id}> only ${mineCount[message.author.id]} \`?mine\`s left`
     }
 }
 
