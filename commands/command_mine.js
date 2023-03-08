@@ -2,6 +2,7 @@ const {Command} = require("./Command.js");
 const groups = require("../groups/membergroups.js");
 const database = require("../helper/database.js");
 const rolepersist = require("./command_rolepersist.js");
+const id = require("../helper/id.js");
 
 const exec = async (message, args) => {
     const member = await id.parseMember(args[0], message.guild);
