@@ -15,7 +15,7 @@ const exec = async (message, args) => {
     const minesCount = database.read("minescount");
     
     if (member && args[1].toLowerCase() === "free") {
-        delete mineCount[member.id];
+        delete minesCount[member.id];
         try {
             await member.roles.remove(muted);
         } catch (err) {}
