@@ -12,7 +12,7 @@ const exec = async (message, args) => {
         }
     }
     
-    if (!member.roles.has("1083009160507047966")) {
+    if (!member.roles.includes("1083009160507047966")) {
         return {
             string: "You aren't a miner"
         }
