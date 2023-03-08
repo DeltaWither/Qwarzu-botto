@@ -4,22 +4,44 @@ const database = require("../helper/database.js");
 const rolepersist = require("./command_rolepersist.js");
 
 const exec = async (message, args) => {
-    if (message.channel.id !== "708719827489128489") {
-	return;
+    if (message.channel.id !== "1083008582443860100") {
+        return {
+            string: "You can't mine here"
+        }
+    }
+    
+    if (!message.author.roles.has("1083009160507047966")) {
+        return {
+            string: "You aren't a miner"
+        }
     }
 
+    const muted = await id.parseRole("710068197566578718", message.guild);
+    const miner = await id.parseRole("1083009160507047966", message.guild);
+    
     const mineCount = database.read("minescount");
     if (!mineCount[message.author.id] || mineCount[message.author.id] === 1) {
-	delete mineCount[message.author.id];
-	await rolepersist.wrappedExec(message, [message.author.id, "708719891972358194"], {skipExecGroup: true});
-    } else {
-	mineCount[message.author.id] -= 1;
+        delete mineCount[message.author.id];
+        try {
+            await message.author.roles.remove(muted);
+        } catch (err) {}
+        try {
+            await message.author.roles.remove(miner);
+        } catch (err) {}
+    }
+    else {
+        mineCount[message.author.id] -= 1;
     }
 
     database.update("minescount", mineCount);
 
+    if (!mineCount[message.author.id) {
+        return {
+            string: `<@${message.author.id}> thanks for your voluntary contribution! Be free.`
+        }
+    }
     return {
-	string: `<@${message.author.id}> only ${mineCount[message.author.id]} "?mine"s left> `
+        string: `<@${message.author.id}> only ${mineCount[message.author.id]} "?mine"s left> `
     }
 }
 

@@ -6,31 +6,56 @@ const rolepersist = require("./command_rolepersist.js");
 
 const exec = async (message, args) => {
     const member = await id.parseMember(args[0], message.guild);
-    const amount = parseInt(args[1]);
-    if (!member || !amount) {
-	return {
-	    string: "Use ?sendmines [user] [amount]"
-	}
+    const muted = await id.parseRole("710068197566578718", message.guild);
+    const miner = await id.parseRole("1083009160507047966", message.guild);
+    
+    if (!database.read("minescount")) {
+        database.create("minescount", {});
+    }
+    const minesCount = database.read("minescount");
+    
+    if (args[1].toLowerCase() == "free") {
+        delete mineCount[member.id];
+        try {
+            await member.roles.remove(muted);
+        } catch (err) {}
+        try {
+            await member.roles.remove(miner);
+        } catch (err) {}
+        return {
+            string: `${member.user.username} is now free from the mines`
+        }
     }
     
-    await rolepersist.wrappedExec(message, [member.id, "708719891972358194"]);
-
-    if (!database.read("minescount")) {
-	database.create("minescount", {});
+    const amount = parseInt(args[1]);
+    if (!member || !amount) {
+        return {
+            string: "Use ?sendmines [user] [amount]"
+        }
     }
+    
+    try {
+        await member.roles.add(muted);
+    } catch (err) {}
+    try {
+        await member.roles.add(miner);
+    } catch (err) {}
 
-    const minesCount = database.read("minescount");
+
+    
     minesCount[member.id] = amount;
     database.update("minescount", minesCount);
+    
+    
 
     return {
-	string: `${member.user.username} is now in the mines until he mines ${amount} times lmao`
+        string: `${member.user.username} is now in the mines until he mines ${amount} times lmao`
     }
 }
 
-const description = `Usage: ?sendmines [user] [amount]
+const description = `Usage: ?sendmines [user] [amount / "free"]
 
-Sends a user to the mines with a specified amount of times to mine to leave.`;
+Sends a user to the mines with a specified amount of times to mine to leave. If the second argument is \`free\`, the user is freed from the mines.`;
 
 const sendmines = new Command("sendmines", description, exec)
 sendmines.executeGroup = groups.staff;
