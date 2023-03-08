@@ -5,7 +5,7 @@ const rolepersist = require("./command_rolepersist.js");
 const id = require("../helper/id.js");
 
 const exec = async (message, args) => {
-    const member = await id.parseMember(args[0], message.guild);
+    const member = await id.parseMember(message.author.id, message.guild);
     if (message.channel.id !== "1083008582443860100") {
         return {
             string: "You can't mine here"
