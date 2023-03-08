@@ -4,13 +4,14 @@ const database = require("../helper/database.js");
 const rolepersist = require("./command_rolepersist.js");
 
 const exec = async (message, args) => {
+    const member = await id.parseMember(args[0], message.guild);
     if (message.channel.id !== "1083008582443860100") {
         return {
             string: "You can't mine here"
         }
     }
     
-    if (!message.author.roles.has("1083009160507047966")) {
+    if (!member.roles.has("1083009160507047966")) {
         return {
             string: "You aren't a miner"
         }
@@ -23,10 +24,10 @@ const exec = async (message, args) => {
     if (!mineCount[message.author.id] || mineCount[message.author.id] === 1) {
         delete mineCount[message.author.id];
         try {
-            await message.author.roles.remove(muted);
+            await member.roles.remove(muted);
         } catch (err) {}
         try {
-            await message.author.roles.remove(miner);
+            await member.roles.remove(miner);
         } catch (err) {}
     }
     else {
