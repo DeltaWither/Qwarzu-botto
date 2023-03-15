@@ -3,11 +3,17 @@ const { clientId } = require("../config.json");
 const sendmines = require("../commands/command_sendmines.js");
 
 const exec = async (message) => {
-    if(message.author.id === clientId) {
-        return
+    if (message.author.id === clientId) {
+        return;
     }
     
-    if(message.content.toLowerCase().includes("sata andagi") ||
+    if (message.channelId == "1068936146639392828") {
+        return;
+    }
+    
+    console.log(message.channelId);
+    
+    if (message.content.toLowerCase().includes("sata andagi") ||
         message.content.toLowerCase().includes("sataandagi") ||
         message.content.toLowerCase().includes("satandagi")
     ) {
