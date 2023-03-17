@@ -31,10 +31,21 @@ const removeWhitespace = (string) => {
     return newString;
 }
 
+const removeRepeated = (string) => {
+    let newString = string[0];
+    for (char of string) {
+        if (char != newString[newString.length - 1]) {
+            newString += char;
+        }
+    }
+    return newString;
+}
+
 const transformMessage = (string) => {
     let newString = string.toLowerCase();
     newString = changeSimilarLetters(newString);
     newString = removeWhitespace(newString);
+    newString = removeRepeated(newString);
     return newString;
 }
 
