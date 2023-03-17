@@ -7,7 +7,8 @@ const exec = async (message) => {
         return;
     }
     
-    if (message.channelId == "1068936146639392828") {
+    if (message.channelId == "1068936146639392828" ||
+        message.channelId == "1083008582443860100") {
         return;
     }
     
