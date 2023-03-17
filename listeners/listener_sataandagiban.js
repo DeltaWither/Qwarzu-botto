@@ -2,9 +2,11 @@ const {Listener} = require("./Listener.js");
 const { clientId } = require("../config.json");
 const sendmines = require("../commands/command_sendmines.js");
 
-similarLetters = {
+const similarLetters = {
     "а": "a" // cyrillic a
 }
+
+const whiteSpace = new Set(["\u0020"]);
 
 const changeSimilarLetters = (string) => {
     let newString = "";
@@ -19,9 +21,20 @@ const changeSimilarLetters = (string) => {
     return newString;
 }
 
+const removeWhitespace = (string) => {
+    let newString = "";
+    for (char of string) {
+        if (!whiteSpace.has(char)) {
+            newString += char;
+        }
+    }
+    return newString;
+}
+
 const transformMessage = (string) => {
     let newString = string.toLowerCase();
-    newString = changeSimilarLetters(string);
+    newString = changeSimilarLetters(newString);
+    newString = removeWhitespace(newString);
     return newString;
 }
 
