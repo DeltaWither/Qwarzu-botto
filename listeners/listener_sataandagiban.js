@@ -135,7 +135,7 @@ const changeSimilarLetters = (string) => {
         if (similarLetters[char]) {
             newString += similarLetters[char];
         }
-        else if (char >= "\u02c2" && "\u036f") { //accents
+        else if (char >= "\u02c2" && char <= "\u036f") { //accents
             continue;
         }
         else {
