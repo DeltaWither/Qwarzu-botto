@@ -5,10 +5,17 @@ const sendmines = require("../commands/command_sendmines.js");
 const similarLetters = {
     "а": "a", // cyrillic a
     "A": "A",
-    "¡": "i"
+    "¡": "i",
+    "$": "s",
+    "α": "a",
+    "♰": "t",
+    "∩": "n",
+    "ძ": "d",
+    "ց": "g",
+    "ℹ": "i",
 }
 
-const whiteSpace = new Set(["\u000a", "\u0020", "\u00A0", "\u180E", "\u2000", "\u2001", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u200b", "\u200c", "\u200d", "\u200e", "\u200f", "\u202f", "\u205f", "\u3000", "\ufeff", "\u00ad", "\u00a0"]);
+const whiteSpace = new Set(["\u000a", "\u0020", "\u00A0", "\u180E", "\u2000", "\u2001", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u200b", "\u200c", "\u200d", "\u200e", "\u200f", "\u202f", "\u205f", "\u3000", "\ufeff", "\u00ad", "\u00a0", "\ufe00", "\ufe01", "\ufe02", "\ufe03", "\ufe04", "\ufe05", "\ufe06", "\ufe07", "\ufe08", "\ufe09", "\ufe0a", "\ufe0b", "\ufe0c", "\ufe0d", "\ufe0e", "\ufe0f"]);
 
 const changeSimilarLetters = (string) => {
     let newString = "";
