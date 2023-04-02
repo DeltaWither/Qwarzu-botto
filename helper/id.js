@@ -81,6 +81,24 @@ id.isGuildEmojiId = async (string, guild) => {
     return false
 }
 
+id.isChannelMessageId = async (string, channel) => {
+    if(!id.isId(string)) {
+        return false
+    }
+    
+    let message = null
+    
+    try {
+        message = await channel.messages.fetch(string)
+    } catch(err) {}
+    
+    if(message) {
+        return message
+    }
+    
+    return false
+}
+
 id.isMemberMention = async (string, guild) => {
     //Sometimes it starts with <@!, sometimes with <@
     let member = await id.isMemberId(string.slice(3, -1), guild);
@@ -162,6 +180,25 @@ id.parseRole = async (string, guild) => {
     role = await id.isRoleMention(string, guild);
     if (role) {
 	return role;
+    }
+}
+
+id.parseChannel = async (string, guild) => {
+    let channel = await id.isChannelId(string, guild);
+    if (channel) {
+        return channel;
+    }
+
+    channel = await id.isChannelMention(string, guild);
+    if (channel) {
+        return channel;
+    }
+}
+
+id.parseMessage = async (string, channel) => {
+    let message = await id.isChannelMessageId(string, channel);
+    if (message) {
+        return message;
     }
 }
 
