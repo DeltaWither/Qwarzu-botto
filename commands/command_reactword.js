@@ -3,6 +3,12 @@ const groups = require("../groups/membergroups.js");
 const id = require("../helper/id.js");
 const htmlToImg = require("node-html-to-image");
 
+function delay(time) {
+    return new Promise((_) => {
+        setTimeout(_, time);
+    });
+}
+
 const exec = async (message, args) => {
     let reactMsg = await id.parseMessage(args[0], message.channel);
     let toReactWith = args.slice(1);
@@ -63,7 +69,16 @@ const exec = async (message, args) => {
         });
         
         // 50 per hour rate limit
-        const emoji = await message.guild.emojis.create(image, `reactword`);
+        const emojiPromise = message.guild.emojis.create(image, `reactword`);
+        const promises = [delay(3000), emojiPromise];
+        const emoji = await Promise.any(promises);
+        if (!emoji) {
+            if (reacted === "") {
+                reacted = "nothing ";
+            }
+            reacted += "(emoji creation is rate limited)"
+            break;
+        }
         await reactMsg.react(emoji);
         await emoji.delete();
         reacted += word + " ";
