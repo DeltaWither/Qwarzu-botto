@@ -27,6 +27,12 @@ const exec = async (message, args) => {
     
     let reacted = "";
     for (word of toReactWith) {
+        escapedWord = word.replace(/&/g, "&amp;")
+                            .replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;")
+                            .replace(/"/g, "&quot;")
+                            .replace(/'/g, "&#39;");
+         
         if (reactMsg.reactions.cache.size === 20) {
             if (reacted === "") {
                 reacted = "nothing ";
@@ -52,7 +58,7 @@ const exec = async (message, args) => {
                 }
                 </style>
             </head>
-            <body>${word}
+            <body>${escapedWord}
             </body></html>`
         });
         
