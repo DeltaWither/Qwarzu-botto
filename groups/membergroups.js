@@ -48,6 +48,21 @@ if (!groups) {
 		"ADMINISTRATOR"
             ]
 	},
+    "boosters": {
+        "name": "boosters",
+        "description": "Server boosters",
+        "allowedPerms": [
+            "ADMINISTRATOR"
+        ]
+    },
+    
+    "staffAndBoosters": {
+        "name": "staffAndBoosters",
+        "description": "Staff and server boosters",
+        "allowedPerms": [
+            "ADMINISTRATOR"
+        ]
+    },
 	"notNewMembers": {
             "name": "notNewMembers",
             "description": "Everyone except oranges",
