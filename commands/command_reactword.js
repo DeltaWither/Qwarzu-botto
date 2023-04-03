@@ -35,6 +35,7 @@ const exec = async (message, args) => {
             break;
         }
         const image = await htmlToImg({
+            puppeteerArgs: { args: ['--no-sandbox'] },
             html: `<html margin="0"><head>
                 <meta charset="utf-8">
                 <style>
