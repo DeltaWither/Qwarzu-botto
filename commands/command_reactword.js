@@ -74,7 +74,7 @@ const description = `Usage: ?reactword [message id in the same channel] [word]
 Reacts with letter and number emotes to a message in the server. If it's not in the same channel as the command, the first argument has to specify the channel.`;
 
 const reactword = new Command("reactword", description, exec)
-reactword.executeGroup = groups.staff;
+reactword.executeGroup = groups.staffAndBoosters;
 reactword.parent = "root";
 
 module.exports = reactword;
