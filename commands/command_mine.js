@@ -12,7 +12,7 @@ const exec = async (message, args) => {
         }
     }
     
-    if (!member.roles.cache.has("1083009160507047966")) {
+    if (!member.roles.cache.has("1092869607032897607")) {
         return {
             string: "You aren't a miner"
         }
