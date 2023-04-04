@@ -19,7 +19,7 @@ const exec = async (message, args) => {
     }
 
     const muted = await id.parseRole("710068197566578718", message.guild);
-    const miner = await id.parseRole("1083009160507047966", message.guild);
+    const miner = await id.parseRole("1092869607032897607", message.guild);
     
     const mineCount = database.read("minescount");
     if (!mineCount[message.author.id] || mineCount[message.author.id] === 1) {
