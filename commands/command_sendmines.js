@@ -7,7 +7,7 @@ const rolepersist = require("./command_rolepersist.js");
 const exec = async (message, args) => {
     const member = await id.parseMember(args[0], message.guild);
     const muted = await id.parseRole("710068197566578718", message.guild);
-    const miner = await id.parseRole("1083009160507047966", message.guild);
+    const miner = await id.parseRole("1092869607032897607", message.guild);
     
     if (!database.read("minescount")) {
         database.create("minescount", {});
