@@ -5,7 +5,11 @@ const code = async (text) => {
 }
 
 const exec = async (message, args) => {
-    const text = args.join(" ");    
+    let text = message.content.slice(5).trim();
+    if (text.slice(0, 3) === "```") {
+        text = text.slice(text.search("\n"), -3);
+    }
+    console.log(text);
     result = (await eval(`(async () => {${text}})()`)).toString();
     
     return {
