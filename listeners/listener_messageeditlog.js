@@ -9,6 +9,11 @@ const exec = async (oldMessage, newMessage) => {
         return;
     }
     
+    // if an embed is edited it gets redisplayed again so another check here
+    if (oldMessage.editedTimestamp && newMessage.editedTimestamp - oldMessage.editedTimestamp < 100) {
+        return
+    }
+    
     let messageStr = "old: ";
     if (oldMessage.content) {
         messageStr += oldMessage.content.slice(0, 500);
@@ -16,7 +21,7 @@ const exec = async (oldMessage, newMessage) => {
         
     messageStr += "\nnew: " + newMessage.content.slice(0, 500) + "\nSent by <@" + newMessage.author.id + ">";
     
-    await editedMessagesChannel.send(messageStr);
+    await editedMessagesChannel.send({content: messageStr, allowedMentions: {parse: [] }});
 }
 
 const description = `Listener type: messageUpdate
