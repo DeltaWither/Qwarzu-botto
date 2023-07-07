@@ -3,7 +3,7 @@ const { clientId } = require("../config.json");
 const id = require("../helper/id.js");
 
 const exec = async (oldMessage, newMessage) => {
-    const editedMessagesChannel = await id.parseChannel("1126945206172909670");
+    const editedMessagesChannel = await id.parseChannel("1126945206172909670", newMessage.guild);
     
     console.log(newMessage.editedTimestamp - newMessage.createdTimestamp);
     
