@@ -12,10 +12,9 @@ const exec = async (oldMessage, newMessage) => {
         messageStr += oldMessage.content.slice(0, 500);
     }
         
-    messageStr += "\nnew: " + newMessage.content.slice(0, 500) + "\nSent by <@" + newMessage.author.id + ">"
-    );
+    messageStr += "\nnew: " + newMessage.content.slice(0, 500) + "\nSent by <@" + newMessage.author.id + ">";
     
-    await editedMessagesChannel.send(messageStr)
+    await editedMessagesChannel.send(messageStr);
 }
 
 const description = `Listener type: messageUpdate
