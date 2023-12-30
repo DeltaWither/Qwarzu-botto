@@ -7,7 +7,7 @@ const sendmines = require("./command_sendmines.js");
 const exec = async (message, args) => {
 	let result = null;
 
-	const requiredChannel = "721071804667527290";
+	const requiredChannel = "708715309107904526";
 	const channelId = message.channel.id
 	if (channelId != requiredChannel) {
 		return {
