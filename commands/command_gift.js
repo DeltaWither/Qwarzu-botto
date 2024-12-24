@@ -30,7 +30,7 @@ const exec = async (message, args) => {
 			};
 		}
 		return {
-			string: `The gift backfired, you get ${args[1]} mines`
+			string: `The gift backfired, you get ${amount} mines`
 		};
 	}
 
