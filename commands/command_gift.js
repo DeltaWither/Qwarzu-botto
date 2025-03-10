@@ -22,7 +22,7 @@ const exec = async (message, args) => {
 		};
 	}
 
-	if (Math.random() < 0.8) {
+	if (Math.random() < 0.66) {
 		result = await sendmines.wrappedExec(message, [message.author.id, args[1]], {skipExecGroup: true});
 		if (result.string === "Use ?sendmines [user] [amount]" || result.string === "error") {
 			return {

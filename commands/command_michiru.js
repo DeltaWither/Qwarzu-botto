@@ -8,9 +8,9 @@ const michiruArray = [
     "https://cdn.discordapp.com/attachments/708715309107904526/850512191342116904/Enj7IwnVkAA-n6P.jpg",
     "https://cdn.discordapp.com/attachments/708715309107904526/850512311331586068/Eq_h4gOUcAAE5V8.jpg",
     "https://cdn.discordapp.com/attachments/708715309107904526/850512419108683847/EnqRS6VVgAE0NFw.jpg",
-    "https://cdn.discordapp.com/attachments/708715309107904526/850512563397197874/EjFcQTAVoAEAeYk.jpg"
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKo980a6gCHy8SzthXVYoQvzPo_kKlJAvGeQ&s"
-    "https://w0.peakpx.com/wallpaper/139/771/HD-wallpaper-michiru-art-brand-new-animal-michiru-kagemori.jpg"
+    "https://cdn.discordapp.com/attachments/708715309107904526/850512563397197874/EjFcQTAVoAEAeYk.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKo980a6gCHy8SzthXVYoQvzPo_kKlJAvGeQ&s",
+    "https://w0.peakpx.com/wallpaper/139/771/HD-wallpaper-michiru-art-brand-new-animal-michiru-kagemori.jpg",
     "https://d.furaffinity.net/art/joakaha/1666310538/1666310538.joakaha_bna_-_michiru_-_kopia.jpg"
 ]
 
